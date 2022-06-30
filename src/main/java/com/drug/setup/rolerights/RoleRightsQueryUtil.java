@@ -1,6 +1,6 @@
-package com.drug.setup.roles;
+package com.drug.setup.rolerights;
 
-public class RolesMasterQueryUtil {
+public class RoleRightsQueryUtil {
 
 	public static final String INSERT = "insert into auth.role (name,remark) values(:roleName,:remarks) ";
 	

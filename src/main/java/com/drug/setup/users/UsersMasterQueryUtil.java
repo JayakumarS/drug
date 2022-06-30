@@ -10,7 +10,7 @@ public class UsersMasterQueryUtil {
 	
 	public static final String GET_ROLE_LIST = "select role_id as id ,name as text from auth.role ";
 	
-	public static final String INSERT_Employee = "INSERT INTO employee (emp_id, email_id,created_by,created_dt,first_name,last_name,phone_no,photo_url,emp_name,emp_user_id) VALUES (:empId, :emailId,'',now(),:firstName,:lastName,:mobileNo,:photoUrl,:empName,:userId)";
+	public static final String INSERT_Employee = "INSERT INTO user_details (emp_id, email_id,created_by,created_dt,first_name,last_name,phone_no,photo_url,emp_name,emp_user_id) VALUES (:empId, :emailId,'',now(),:firstName,:lastName,:mobileNo,:photoUrl,:empName,:userId)";
 	
 	public static final String INSERT_AppUser = "INSERT INTO auth.app_user(user_id,password,reference_id)values(:userId,:password,:empId)";
 	
@@ -18,5 +18,5 @@ public class UsersMasterQueryUtil {
 	
 	public static String GETEMPID = "SELECT CASE WHEN MAX(emp_id) IS NULL  THEN 'E0001' ELSE rpad(MAX(emp_id),1,'E')|| lpad(cast(cast((SUBSTRING(MAX(emp_id),2)) as int)+1  as text),4,'0') END FROM employee";
 
-	public static final String INSERT_USER_ROLE_MAP = "insert into auth.user_role_map (user_id,role_id) values (:userId,:roleId)";
+	public static final String INSERT_USER_ROLE_MAP = "insert into auth.user_roles (user_id,role_id) values (:userId,:roleId)";
 }

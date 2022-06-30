@@ -32,13 +32,13 @@ public class FormPropertyDaoImpl implements FormPropertyDao{
 	JdbcTemplate jdbcTemplate;
 	
 	@Override
-	public FormPropertyResultBean getFormProperty(String userId) throws CustomException {
+	public FormPropertyResultBean getFormProperty(Integer roleId) throws CustomException {
 		FormPropertyResultBean objEmployeeMasterResultBean = new FormPropertyResultBean();
 		objEmployeeMasterResultBean.setSuccess(false);
 		List<FormPropertyBean> formList = new ArrayList<FormPropertyBean>();
 		try {
 			
-			formList = jdbcTemplate.query(FormPropertyQueryUtil.getFormPropertyList, new BeanPropertyRowMapper<FormPropertyBean>(FormPropertyBean.class), 1);
+			formList = jdbcTemplate.query(FormPropertyQueryUtil.getFormPropertyList, new BeanPropertyRowMapper<FormPropertyBean>(FormPropertyBean.class), roleId);
 			List<FormPropertyBean> moduleList = formList
 			  .stream()
 			  .filter(c -> c.getFormcodeparent().equals("F0001"))

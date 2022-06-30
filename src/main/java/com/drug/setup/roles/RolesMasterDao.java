@@ -13,5 +13,7 @@ public interface RolesMasterDao {
 	RolesMasterResultBean delete(Integer bean) throws Exception;
 
 	RolesMasterResultBean update(RolesMasterBean bean) throws Exception;
+	
+	List<RolesMasterBean> getLoginRoleList(String userName);
 
 }

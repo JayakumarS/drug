@@ -1,4 +1,4 @@
-package com.drug.setup.roles;
+package com.drug.setup.rolerights;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RolesMasterDaoImpl implements RolesMasterDao {
+public class RoleRightsDaoImpl implements RoleRightsDao {
 	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
@@ -21,14 +21,14 @@ public class RolesMasterDaoImpl implements RolesMasterDao {
 	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	@Override
-	public RolesMasterResultBean save(RolesMasterBean bean) throws Exception {
-		RolesMasterResultBean resultBean = new RolesMasterResultBean();
+	public RoleRightsResultBean save(RoleRightsBean bean) throws Exception {
+		RoleRightsResultBean resultBean = new RoleRightsResultBean();
 		try {
 			Map<String, Object> saveMap = new HashMap<String, Object>();
 			saveMap.put("roleName", bean.getRoleName());
 			saveMap.put("remarks", bean.getRemarks());
 			
-			namedParameterJdbcTemplate.update(RolesMasterQueryUtil.INSERT,saveMap);
+			namedParameterJdbcTemplate.update(RoleRightsQueryUtil.INSERT,saveMap);
 		   resultBean.setSuccess(true);
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -39,10 +39,10 @@ public class RolesMasterDaoImpl implements RolesMasterDao {
 	}
 
 	@Override
-	public List<RolesMasterBean> getList() throws Exception {
-		List<RolesMasterBean> objCustomerMasterBean = new ArrayList<RolesMasterBean>();
+	public List<RoleRightsBean> getList() throws Exception {
+		List<RoleRightsBean> objCustomerMasterBean = new ArrayList<RoleRightsBean>();
 		try {
-			objCustomerMasterBean = jdbcTemplate.query(RolesMasterQueryUtil.getList, new BeanPropertyRowMapper<RolesMasterBean>(RolesMasterBean.class));
+			objCustomerMasterBean = jdbcTemplate.query(RoleRightsQueryUtil.getList, new BeanPropertyRowMapper<RoleRightsBean>(RoleRightsBean.class));
 			
 		}catch(Exception e){
 			e.printStackTrace();
@@ -51,11 +51,11 @@ public class RolesMasterDaoImpl implements RolesMasterDao {
 	}
 
 	@Override
-	public RolesMasterResultBean edit(Integer code) throws Exception {
-		RolesMasterResultBean resultBean = new RolesMasterResultBean();
+	public RoleRightsResultBean edit(Integer code) throws Exception {
+		RoleRightsResultBean resultBean = new RoleRightsResultBean();
 		resultBean.setSuccess(false);
 		try {
-			resultBean.setRolesMasterBean(jdbcTemplate.queryForObject(RolesMasterQueryUtil.SELECT_DTL,new Object[] { code }, new BeanPropertyRowMapper<RolesMasterBean>(RolesMasterBean.class)));
+			resultBean.setRolesMasterBean(jdbcTemplate.queryForObject(RoleRightsQueryUtil.SELECT_DTL,new Object[] { code }, new BeanPropertyRowMapper<RoleRightsBean>(RoleRightsBean.class)));
 			resultBean.setSuccess(true);
 		}
 		catch(Exception e) {
@@ -66,11 +66,11 @@ public class RolesMasterDaoImpl implements RolesMasterDao {
 	}
 
 	@Override
-	public RolesMasterResultBean delete(Integer cusCode) throws Exception {
-		RolesMasterResultBean resultBean = new RolesMasterResultBean();
+	public RoleRightsResultBean delete(Integer cusCode) throws Exception {
+		RoleRightsResultBean resultBean = new RoleRightsResultBean();
 		try {
 			if(cusCode!=null) {
-				jdbcTemplate.update(RolesMasterQueryUtil.DELETE,cusCode);
+				jdbcTemplate.update(RoleRightsQueryUtil.DELETE,cusCode);
 			}
 			resultBean.setSuccess(true);
 		}
@@ -82,12 +82,12 @@ public class RolesMasterDaoImpl implements RolesMasterDao {
 	}
 
 	@Override
-	public RolesMasterResultBean update(RolesMasterBean bean) throws Exception {
-		RolesMasterResultBean resultBean = new RolesMasterResultBean();
+	public RoleRightsResultBean update(RoleRightsBean bean) throws Exception {
+		RoleRightsResultBean resultBean = new RoleRightsResultBean();
 		try {
 			Map<String, Object> customerMasterMap = new HashMap<String, Object>();
 			    
-				namedParameterJdbcTemplate.update(RolesMasterQueryUtil.UPDATE_CUSTOMER_MASTER,customerMasterMap);
+				namedParameterJdbcTemplate.update(RoleRightsQueryUtil.UPDATE_CUSTOMER_MASTER,customerMasterMap);
 			   resultBean.setSuccess(true);
 		
 		}
@@ -98,10 +98,10 @@ public class RolesMasterDaoImpl implements RolesMasterDao {
 	}
 
 	@Override
-	public List<RolesMasterBean> getLoginRoleList(String userName) {
-		List<RolesMasterBean> rolesBean = new ArrayList<RolesMasterBean>();
+	public List<RoleRightsBean> getLoginRoleList(String userName) {
+		List<RoleRightsBean> rolesBean = new ArrayList<RoleRightsBean>();
 		try {
-			rolesBean = jdbcTemplate.query(RolesMasterQueryUtil.getLoginRoleList,new Object[] { userName }, new BeanPropertyRowMapper<RolesMasterBean>(RolesMasterBean.class));
+			rolesBean = jdbcTemplate.query(RoleRightsQueryUtil.getLoginRoleList,new Object[] { userName }, new BeanPropertyRowMapper<RoleRightsBean>(RoleRightsBean.class));
 			
 		}catch(Exception e){
 			e.printStackTrace();

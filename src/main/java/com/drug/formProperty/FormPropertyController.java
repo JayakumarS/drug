@@ -20,10 +20,10 @@ public class FormPropertyController {
 	
 	@ApiOperation(value = "FormProperty Controller")
 	@GetMapping("/getFormProperty")
-	private FormPropertyResultBean getFormProperty(@RequestParam("userId") String userId) {
+	private FormPropertyResultBean getFormProperty(@RequestParam("roleId") Integer roleId) {
 		FormPropertyResultBean formPropertyResultBean = new FormPropertyResultBean();
 		try {
-			formPropertyResultBean = menuPropertyService.getFormProperty(userId);
+			formPropertyResultBean = menuPropertyService.getFormProperty(roleId);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.drug.employeeMaster.EmployeeMasterBean;
 import com.drug.employeeMaster.EmployeeMasterService;
+import com.drug.setup.roles.RolesMasterBean;
+import com.drug.setup.roles.RolesMasterService;
 import com.drug.usermanagement.User;
 import com.drug.usermanagement.UserDetailsImpl;
 
@@ -47,6 +49,8 @@ public class AuthController {
 	@Autowired
 	private EmployeeMasterService employeeMasterService;
 	
+	@Autowired
+	private RolesMasterService rolesMasterService;
 	
 	@ApiOperation(value = "Sign In")
 	@PostMapping("/signin")
@@ -60,11 +64,12 @@ public class AuthController {
 		String jwt = jwtUtils.generateJwtToken(authentication);
 
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
-				.collect(Collectors.toList());
-
+//		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
+//				.collect(Collectors.toList());
+		List<RolesMasterBean>  roles = rolesMasterService.getLoginRoleList(userDetails.getUsername());
+		Integer defaultRoleId = roles.get(0).getRoleId();
 		return ResponseEntity.ok(
-				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles,true,"Sucess"));
+				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles,true,"Sucess",defaultRoleId));
 	}
 
 	@ApiOperation(value = "Get user info by token")

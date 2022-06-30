@@ -13,5 +13,6 @@ public interface RolesMasterService {
 	RolesMasterResultBean delete(Integer code) throws Exception;
 	
 	RolesMasterResultBean update(RolesMasterBean bean) throws Exception;
-
+	
+	public List<RolesMasterBean> getLoginRoleList(String userName);
 }
