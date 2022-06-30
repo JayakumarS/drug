@@ -15,5 +15,7 @@ public interface RoleRightsDao {
 	RoleRightsResultBean update(RoleRightsBean bean) throws Exception;
 	
 	List<RoleRightsBean> getLoginRoleList(String userName);
+	
+	RoleRightsResultBean getFormList(Integer roleId)throws Exception;
 
 }

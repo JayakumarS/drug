@@ -2,6 +2,7 @@ package com.drug.setup.rolerights;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import com.drug.core.util.BasicResultBean;
 
@@ -11,7 +12,14 @@ public class RoleRightsResultBean extends BasicResultBean implements Serializabl
 	public boolean success;
 	private RoleRightsBean rolesMasterBean;
 	private List<RoleRightsBean> rolesMasterDetails;
+	private List<Map<String,Object>> formList;
 	
+	public List<Map<String, Object>> getFormList() {
+		return formList;
+	}
+	public void setFormList(List<Map<String, Object>> formList) {
+		this.formList = formList;
+	}
 	public boolean isSuccess() {
 		return success;
 	}

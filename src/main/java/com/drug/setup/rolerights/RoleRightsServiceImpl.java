@@ -45,6 +45,12 @@ public class RoleRightsServiceImpl implements RoleRightsService {
 		return rolesMasterDao.getLoginRoleList(userName);
 	}
 
+	@Override
+	public RoleRightsResultBean getFormList(Integer roleId) throws Exception {
+		// TODO Auto-generated method stub
+		return rolesMasterDao.getFormList(roleId);
+	}
+
 	
 
 

@@ -15,4 +15,6 @@ public interface RoleRightsService {
 	RoleRightsResultBean update(RoleRightsBean bean) throws Exception;
 	
 	public List<RoleRightsBean> getLoginRoleList(String userName);
+	
+	RoleRightsResultBean getFormList(Integer roleId) throws Exception;
 }

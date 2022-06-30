@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.drug.setup.users.UsersMasterResultBean;
+
 
 @RestController
-@RequestMapping("/api/auth/app/rolesRights")
+@RequestMapping("/api/auth/app/roleRights")
 public class RoleRightsController {
 	@Autowired
 	RoleRightsService rolesrMasterService;
@@ -70,4 +72,8 @@ public class RoleRightsController {
 		return objResultBean;
 	}
 
+	@RequestMapping(value = "/getFormList")
+   	public RoleRightsResultBean getFormList(@RequestParam("roleId") Integer roleId) throws Exception {
+   		return rolesrMasterService.getFormList(roleId);
+   	}
 }

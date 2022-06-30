@@ -11,6 +11,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.drug.core.util.DropDownList;
+import com.drug.employeeMaster.EmployeeMasterQueryUtil;
+import com.drug.setup.users.UsersMasterQueryUtil;
+import com.drug.setup.users.UsersMasterResultBean;
+
 @Repository
 public class RoleRightsDaoImpl implements RoleRightsDao {
 	
@@ -24,11 +29,23 @@ public class RoleRightsDaoImpl implements RoleRightsDao {
 	public RoleRightsResultBean save(RoleRightsBean bean) throws Exception {
 		RoleRightsResultBean resultBean = new RoleRightsResultBean();
 		try {
-			Map<String, Object> saveMap = new HashMap<String, Object>();
-			saveMap.put("roleName", bean.getRoleName());
-			saveMap.put("remarks", bean.getRemarks());
 			
-			namedParameterJdbcTemplate.update(RoleRightsQueryUtil.INSERT,saveMap);
+			
+			if(bean.getFormList().size()>0) {
+				jdbcTemplate.update(RoleRightsQueryUtil.DELETE,bean.getRoleId());
+				for(Map<String,Object> formCodeStr:bean.getFormList()) {
+					int formPropertyId =  jdbcTemplate.queryForObject(RoleRightsQueryUtil.GET_FORM_PROP_ID,new Object[] {formCodeStr.get("item_id").toString()}, Integer.class);
+					
+					//int formPropertyId = jdbcTemplate.queryForObject("", new Object[] {},Integer.class );
+					Map<String, Object> saveMap = new HashMap<String, Object>();
+					saveMap.put("roleId", bean.getRoleId());
+					saveMap.put("formPropertyId", formPropertyId);
+					namedParameterJdbcTemplate.update(RoleRightsQueryUtil.INSERT,saveMap);
+				}
+			}
+			
+			
+			
 		   resultBean.setSuccess(true);
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -107,6 +124,26 @@ public class RoleRightsDaoImpl implements RoleRightsDao {
 			e.printStackTrace();
 		}
 		return rolesBean;
+	}
+
+	@Override
+	public RoleRightsResultBean getFormList(Integer roleId) throws Exception {
+		RoleRightsResultBean resultBean =new RoleRightsResultBean ();
+		resultBean.setSuccess(false);
+		try {
+			if(roleId!=0) {
+				resultBean.setFormList(jdbcTemplate.queryForList(RoleRightsQueryUtil.GET_ROLE_BASED_FORM_LIST,new Object[] { roleId }));
+			}else {
+				resultBean.setFormList(jdbcTemplate.queryForList(RoleRightsQueryUtil.GET_FORM_LIST));
+			}
+			
+			resultBean.setSuccess(true);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			resultBean.setSuccess(false);
+		}
+		return resultBean;
 	}
 
 
