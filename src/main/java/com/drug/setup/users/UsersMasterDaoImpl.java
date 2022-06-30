@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.drug.core.util.DropDownList;
+import com.drug.employeeMaster.EmployeeMasterQueryUtil;
 import com.drug.filesupload.FileUploadQueryUtil;
 import com.drug.filesupload.FileUploadResultBean;
 
@@ -24,15 +26,37 @@ public class UsersMasterDaoImpl implements UsersMasterDao {
 	@Autowired
 	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+	@Autowired
+	PasswordEncoder encoder;
+	
 	@Override
 	public UsersMasterResultBean save(UsersMasterBean bean) throws Exception {
 		UsersMasterResultBean resultBean = new UsersMasterResultBean();
+		
 		try {
 			Map<String, Object> saveMap = new HashMap<String, Object>();
-			saveMap.put("fileUploadUrl", bean.getFileUploadUrl());
 			
 			
-			namedParameterJdbcTemplate.update(UsersMasterQueryUtil.INSERT,saveMap);
+			saveMap.put("userId", bean.getNewUserName());
+			saveMap.put("firstName", bean.getFirstName());
+			saveMap.put("lastName", bean.getLastName());
+			saveMap.put("mobileNo", bean.getMobileNo());
+			saveMap.put("password", encoder.encode(bean.getNewPassword()));
+			saveMap.put("emailId", bean.getEmailId());
+			saveMap.put("photoUrl", bean.getFileUploadUrl());
+			saveMap.put("roleId", bean.getRoles());
+			saveMap.put("empName", bean.getFirstName());
+			String empId =  jdbcTemplate.queryForObject(UsersMasterQueryUtil.GETEMPID, String.class);
+			saveMap.put("empId", empId);
+			
+			int insetEmp = namedParameterJdbcTemplate.update(UsersMasterQueryUtil.INSERT_Employee, saveMap);
+			
+			int insertAppUser = namedParameterJdbcTemplate.update(UsersMasterQueryUtil.INSERT_AppUser, saveMap);
+			
+			int insertUserRoleMap = namedParameterJdbcTemplate.update(UsersMasterQueryUtil.INSERT_USER_ROLE_MAP, saveMap);
+			
+			
+			
 		   resultBean.setSuccess(true);
 		}catch(Exception e) {
 			e.printStackTrace();

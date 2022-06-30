@@ -38,7 +38,7 @@ public class FormPropertyDaoImpl implements FormPropertyDao{
 		List<FormPropertyBean> formList = new ArrayList<FormPropertyBean>();
 		try {
 			
-			formList = jdbcTemplate.query(FormPropertyQueryUtil.getFormPropertyList, new BeanPropertyRowMapper<FormPropertyBean>(FormPropertyBean.class), userId);
+			formList = jdbcTemplate.query(FormPropertyQueryUtil.getFormPropertyList, new BeanPropertyRowMapper<FormPropertyBean>(FormPropertyBean.class), 1);
 			List<FormPropertyBean> moduleList = formList
 			  .stream()
 			  .filter(c -> c.getFormcodeparent().equals("F0001"))
