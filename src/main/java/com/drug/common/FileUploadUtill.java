@@ -84,12 +84,13 @@ public class FileUploadUtill {
 			}
 			if (file.getSize() > 0) {
 				String currentTimeStamp = "." + FilenameUtils.getExtension(file.getOriginalFilename());
-				String destinationFileName = fileName + "_" + currentTimeStamp;
+				//String destinationFileName = fileName + "_" + currentTimeStamp;
+				String destinationFileName = fileName ;
 				File destinationFile = new File(fileAbsolutePath + destinationFileName);
 				//File destinationFile = new File(fileAbsolutePath);
 				Files.write(file.getBytes(), destinationFile);
-				url = serverPath + File.separator + destinationFileName;
-				System.out.println("serverpath is" + serverPath);
+				url = serverPath + "/" + destinationFileName;
+				System.out.println("serverpath is" + url);
 
 			}
 		} catch (Exception e) {

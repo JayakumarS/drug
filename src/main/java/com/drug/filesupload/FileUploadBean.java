@@ -2,15 +2,32 @@ package com.drug.filesupload;
 
 public class FileUploadBean {
 	
-	private String customer;
-	private String uploadFile;
-	private String fileUploadUrl;
 	
-	public String getCustomer() {
-		return customer;
+	private String uploadFile;
+	private String companyCode;
+	private String reportUrl;
+	private Integer id;
+	
+	
+	
+	
+	public Integer getId() {
+		return id;
 	}
-	public void setCustomer(String customer) {
-		this.customer = customer;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getCompanyCode() {
+		return companyCode;
+	}
+	public void setCompanyCode(String companyCode) {
+		this.companyCode = companyCode;
+	}
+	public String getReportUrl() {
+		return reportUrl;
+	}
+	public void setReportUrl(String reportUrl) {
+		this.reportUrl = reportUrl;
 	}
 	public String getUploadFile() {
 		return uploadFile;
@@ -18,12 +35,7 @@ public class FileUploadBean {
 	public void setUploadFile(String uploadFile) {
 		this.uploadFile = uploadFile;
 	}
-	public String getFileUploadUrl() {
-		return fileUploadUrl;
-	}
-	public void setFileUploadUrl(String fileUploadUrl) {
-		this.fileUploadUrl = fileUploadUrl;
-	}
+	
 	
 	
 	

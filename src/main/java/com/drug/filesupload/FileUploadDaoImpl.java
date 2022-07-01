@@ -27,8 +27,8 @@ public class FileUploadDaoImpl implements FileUploadDao {
 		FileUploadResultBean resultBean = new FileUploadResultBean();
 		try {
 			Map<String, Object> customerMasterMap = new HashMap<String, Object>();
-			 customerMasterMap.put("customer", bean.getCustomer());
-			 customerMasterMap.put("fileUploadUrl", bean.getFileUploadUrl());
+			 customerMasterMap.put("companyCode", bean.getCompanyCode());
+			 customerMasterMap.put("reportUrl", bean.getReportUrl());
 			namedParameterJdbcTemplate.update(FileUploadQueryUtil.INSERT_FILE_UPLOAD,customerMasterMap);
 		   resultBean.setSuccess(true);
 		}catch(Exception e) {

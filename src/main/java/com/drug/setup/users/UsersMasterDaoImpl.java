@@ -46,10 +46,11 @@ public class UsersMasterDaoImpl implements UsersMasterDao {
 			saveMap.put("photoUrl", bean.getFileUploadUrl());
 			saveMap.put("roleId", bean.getRoles());
 			saveMap.put("empName", bean.getFirstName());
+			saveMap.put("companyCode", bean.getCompanyCode());
 			String empId =  jdbcTemplate.queryForObject(UsersMasterQueryUtil.GETEMPID, String.class);
 			saveMap.put("empId", empId);
 			
-			int insetEmp = namedParameterJdbcTemplate.update(UsersMasterQueryUtil.INSERT_Employee, saveMap);
+			int insetEmp = namedParameterJdbcTemplate.update(UsersMasterQueryUtil.INSERT_USER_DETAILS, saveMap);
 			
 			int insertAppUser = namedParameterJdbcTemplate.update(UsersMasterQueryUtil.INSERT_AppUser, saveMap);
 			

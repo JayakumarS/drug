@@ -12,7 +12,7 @@ public class UsersMasterBean {
 	private String uploadImg;
 	private Integer roles;
 	private String roleText;
-	
+	private String companyCode;
 	
 	public String getRoleText() {
 		return roleText;
@@ -84,6 +84,12 @@ public class UsersMasterBean {
 	}
 	public void setFileUploadUrl(String fileUploadUrl) {
 		this.fileUploadUrl = fileUploadUrl;
+	}
+	public String getCompanyCode() {
+		return companyCode;
+	}
+	public void setCompanyCode(String companyCode) {
+		this.companyCode = companyCode;
 	}
 	
 	
