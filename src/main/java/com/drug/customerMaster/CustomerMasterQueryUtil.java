@@ -2,8 +2,13 @@ package com.drug.customerMaster;
 
 public class CustomerMasterQueryUtil {
 
-	public static final String INSERT_CUSTOMER_MASTER = "Insert into customer (customer_code,exchange_rate,booking_person_email,booking_person,sales_person_email,operation_person_email,fax_no,customer_name,cust_short_name,address,country_name,cr_limit,email,office_no,telex_no,currency,sales_person,payment_center,city,state,nat_of_business,cr_days,website,key_name,pan_no,pin_code,cust_category,acct_head_code,created_by,created_on) "
-			+ " values(:cusCode,:territory,:companyRegn,:keyNumber,:transactionGST,:vatNumber,:organisationName,:keyName,:shortName,:addressOfCus,:country,:creditLimit,:keymail,:notificationMail,:invoiceMail,:creditUsd,:salesPerson,:paymentCenter,:city,:stp,:business,:creditDays,:cusWebsite,:keyName,:panNumber,:zipCode,'t','CUS001','E0001',now())";
+	public static final String INSERT_CUSTOMER_MASTER = "SELECT  sp_add_company(?,?,?,?,?,?,?,?,?,?,?,?,?::Date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	 
+	//	companyCode, companyName, dbaName, streetName, cityName, stateName, zipCode, 
+//    contactPersosn, mailId, phoneNo, faxNo, deaNo, deaExpDate, authorisedClasses, facilityType,
+//    creditToName, creditToStreet,creditToCity, creditToState,creditToZipCode,  creditToPhoneNo,
+//    returnPricing, returnPricingAwpPer, wholesalerWillOptions, wholesalerWillMonths,
+//    cppOption,cppServiceRatePer,cppCiiShipping,cppNoOfChecks, 'A'
 	public static final String getCustomerList = "select customer_code as cusCode,acct_head_code as name,customer_name as zipCode,cust_short_name as addressOfCus,office_no as notificationMail,telex_no as invoiceMail,country_name as organisationName from customer order by customer_code asc";
 	public static final String GETCUSCODE = "select * From fn_generate_reference_no('customer', 'customer_code', 'CU', '4')";
 	public static final String DELETE_CUSTOMER = "delete from customer where customer_code = ?";
