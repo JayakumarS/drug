@@ -97,5 +97,17 @@ public class RolesMasterDaoImpl implements RolesMasterDao {
 		return resultBean;
 	}
 
+	@Override
+	public List<RolesMasterBean> getLoginRoleList(String userName) {
+		List<RolesMasterBean> rolesBean = new ArrayList<RolesMasterBean>();
+		try {
+			rolesBean = jdbcTemplate.query(RolesMasterQueryUtil.getLoginRoleList,new Object[] { userName }, new BeanPropertyRowMapper<RolesMasterBean>(RolesMasterBean.class));
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return rolesBean;
+	}
+
 
 }

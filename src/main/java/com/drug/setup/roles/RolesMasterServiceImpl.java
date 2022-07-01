@@ -39,6 +39,12 @@ public class RolesMasterServiceImpl implements RolesMasterService {
 		return rolesMasterDao.edit(bean);
 	}
 
+	@Override
+	public List<RolesMasterBean> getLoginRoleList(String userName) {
+		// TODO Auto-generated method stub
+		return rolesMasterDao.getLoginRoleList(userName);
+	}
+
 	
 
 

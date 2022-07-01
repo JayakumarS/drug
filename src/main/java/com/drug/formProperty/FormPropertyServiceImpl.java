@@ -11,9 +11,9 @@ public class FormPropertyServiceImpl implements FormPropertyService{
 	FormPropertyDao formPropertyDao;
 	
 	@Override
-	public FormPropertyResultBean getFormProperty(String userId) throws CustomException {
+	public FormPropertyResultBean getFormProperty(Integer roleId) throws CustomException {
 		// TODO Auto-generated method stub
-		return formPropertyDao.getFormProperty(userId);
+		return formPropertyDao.getFormProperty(roleId);
 	}
 
 }
