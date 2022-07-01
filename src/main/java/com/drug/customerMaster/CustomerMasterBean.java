@@ -41,10 +41,10 @@ public class CustomerMasterBean {
 	private String issuesCreditsPhone;
 
 	private String generalInfroWacAwapMyprice;
-	private Integer generalInfroWacAwapPer;
+	private Integer generalInfroWacAwapPer=0;
 
 	private Integer myWholesalerPolicyType;
-	private Integer myWholesalerPolicyMonths;
+	private Integer myWholesalerPolicyMonths=0;
 	private boolean myWholesalerCpp;
 	private Integer cppServiceRate;
 	private Integer cppShippingRate;
