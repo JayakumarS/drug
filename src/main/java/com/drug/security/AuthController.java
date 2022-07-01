@@ -67,9 +67,10 @@ public class AuthController {
 //		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 //				.collect(Collectors.toList());
 		List<RolesMasterBean>  roles = rolesMasterService.getLoginRoleList(userDetails.getUsername());
-		Integer defaultRoleId = roles.get(0).getRoleId();
+		Integer defaultRoleId =  roles.get(0).getRoleId();
+		String defaultRole = roles.get(0).getRoleName();
 		return ResponseEntity.ok(
-				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles,true,"Sucess",defaultRoleId));
+				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles,true,"Sucess",defaultRoleId,defaultRole));
 	}
 
 	@ApiOperation(value = "Get user info by token")
