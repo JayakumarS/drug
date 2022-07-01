@@ -11,7 +11,7 @@ public class CustomerMasterQueryUtil {
 //    cppOption,cppServiceRatePer,cppCiiShipping,cppNoOfChecks, 'A'
 	public static final String getCustomerList = "SELECT company_code as companyCode,company_name as companyName,mail_id as companyEmailID,state as companyState,city as companyCity FROM company order by company_code desc";
 	public static final String GETCUSCODE = "select * From fn_generate_reference_no('customer', 'customer_code', 'CU', '4')";
-	public static final String DELETE_CUSTOMER = "delete from customer where company_code = ?";
+	public static final String DELETE_CUSTOMER = "delete from company where company_code = ?";
 	public static final String SELECT_CUSTOMER_DTL = "SELECT company_code as companyCode, company_name as companyName, dba_name as companyDba, street as companyStreet,\r\n"
 			+ " city as companyCity, state as companyState, zip_code as companyPincode, contact_persosn as companyContact, \r\n"
 			+ " mail_id as companyEmailID, phone_no as companyPhone, fax_no as companyFax, dea_no as defNumber, dea_exp_date as defExpirationDate,\r\n"
