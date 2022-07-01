@@ -22,8 +22,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST","PUT", "DELETE");
 	}
 	
-//	@Override
-//	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//		registry.addResourceHandler("filePath/**").addResourceLocations("file///"+ConfigurationProps.)
-//	}
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("CustomerDrugUpload/**").addResourceLocations("file////DRUG/CustomerDrugUpload/");
+	}
 }
