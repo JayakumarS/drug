@@ -2,7 +2,7 @@ package com.drug.customerMaster;
 
 public class CustomerMasterQueryUtil {
 
-	public static final String INSERT_CUSTOMER_MASTER = "SELECT  sp_add_company(?,?,?,?,?,?,?,?,?,?,?,?,?::Date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	public static final String INSERT_CUSTOMER_MASTER = "SELECT  sp_add_company(?,?,?,?,?,?,?,?,?,?,?,?,?::Date,?,?,?,?,?,?,?,?,?,?::numeric,?,?,?,?::numeric,?::numeric,?)";
 	 
 	//	companyCode, companyName, dbaName, streetName, cityName, stateName, zipCode, 
 //    contactPersosn, mailId, phoneNo, faxNo, deaNo, deaExpDate, authorisedClasses, facilityType,
@@ -15,7 +15,7 @@ public class CustomerMasterQueryUtil {
 	public static final String SELECT_CUSTOMER_DTL = "SELECT company_code as companyCode, company_name as companyName, dba_name as companyDba, street as companyStreet,\r\n"
 			+ " city as companyCity, state as companyState, zip_code as companyPincode, contact_persosn as companyContact, \r\n"
 			+ " mail_id as companyEmailID, phone_no as companyPhone, fax_no as companyFax, dea_no as defNumber, dea_exp_date as defExpirationDate,\r\n"
-			+ " authorised_classes  authorisedClasses, facility_type as companyFacilityType, credit_to_name as issuesCreditsName, credit_to_street as issuesCreditsStreet,\r\n"
+			+ " authorised_classes authorizedClasses, facility_type as companyFacilityType, credit_to_name as issuesCreditsName, credit_to_street as issuesCreditsStreet,\r\n"
 			+ " credit_to_city as issuesCreditsCity, credit_to_state as issuesCreditsState, credit_to_zip_code as issuesCreditsZipCode, credit_to_phone_no as issuesCreditsPhone,\r\n"
 			+ " return_pricing as generalInfroWacAwapMyprice, return_pricing_awp_per as generalInfroWacAwapPer, \r\n"
 			+ " wholesaler_will_options as myWholesalerPolicyType, wholesaler_will_months as myWholesalerPolicyMonths, cpp_option as myWholesalerCpp, \r\n"

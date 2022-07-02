@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 public class CustomerMasterBean {
 	
-	//private Integer
 	private String companyCode;
 
 	private String wholesalerAccount;
@@ -31,8 +30,8 @@ public class CustomerMasterBean {
 
 	private String defNumber;
 	private String defExpirationDate;
-
-	private String authorisedClasses;
+	private String authorizedClasses;
+	
 	private String issuesCreditsName;
 	private String issuesCreditsStreet;
 	private String issuesCreditsCity;
@@ -41,13 +40,16 @@ public class CustomerMasterBean {
 	private String issuesCreditsPhone;
 
 	private String generalInfroWacAwapMyprice;
-	private Integer generalInfroWacAwapPer=0;
+	//con double to string
+	private String generalInfroWacAwapPer="0";
 
 	private Integer myWholesalerPolicyType;
 	private Integer myWholesalerPolicyMonths=0;
 	private boolean myWholesalerCpp;
-	private Integer cppServiceRate;
-	private Integer cppShippingRate;
+	//con double to string
+	private String cppServiceRate;
+	//con double to string
+	private String cppShippingRate;
 	private Integer cppNoOfChecks;
 
 	

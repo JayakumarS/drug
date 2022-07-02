@@ -28,7 +28,6 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
 	@Override
 	public CustomerMasterResultBean save(CustomerMasterBean bean) throws Exception {
 		CustomerMasterResultBean resultBean = new CustomerMasterResultBean();
-		
  		try {
 		jdbcTemplate.update(CustomerMasterQueryUtil.INSERT_CUSTOMER_MASTER,
 					"dsf",
@@ -47,7 +46,7 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
 					bean.getDefExpirationDate(),
 					 
 
-					"2N",
+					bean.getAuthorizedClasses(),
 					bean.getCompanyFacilityType(),
 					
 					bean.getIssuesCreditsName(),
