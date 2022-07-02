@@ -29,6 +29,11 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
 	public CustomerMasterResultBean save(CustomerMasterBean bean) throws Exception {
 		CustomerMasterResultBean resultBean = new CustomerMasterResultBean();
  		try {
+ 			
+ 			if(bean.getGeneralInfroWacAwapPer()==null || bean.getGeneralInfroWacAwapPer()=="" || bean.getGeneralInfroWacAwapPer().isEmpty()) {
+ 				bean.setGeneralInfroWacAwapPer("0");
+ 			}
+ 			
 		jdbcTemplate.update(CustomerMasterQueryUtil.INSERT_CUSTOMER_MASTER,
 					"dsf",
 					bean.getCompanyName(),
