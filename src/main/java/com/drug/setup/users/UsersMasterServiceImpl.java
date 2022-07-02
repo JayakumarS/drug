@@ -22,7 +22,7 @@ public class UsersMasterServiceImpl implements UsersMasterService {
 	}
 
 	@Override
-	public UsersMasterResultBean delete(String bean) throws Exception {
+	public UsersMasterResultBean delete(Integer bean) throws Exception {
 		// TODO Auto-generated method stub
 		return rolesMasterDao.delete(bean);
 	}

@@ -10,7 +10,7 @@ public interface UsersMasterService {
 
 	UsersMasterResultBean edit(String code) throws Exception;
 
-	UsersMasterResultBean delete(String code) throws Exception;
+	UsersMasterResultBean delete(Integer code) throws Exception;
 	
 	UsersMasterResultBean update(UsersMasterBean bean) throws Exception;
 	

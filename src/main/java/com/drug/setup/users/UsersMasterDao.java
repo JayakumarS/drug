@@ -10,7 +10,7 @@ public interface UsersMasterDao {
 
 	UsersMasterResultBean edit(String bean) throws Exception;
 
-	UsersMasterResultBean delete(String bean) throws Exception;
+	UsersMasterResultBean delete(Integer bean) throws Exception;
 
 	UsersMasterResultBean update(UsersMasterBean bean) throws Exception;
 

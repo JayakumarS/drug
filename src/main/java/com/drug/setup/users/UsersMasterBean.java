@@ -13,6 +13,7 @@ public class UsersMasterBean {
 	private Integer roles;
 	private String roleText;
 	private String companyCode;
+	private String empId;
 	
 	public String getRoleText() {
 		return roleText;
@@ -90,6 +91,12 @@ public class UsersMasterBean {
 	}
 	public void setCompanyCode(String companyCode) {
 		this.companyCode = companyCode;
+	}
+	public String getEmpId() {
+		return empId;
+	}
+	public void setEmpId(String empId) {
+		this.empId = empId;
 	}
 	
 	

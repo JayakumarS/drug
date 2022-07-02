@@ -71,7 +71,7 @@ public class UsersMasterController {
 	}
 	
 	@RequestMapping(value="/delete")
-	public UsersMasterResultBean delete(@RequestParam("deleteUser") String deleteUser) {
+	public UsersMasterResultBean delete(@RequestParam("deleteUser") Integer deleteUser) {
 		UsersMasterResultBean objResultBean = new UsersMasterResultBean();
 		try {
 			objResultBean = usersMasterService.delete(deleteUser);

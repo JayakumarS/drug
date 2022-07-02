@@ -80,7 +80,7 @@ public class UsersMasterDaoImpl implements UsersMasterDao {
 	}
 
 	@Override
-	public UsersMasterResultBean edit(Integer code) throws Exception {
+	public UsersMasterResultBean edit(String code) throws Exception {
 		UsersMasterResultBean resultBean = new UsersMasterResultBean();
 		resultBean.setSuccess(false);
 		try {
@@ -140,6 +140,8 @@ public class UsersMasterDaoImpl implements UsersMasterDao {
 		}
 		return resultBean;
 	}
+
+
 
 
 }

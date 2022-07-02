@@ -2,16 +2,19 @@ package com.drug.setup.users;
 
 public class UsersMasterQueryUtil {
 	
-	public static final String getList = "select ud.emp_user_id as newUserName,ud.first_name as firstName,ud.last_name as lastName, "
+	public static final String getList = "select ud.emp_id as empId, ud.emp_user_id as newUserName,ud.first_name as firstName,ud.last_name as lastName, "
 			+ "ud.phone_no as mobileNo,ud.email_id as emailId,string_agg(r.name,',') as roleText  "
 			+ "from user_details ud  "
 			+ "left join auth.user_roles ur on ur.user_id = ud.emp_user_id "
 			+ "left join auth.role r on r.role_id = ur.role_id "
-			+ "group by ud.emp_user_id,ud.first_name,ud.last_name,ud.phone_no,ud.email_id  "
+			+ "group by ud.emp_id,ud.emp_user_id,ud.first_name,ud.last_name,ud.phone_no,ud.email_id  "
 			+ "order by emp_user_id asc";
 
 	public static final String DELETE = "delete from auth.role where role_id = ?";
-	public static final String SELECT_DTL = "select role_id as roleId,name as roleName,remark as remarks from auth.role where role_id = ?";
+	
+	public static final String SELECT_DTL = "select emp_id as empId,email_id as emailId,first_name as firstName,last_name as lastName,phone_no as mobileNo,\n"
+			+ "emp_name as empName,emp_user_id as newUserName ,auth.role_id as roles from user_details left join auth.user_roles auth on auth.user_id= user_details.emp_user_id where emp_id=?";
+	
 	public static final String UPDATE_CUSTOMER_MASTER = "update auth.role set name=:roleName,remark=:remarks where role_id=:roleId";
 	
 	public static final String GET_ROLE_LIST = "select role_id as id ,name as text from auth.role ";
