@@ -59,10 +59,10 @@ public class RolesMasterController {
 	}
 	
 	@RequestMapping(value="/delete")
-	public RolesMasterResultBean delete(@RequestParam("id") Integer id) {
+	public RolesMasterResultBean delete(@RequestParam("deleteRole") Integer deleteRole) {
 		RolesMasterResultBean objResultBean = new RolesMasterResultBean();
 		try {
-			objResultBean = rolesrMasterService.delete(id);
+			objResultBean = rolesrMasterService.delete(deleteRole);
 		}
 		catch(Exception e) {
 			e.printStackTrace();

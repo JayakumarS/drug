@@ -47,10 +47,10 @@ public class UsersMasterController {
    	}
 	
 	@RequestMapping(value = "/edit")
-	public UsersMasterResultBean edit(@RequestParam("id") Integer id) throws Exception {
+	public UsersMasterResultBean edit(@RequestParam("usersId") String usersId) throws Exception {
 		UsersMasterResultBean objResultBean = new UsersMasterResultBean();
 		try {
-			objResultBean = usersMasterService.edit(id);
+			objResultBean = usersMasterService.edit(usersId);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -71,10 +71,10 @@ public class UsersMasterController {
 	}
 	
 	@RequestMapping(value="/delete")
-	public UsersMasterResultBean delete(@RequestParam("id") Integer id) {
+	public UsersMasterResultBean delete(@RequestParam("deleteUser") String deleteUser) {
 		UsersMasterResultBean objResultBean = new UsersMasterResultBean();
 		try {
-			objResultBean = usersMasterService.delete(id);
+			objResultBean = usersMasterService.delete(deleteUser);
 		}
 		catch(Exception e) {
 			e.printStackTrace();

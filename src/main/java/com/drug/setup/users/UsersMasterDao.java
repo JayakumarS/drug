@@ -8,9 +8,9 @@ public interface UsersMasterDao {
 
 	List<UsersMasterBean> getList() throws Exception;
 
-	UsersMasterResultBean edit(Integer bean) throws Exception;
+	UsersMasterResultBean edit(String bean) throws Exception;
 
-	UsersMasterResultBean delete(Integer bean) throws Exception;
+	UsersMasterResultBean delete(String bean) throws Exception;
 
 	UsersMasterResultBean update(UsersMasterBean bean) throws Exception;
 

@@ -8,9 +8,9 @@ public interface UsersMasterService {
 
 	public List<UsersMasterBean> getList() throws Exception;
 
-	UsersMasterResultBean edit(Integer code) throws Exception;
+	UsersMasterResultBean edit(String code) throws Exception;
 
-	UsersMasterResultBean delete(Integer code) throws Exception;
+	UsersMasterResultBean delete(String code) throws Exception;
 	
 	UsersMasterResultBean update(UsersMasterBean bean) throws Exception;
 	
