@@ -1,8 +1,6 @@
-package com.drug.customerMaster;
+package com.drug.wholesaler;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,67 +9,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 
-@Repository
- 
-public class CustomerMasterDaoImpl implements CustomerMasterDao {
-	
+import com.drug.setup.users.UsersMasterBean;
+
+@Service
+public class WholesalerMasterDaoImpl implements WholesalerMasterDao {
+
 	@Autowired
 	JdbcTemplate jdbcTemplate;
-	
 	
 	@Autowired
 	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	@Override
-	public CustomerMasterResultBean save(CustomerMasterBean bean) throws Exception {
-		CustomerMasterResultBean resultBean = new CustomerMasterResultBean();
+	public WholesalerMasterResultBean save(WholesalerMasterBean bean) throws Exception {
+		WholesalerMasterResultBean resultBean = new WholesalerMasterResultBean();
  		try {
+ 		
  			
- 			if(bean.getGeneralInfroWacAwapPer()==null || bean.getGeneralInfroWacAwapPer()=="" || bean.getGeneralInfroWacAwapPer().isEmpty()) {
- 				bean.setGeneralInfroWacAwapPer("0");
- 			}
- 			
- 			int result= jdbcTemplate.update(CustomerMasterQueryUtil.INSERT_CUSTOMER_MASTER,
-					"dsf",
-					bean.getCompanyName(),
-					bean.getCompanyDba(),
-					bean.getCompanyStreet(),
-					bean.getCompanyCity(),
-					bean.getCompanyState(),
-					bean.getCompanyPincode(),
-					bean.getCompanyContact(),
-					bean.getCompanyEmailID(),
-					bean.getCompanyPhone(), 
-					bean.getCompanyFax(),
-					
-					bean.getDefNumber(),
-					bean.getDefExpirationDate(),
-					 
+ 			int result= jdbcTemplate.update(WholesalerMasterQueryUtil.INSERT_WHOLESALER_MASTER,
+ 					bean.getPolicyCode(),
+ 					bean.getWholesalerName(),
+ 					bean.getExpiryPacket(),
+ 					bean.getEmailID(),
+ 					bean.getAllowOverride(),
+ 					bean.getDepartment(),
+ 					bean.getStreet(),
+ 					bean.getCity(),
+ 					bean.getState(),
+ 					bean.getZipCode(),
+ 					bean.getPhoneNo(),
+ 					bean.getTollFreeNo(),
+ 					bean.getFax(),
+ 					bean.getContact());
 
-					bean.getAuthorizedClasses(),
-					bean.getCompanyFacilityType(),
-					
-					bean.getIssuesCreditsName(),
-					bean.getIssuesCreditsStreet(),
-					bean.getIssuesCreditsCity(),
-					bean.getIssuesCreditsState(),
-					bean.getIssuesCreditsZipCode(),
-					bean.getIssuesCreditsPhone(),
-
-					bean.getGeneralInfroWacAwapMyprice(),
-					//"WAC",
-					bean.getGeneralInfroWacAwapPer(),
-
-					bean.getMyWholesalerPolicyType(),
-					bean.getMyWholesalerPolicyMonths(),
-					
-					bean.isMyWholesalerCpp(),
-					bean.getCppServiceRate(),
-					bean.getCppShippingRate(),
-					bean.getCppNoOfChecks());
 		    resultBean.setSuccess(true);
 		    System.out.print(result);
 		}catch(Exception e) {
@@ -83,23 +55,23 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
 	}
 
 	@Override
-	public List<CustomerMasterBean> getCustomerList() throws Exception {
-		List<CustomerMasterBean> objCustomerMasterBean = new ArrayList<CustomerMasterBean>();
+	public List<WholesalerMasterBean> getList() throws Exception {
+		List<WholesalerMasterBean> objWholesalerMasterBean = new ArrayList<WholesalerMasterBean>();
 		try {
-			objCustomerMasterBean = jdbcTemplate.query(CustomerMasterQueryUtil.getCustomerList, new BeanPropertyRowMapper<CustomerMasterBean>(CustomerMasterBean.class));
+			objWholesalerMasterBean = jdbcTemplate.query(WholesalerMasterQueryUtil.GET_WHOLESALER_LIST, new BeanPropertyRowMapper<WholesalerMasterBean>(WholesalerMasterBean.class));
 			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return objCustomerMasterBean;
+		return objWholesalerMasterBean;
 	}
 
 	@Override
-	public CustomerMasterResultBean edit(String code) throws Exception {
-		CustomerMasterResultBean resultBean = new CustomerMasterResultBean();
+	public WholesalerMasterResultBean edit(String code) throws Exception {
+		WholesalerMasterResultBean resultBean = new WholesalerMasterResultBean();
 		resultBean.setSuccess(false);
 		try {
-			resultBean.setCustomerMasterBean(jdbcTemplate.queryForObject(CustomerMasterQueryUtil.SELECT_CUSTOMER_DTL,new Object[] { code }, new BeanPropertyRowMapper<CustomerMasterBean>(CustomerMasterBean.class)));
+			resultBean.setWholesalerMasterBean(jdbcTemplate.queryForObject(WholesalerMasterQueryUtil.GETCUSCODE,new Object[] { code }, new BeanPropertyRowMapper<WholesalerMasterBean>(WholesalerMasterBean.class)));
 			resultBean.setSuccess(true);
 		}
 		catch(Exception e) {
@@ -110,11 +82,11 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
 	}
 
 	@Override
-	public CustomerMasterResultBean delete(String cusCode) throws Exception {
-		CustomerMasterResultBean resultBean = new CustomerMasterResultBean();
+	public WholesalerMasterResultBean delete(Integer code) throws Exception {
+		WholesalerMasterResultBean resultBean = new WholesalerMasterResultBean();
 		try {
-			if(cusCode!=null) {
-				jdbcTemplate.update(CustomerMasterQueryUtil.DELETE_CUSTOMER,cusCode);
+			if(code!=null) {
+				jdbcTemplate.update(WholesalerMasterQueryUtil.DELETE_CUSTOMER,code);
 			}
 			resultBean.setSuccess(true);
 		}
@@ -126,8 +98,8 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
 	}
 
 	@Override
-	public CustomerMasterResultBean update(CustomerMasterBean bean) throws Exception {
-		CustomerMasterResultBean resultBean = new CustomerMasterResultBean();
+	public WholesalerMasterResultBean update(WholesalerMasterBean bean) throws Exception {
+		WholesalerMasterResultBean resultBean = new WholesalerMasterResultBean();
 		try {
 			Map<String, Object> customerMasterMap = new HashMap<String, Object>();
 		    
@@ -171,13 +143,13 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
 //			    customerMasterMap.put("email", bean.getEmail());
 //				customerMasterMap.put("cusCode", bean.getCusCode());
 			    
-				namedParameterJdbcTemplate.update(CustomerMasterQueryUtil.UPDATE_CUSTOMER_MASTER,customerMasterMap);
+				namedParameterJdbcTemplate.update(WholesalerMasterQueryUtil.GETCUSCODE,customerMasterMap);
 			   resultBean.setSuccess(true);
 			
 //			uomCategoryMap.put("categoryName", bean.getCategoryName());
 //			uomCategoryMap.put("categoryDesp", bean.getCategoryDesp());
 //			uomCategoryMap.put("uomCode", bean.getUomCode());
-//			namedParameterJdbcTemplate.update(CustomerMasterQueryUtil.UPDATE_UOM_CATEGORY,uomCategoryMap);
+//			namedParameterJdbcTemplate.update(WholesalerMasterQueryUtil.UPDATE_UOM_CATEGORY,uomCategoryMap);
 //		
 		}
 		catch(Exception e){
@@ -185,6 +157,8 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
 		}
 		return resultBean;
 	}
+
+	
 
 
 }
