@@ -28,6 +28,7 @@ import com.drug.employeeMaster.EmployeeMasterBean;
 import com.drug.employeeMaster.EmployeeMasterService;
 import com.drug.setup.roles.RolesMasterBean;
 import com.drug.setup.roles.RolesMasterService;
+import com.drug.setup.users.UsersMasterBean;
 import com.drug.usermanagement.User;
 import com.drug.usermanagement.UserDetailsImpl;
 
@@ -72,16 +73,18 @@ public class AuthController {
 		String jwt = jwtUtils.generateJwtToken(authentication);
 
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-//		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
-//				.collect(Collectors.toList());
 		List<RolesMasterBean>  roles = rolesMasterService.getLoginRoleList(userDetails.getUsername());
+		
+		String emailId = commonServicesService.getUserDetails(userDetails.getEmail());
+		
+		
 		Integer defaultRoleId =  roles.get(0).getRoleId();
 		String defaultRole = roles.get(0).getRoleName();
 		String otp = RandomStringUtils.random(6, "0123456789");
 		try {
 			//save OTP
-			commonServicesService.insertOtp(userDetails.getUsername(), userDetails.getEmail(), otp);
-			EmailService.sendOtpMail(userDetails.getEmail(),userDetails.getUsername(),otp);
+			commonServicesService.insertOtp(userDetails.getUsername(), emailId, otp);
+			EmailService.sendOtpMail(emailId,userDetails.getUsername(),otp);
 		}
 		catch(Exception e) {
 			e.printStackTrace();

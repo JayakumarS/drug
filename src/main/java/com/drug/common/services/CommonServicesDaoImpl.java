@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.drug.setup.users.UsersMasterBean;
+
 @Repository
 public class CommonServicesDaoImpl implements CommonServicesDao {
 	
@@ -52,6 +54,13 @@ public class CommonServicesDaoImpl implements CommonServicesDao {
 		}
 		
 		return otpMap;
+	}
+
+	@Override
+	public String getUserDetails(String empid) {
+		// TODO Auto-generated method stub
+		String  usersMasterBean =  jdbcTemplate.queryForObject(CommonServicesQueryUtil.GETUSERDETAILS,new Object[] { empid }, String .class);
+		return usersMasterBean;
 	}
 
 	
