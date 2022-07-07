@@ -15,4 +15,5 @@ public interface UsersMasterDao {
 	UsersMasterResultBean update(UsersMasterBean bean) throws Exception;
 
 	UsersMasterResultBean getRoleList() throws Exception;
+	
 }
