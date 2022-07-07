@@ -90,7 +90,7 @@ public class AuthController {
 				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles,true,"Sucess",defaultRoleId,defaultRole));
 	}
 
-	@ApiOperation(value = "Get user info by token") 
+	@ApiOperation(value = "Get user info by token")
 	@GetMapping("/userbytoken")
 	public Optional<User> getUserDetail(@RequestParam("token") String jwtToken) {
 		Optional<User> userDetails = null;
@@ -161,7 +161,7 @@ public class AuthController {
 		Email email = new Email();
 		StringBuffer sb = new StringBuffer();
 		String path = "";
-		email.setFromEmailAddress("");
+		email.setFromEmailAddress("info@talentchek.com");
 		//mailId = "kathiravan@paragondynamics.in";
 		String toMailAddress = mailId;
 		String[] toEmailIds = toMailAddress.split(",");
@@ -227,23 +227,20 @@ public class AuthController {
 	
 	public static void sendMail(Email email, String path) throws Exception {
 
-		String host = "";
+		String host = "smtpout.secureserver.net";
 		// Create properties for the Session
 		Properties props = System.getProperties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.host", host);
-		props.put("mail.smtp.port", "25");
+		props.put("mail.smtp.port", "587");
 
 		// Get a session
 		Session session = Session.getInstance(props);
 
 		try {
-			email.setFromEmailAddress("");			
-            email.setFromEmailAddress(email.getFromEmailAddress());
-			
 			Transport bus = session.getTransport("smtp");
 
-		//	bus.connect("smtp.sendgrid.net",25,"apikey", "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");
+			bus.connect("smtpout.secureserver.net", "info@talentchek.com", "Talent@123456!");
 			Message msg = new MimeMessage(session);
 
 			// Set message attributes
