@@ -161,7 +161,7 @@ public class AuthController {
 		Email email = new Email();
 		StringBuffer sb = new StringBuffer();
 		String path = "";
-		email.setFromEmailAddress("support@talentchek.com");
+		email.setFromEmailAddress("");
 		//mailId = "kathiravan@paragondynamics.in";
 		String toMailAddress = mailId;
 		String[] toEmailIds = toMailAddress.split(",");
@@ -227,7 +227,7 @@ public class AuthController {
 	
 	public static void sendMail(Email email, String path) throws Exception {
 
-		String host = "smtp.sendgrid.net";
+		String host = "";
 		// Create properties for the Session
 		Properties props = System.getProperties();
 		props.put("mail.smtp.auth", "true");
@@ -238,12 +238,12 @@ public class AuthController {
 		Session session = Session.getInstance(props);
 
 		try {
-			email.setFromEmailAddress("support@talentchek.com");			
+			email.setFromEmailAddress("");			
             email.setFromEmailAddress(email.getFromEmailAddress());
 			
 			Transport bus = session.getTransport("smtp");
 
-			bus.connect("smtp.sendgrid.net",25,"apikey", "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");
+		//	bus.connect("smtp.sendgrid.net",25,"apikey", "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");
 			Message msg = new MimeMessage(session);
 
 			// Set message attributes
