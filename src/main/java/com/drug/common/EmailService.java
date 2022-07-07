@@ -12,18 +12,15 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailService {
 	
-	public static String requestMail(String mailId) throws Exception {
+	public static String sendOtpMail(String mailId,String userName,String otp) throws Exception {
 			Email email = new Email();
 			StringBuffer sb = new StringBuffer();
 			String path = "";
-			email.setFromEmailAddress("info@talentchek.com");
-			//mailId = "kathiravan@paragondynamics.in";
+			email.setFromEmailAddress("jayakumar@techinfy.in");
 			String toMailAddress = mailId;
 			String[] toEmailIds = toMailAddress.split(",");
 			email.setToEmailAddress(toEmailIds);
 			String logoImage = "https://visitorchek.com/assets/images/vc_logo_1.png";
-			//String logoIdmage = "http://183.82.246.243/assets/images/vc_logo_1.png";
-			//sb.append("<img style='width:86px;height:50px;' src="+logoImage+">");
 
 	 		sb.append("<!DOCTYPE html>\r\n");
 			sb.append(
@@ -42,8 +39,7 @@ public class EmailService {
 			sb.append("</head>");
 
 			sb.append("<h1 style=\\\"font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;\\\">Your OTP Number is</h1>");
-//			sb.append("<br>");
-			sb.append("<h2 style=\\\\\\\"font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;\\\\\\\">12536</h2>");
+			sb.append("<h2 style=\\\\\\\"font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;\\\\\\\">"+otp+"</h2>");
 			
 
 			sb.append("</tr>");
@@ -82,12 +78,21 @@ public class EmailService {
 		
 	public static void sendMail(Email email, String path) throws Exception {
 
-			String host = "smtpout.secureserver.net";
+			String host = "smtp.zoho.com";
 			// Create properties for the Session
 			Properties props = System.getProperties();
 			props.put("mail.smtp.auth", "true");
 			props.put("mail.smtp.host", host);
-			props.put("mail.smtp.port", "587");
+			props.put("mail.smtp.port", "465");
+			
+			props.setProperty("mail.pop3.socketFactory.class",
+					"javax.net.ssl.SSLSocketFactory");
+			props.setProperty("mail.smtp.socketFactory.class",
+					"javax.net.ssl.SSLSocketFactory");
+			props.setProperty("mail.smtp.socketFactory.fallback", "false");
+			props.setProperty("mail.smtp.socketFactory.port", "465");
+			props.put("mail.smtp.startssl.enable", "true");
+			props.put("mail.smtp.starttls.enable", "true");
 
 			// Get a session
 			Session session = Session.getInstance(props);
@@ -95,7 +100,7 @@ public class EmailService {
 			try {
 				Transport bus = session.getTransport("smtp");
 
-				bus.connect("smtpout.secureserver.net", "info@talentchek.com", "Talent@123456!");
+				bus.connect("smtp.zoho.com", "jayakumar@techinfy.in", "1a4F4S6bjXcD");
 				Message msg = new MimeMessage(session);
 
 				// Set message attributes

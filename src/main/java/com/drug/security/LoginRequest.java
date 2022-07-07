@@ -8,6 +8,10 @@ public class LoginRequest {
 
 	@NotBlank
 	private String password;
+	
+	private String otpValue;
+	
+	
 
 	public String getUsername() {
 		return username;
@@ -24,4 +28,14 @@ public class LoginRequest {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getOtpValue() {
+		return otpValue;
+	}
+
+	public void setOtpValue(String otpValue) {
+		this.otpValue = otpValue;
+	}
+	
+	
 }

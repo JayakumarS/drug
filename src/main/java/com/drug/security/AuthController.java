@@ -1,19 +1,12 @@
 package com.drug.security;
 
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
-import java.util.stream.Collectors;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.drug.common.Email;
 import com.drug.common.EmailService;
+import com.drug.common.services.CommonServicesService;
 import com.drug.employeeMaster.EmployeeMasterBean;
 import com.drug.employeeMaster.EmployeeMasterService;
 import com.drug.setup.roles.RolesMasterBean;
@@ -62,6 +55,8 @@ public class AuthController {
 	@Autowired
 	private RolesMasterService rolesMasterService;
 	
+	@Autowired
+	private CommonServicesService commonServicesService;
 	
 //	private EmailService emailService;
 	
@@ -82,16 +77,18 @@ public class AuthController {
 		List<RolesMasterBean>  roles = rolesMasterService.getLoginRoleList(userDetails.getUsername());
 		Integer defaultRoleId =  roles.get(0).getRoleId();
 		String defaultRole = roles.get(0).getRoleName();
-		String mailIdReq = "cvivek7080@gmail.com";
+		String otp = RandomStringUtils.random(6, "0123456789");
 		try {
-			EmailService.requestMail(mailIdReq);
+			//save OTP
+			commonServicesService.insertOtp(userDetails.getUsername(), userDetails.getEmail(), otp);
+			EmailService.sendOtpMail(userDetails.getEmail(),userDetails.getUsername(),otp);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
 		
 		return ResponseEntity.ok(
-				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles,true,"Sucess",defaultRoleId,defaultRole));
+				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles,true,"Success",defaultRoleId,defaultRole));
 	}
 
 	@ApiOperation(value = "Get user info by token")
@@ -158,6 +155,13 @@ public class AuthController {
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
 	
+	
+	@ApiOperation(value = "OTP Validation")
+	@PostMapping("/validateOtp")
+	public HashMap<String,Object> validateOtp(@RequestBody LoginRequest loginRequest) {
+		HashMap<String,Object> resultMap = commonServicesService.validateOtp(loginRequest.getUsername(), loginRequest.getOtpValue());
+		return resultMap;
+	}
 	
 	
 }
