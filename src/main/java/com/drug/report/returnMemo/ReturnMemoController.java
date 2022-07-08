@@ -29,4 +29,12 @@ public class ReturnMemoController {
 			objResultBean.setSuccess(true);
 	   		return objResultBean;
 	   	}
+		
+		@RequestMapping(value=  "/getMemoListDetails")
+	   	public CompleteReturnMemoDetails getMemoListDetails() throws Exception {
+			CompleteReturnMemoDetails objResultBean = new CompleteReturnMemoDetails();
+			objResultBean.setMemoDetails(returnMemoService.getMemoListDetails());
+			objResultBean.setSuccess(true);
+	   		return objResultBean;
+	   	}
 }

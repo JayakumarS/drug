@@ -41,5 +41,19 @@ public class RetrunMemoDaoImpl implements RetrunMemoDao{
 	}
 	
 	
+	@Override
+	public List<CompleteReturnMemoDetails> getMemoListDetails() throws Exception {
+		List<CompleteReturnMemoDetails> objCompleteReturnMemoDetails = new ArrayList<CompleteReturnMemoDetails>();
+		try {
+			objCompleteReturnMemoDetails = jdbcTemplate.query(RetrunMemoQueryUtil.getMemoListDetails, new BeanPropertyRowMapper<CompleteReturnMemoDetails>(CompleteReturnMemoDetails.class));
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return objCompleteReturnMemoDetails;
+		
+	}
+	
+	
 
 }

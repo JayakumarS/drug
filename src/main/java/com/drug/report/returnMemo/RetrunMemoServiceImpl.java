@@ -21,4 +21,9 @@ public class RetrunMemoServiceImpl implements RetrunMemoService{
 	public List<CompleteReturnMemoDetails> getMemoDetails() throws Exception {
 		return retrunMemoDao.getMemoDetails();
 	}
+	
+	@Override
+	public List<CompleteReturnMemoDetails> getMemoListDetails() throws Exception {
+		return retrunMemoDao.getMemoListDetails();
+	}
 }
