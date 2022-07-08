@@ -81,6 +81,7 @@ public class AuthController {
 		Integer defaultRoleId =  roles.get(0).getRoleId();
 		String defaultRole = roles.get(0).getRoleName();
 		String otp = RandomStringUtils.random(6, "0123456789");
+		System.out.println("OTP is "+otp);
 		try {
 			//save OTP
 			commonServicesService.insertOtp(userDetails.getUsername(), emailId, otp);

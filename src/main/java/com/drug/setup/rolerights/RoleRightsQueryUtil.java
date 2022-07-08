@@ -19,11 +19,11 @@ public class RoleRightsQueryUtil {
 	
 	public static String GET_FORM_PROP_ID = "select form_property_id as formPropertyId from auth.form_property where form_code = ?";
 	
-	public static final String GET_ROLE_BASED_FORM_LIST = "select f.form_code as item_id,f.form_name as item_text \r\n"
+	public static final String GET_ROLE_BASED_FORM_LIST = "select distinct f.form_code as item_id,f.form_name as item_text \r\n"
 			+ "from auth.form f\r\n"
 			+ "inner join auth.form_property fp on fp.form_code = f.form_code\r\n"
 			+ "inner join auth.role_rights rr on rr.form_property_id = fp.form_property_id\r\n"
 			+ "where f.is_parent='N' and f.is_active = 'Y' and rr.role_id = ?\r\n"
-			+ "order by form_name\r\n"
+			+ "order by f.form_name\r\n"
 			+ "";
 }
