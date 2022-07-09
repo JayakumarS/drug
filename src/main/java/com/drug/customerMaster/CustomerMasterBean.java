@@ -3,16 +3,24 @@ package com.drug.customerMaster;
 
 
 public class CustomerMasterBean {
-	
-	private String companyCode;
 
-	private String wholesalerAccount;
+	private String  wholesalerCode;
+	private String wholesalerPolicyCode;
 	private String wholesalerName;
-	private String wholesalerContact;
+	private String wholesalerExpiryPacket;
+	private String wholesalerEmailID;
+	private String wholesalerAllowOverride;
 	private String wholesalerDepartment;
 	private String wholesalerStreet;
 	private String wholesalerCity;
+	private String wholesalerState;
+	private String wholesalerZipCode;
+	private String wholesalerPhoneNo;
+	private String wholesalerTollFreeNo;
+	private String wholesalerFax;
+	private String wholesalerPhone;
 
+    private String companyCode;
 	private String companyName;
 	private String companyDba;
 	private String companyStreet;
@@ -51,17 +59,17 @@ public class CustomerMasterBean {
 	
 	
 	
-	public String getCompanyCode() {
-		return companyCode;
+	public String getWholesalerCode() {
+		return wholesalerCode;
 	}
-	public void setCompanyCode(String companyCode) {
-		this.companyCode = companyCode;
+	public void setWholesalerCode(String wholesalerCode) {
+		this.wholesalerCode = wholesalerCode;
 	}
-	public String getWholesalerAccount() {
-		return wholesalerAccount;
+	public String getWholesalerPolicyCode() {
+		return wholesalerPolicyCode;
 	}
-	public void setWholesalerAccount(String wholesalerAccount) {
-		this.wholesalerAccount = wholesalerAccount;
+	public void setWholesalerPolicyCode(String wholesalerPolicyCode) {
+		this.wholesalerPolicyCode = wholesalerPolicyCode;
 	}
 	public String getWholesalerName() {
 		return wholesalerName;
@@ -69,11 +77,23 @@ public class CustomerMasterBean {
 	public void setWholesalerName(String wholesalerName) {
 		this.wholesalerName = wholesalerName;
 	}
-	public String getWholesalerContact() {
-		return wholesalerContact;
+	public String getWholesalerExpiryPacket() {
+		return wholesalerExpiryPacket;
 	}
-	public void setWholesalerContact(String wholesalerContact) {
-		this.wholesalerContact = wholesalerContact;
+	public void setWholesalerExpiryPacket(String wholesalerExpiryPacket) {
+		this.wholesalerExpiryPacket = wholesalerExpiryPacket;
+	}
+	public String getWholesalerEmailID() {
+		return wholesalerEmailID;
+	}
+	public void setWholesalerEmailID(String wholesalerEmailID) {
+		this.wholesalerEmailID = wholesalerEmailID;
+	}
+	public String getWholesalerAllowOverride() {
+		return wholesalerAllowOverride;
+	}
+	public void setWholesalerAllowOverride(String wholesalerAllowOverride) {
+		this.wholesalerAllowOverride = wholesalerAllowOverride;
 	}
 	public String getWholesalerDepartment() {
 		return wholesalerDepartment;
@@ -92,6 +112,48 @@ public class CustomerMasterBean {
 	}
 	public void setWholesalerCity(String wholesalerCity) {
 		this.wholesalerCity = wholesalerCity;
+	}
+	public String getWholesalerState() {
+		return wholesalerState;
+	}
+	public void setWholesalerState(String wholesalerState) {
+		this.wholesalerState = wholesalerState;
+	}
+	public String getWholesalerZipCode() {
+		return wholesalerZipCode;
+	}
+	public void setWholesalerZipCode(String wholesalerZipCode) {
+		this.wholesalerZipCode = wholesalerZipCode;
+	}
+	public String getWholesalerPhoneNo() {
+		return wholesalerPhoneNo;
+	}
+	public void setWholesalerPhoneNo(String wholesalerPhoneNo) {
+		this.wholesalerPhoneNo = wholesalerPhoneNo;
+	}
+	public String getWholesalerTollFreeNo() {
+		return wholesalerTollFreeNo;
+	}
+	public void setWholesalerTollFreeNo(String wholesalerTollFreeNo) {
+		this.wholesalerTollFreeNo = wholesalerTollFreeNo;
+	}
+	public String getWholesalerFax() {
+		return wholesalerFax;
+	}
+	public void setWholesalerFax(String wholesalerFax) {
+		this.wholesalerFax = wholesalerFax;
+	}
+	public String getWholesalerPhone() {
+		return wholesalerPhone;
+	}
+	public void setWholesalerPhone(String wholesalerPhone) {
+		this.wholesalerPhone = wholesalerPhone;
+	}
+	public String getCompanyCode() {
+		return companyCode;
+	}
+	public void setCompanyCode(String companyCode) {
+		this.companyCode = companyCode;
 	}
 	public String getCompanyName() {
 		return companyName;

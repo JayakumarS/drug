@@ -14,6 +14,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.drug.wholesaler.WholesalerMasterQueryUtil;
+
 @Repository
  
 public class CustomerMasterDaoImpl implements CustomerMasterDao {
@@ -29,13 +31,29 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
 	public CustomerMasterResultBean save(CustomerMasterBean bean) throws Exception {
 		CustomerMasterResultBean resultBean = new CustomerMasterResultBean();
  		try {
+ 			//save whosalar
+ 			String Wholesaler_Code = jdbcTemplate.queryForObject(WholesalerMasterQueryUtil.INSERT_WHOLESALER_MASTER, new Object[]{
+ 					bean.getWholesalerPolicyCode(),
+ 					bean.getWholesalerName(),
+ 					bean.getWholesalerExpiryPacket(),
+ 					bean.getWholesalerEmailID(),
+ 					bean.getWholesalerAllowOverride(),
+ 					bean.getWholesalerDepartment(),
+ 					bean.getWholesalerStreet(),
+ 					bean.getWholesalerCity(),
+ 					bean.getWholesalerState(),
+ 					bean.getWholesalerZipCode(),
+ 					bean.getWholesalerPhoneNo(),
+ 					bean.getWholesalerTollFreeNo(),
+ 					bean.getWholesalerFax(),
+ 					bean.getWholesalerPhone()}, String.class);
+ 			
  			
  			if(bean.getGeneralInfroWacAwapPer()==null || bean.getGeneralInfroWacAwapPer()=="" || bean.getGeneralInfroWacAwapPer().isEmpty()) {
  				bean.setGeneralInfroWacAwapPer("0");
  			}
  			
- 			int result= jdbcTemplate.update(CustomerMasterQueryUtil.INSERT_CUSTOMER_MASTER,
-					"dsf",
+ 			String result = jdbcTemplate.queryForObject(CustomerMasterQueryUtil.INSERT_CUSTOMER_MASTER, new Object[]{
 					bean.getCompanyName(),
 					bean.getCompanyDba(),
 					bean.getCompanyStreet(),
@@ -71,7 +89,9 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
 					bean.isMyWholesalerCpp(),
 					bean.getCppServiceRate(),
 					bean.getCppShippingRate(),
-					bean.getCppNoOfChecks());
+					bean.getCppNoOfChecks(),
+					Wholesaler_Code}, String.class);
+ 			
 		    resultBean.setSuccess(true);
 		    System.out.print(result);
 		}catch(Exception e) {
@@ -129,56 +149,70 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
 	public CustomerMasterResultBean update(CustomerMasterBean bean) throws Exception {
 		CustomerMasterResultBean resultBean = new CustomerMasterResultBean();
 		try {
-			Map<String, Object> customerMasterMap = new HashMap<String, Object>();
-		    
-//			 customerMasterMap.put("country", bean.getCountry());
-//			    customerMasterMap.put("city", bean.getCity());
-//			    customerMasterMap.put("territory", bean.getTerritory());
-//			    customerMasterMap.put("salesPerson", bean.getSalesPerson());
-//			    customerMasterMap.put("addressOfCus", bean.getAddressOfCus());
-//			    customerMasterMap.put("business", bean.getBusiness());
-//			    customerMasterMap.put("stp", bean.getStp());
-//			    customerMasterMap.put("organisationName", bean.getOrganisationName());
-//			    customerMasterMap.put("zipCode", bean.getZipCode());
-//			    customerMasterMap.put("shortName", bean.getShortName());
-//			    customerMasterMap.put("cusWebsite", bean.getCusWebsite());
-//			    customerMasterMap.put("companyRegn", bean.getCompanyRegn());
-//			    customerMasterMap.put("keyName", bean.getKeyName());
-//			    
-//			    customerMasterMap.put("keyNumber", bean.getKeyNumber());
-//			    customerMasterMap.put("transactionGST", bean.getTransactionGST());
-//			    customerMasterMap.put("vatNumber", bean.getVatNumber());
-//			    customerMasterMap.put("panNumber", bean.getPanNumber());
-//			    
-//			    customerMasterMap.put("paymentCenter", bean.getPaymentCenter());
-//			    customerMasterMap.put("creditLimit", bean.getCreditLimit());
-//			    customerMasterMap.put("creditUsd", bean.getCreditUsd());
-//			    customerMasterMap.put("creditDays", bean.getCreditDays());
-//			    customerMasterMap.put("keymail", bean.getKeymail());
-//			    
-//			    customerMasterMap.put("notificationMail", bean.getNotificationMail());
-//			    customerMasterMap.put("invoiceMail", bean.getInvoiceMail());
-//			    customerMasterMap.put("creditAgreement", bean.getCreditAgreement());
-//			    customerMasterMap.put("kycDoc", bean.getKycDoc());
-//			    customerMasterMap.put("exemptionDoc", bean.getExemptionDoc());
-//			    customerMasterMap.put("nonGstDoc", bean.getNonGstDoc());
-//			    customerMasterMap.put("name", bean.getName());
-//			    customerMasterMap.put("designation", bean.getDesignation());
-//			    customerMasterMap.put("department", bean.getDepartment());
-//			    
-//			    customerMasterMap.put("phoneno", bean.getPhoneno());
-//			    customerMasterMap.put("landline", bean.getLandline());
-//			    customerMasterMap.put("email", bean.getEmail());
-//				customerMasterMap.put("cusCode", bean.getCusCode());
-			    
-				namedParameterJdbcTemplate.update(CustomerMasterQueryUtil.UPDATE_CUSTOMER_MASTER,customerMasterMap);
-			   resultBean.setSuccess(true);
+
+			String Wholesaler_Code= jdbcTemplate.queryForObject(WholesalerMasterQueryUtil.UPDATE_WHOLESALER_MASTER, new Object[]{
+ 					bean.getWholesalerCode(),
+ 					bean.getWholesalerPolicyCode(),
+ 					bean.getWholesalerName(),
+ 					bean.getWholesalerExpiryPacket(),
+ 					bean.getWholesalerEmailID(),
+ 					bean.getWholesalerAllowOverride(),
+ 					bean.getWholesalerDepartment(),
+ 					bean.getWholesalerStreet(),
+ 					bean.getWholesalerCity(),
+ 					bean.getWholesalerState(),
+ 					bean.getWholesalerZipCode(),
+ 					bean.getWholesalerPhoneNo(),
+ 					bean.getWholesalerTollFreeNo(),
+ 					bean.getWholesalerFax(),
+ 					bean.getWholesalerPhone()}, String.class);
 			
-//			uomCategoryMap.put("categoryName", bean.getCategoryName());
-//			uomCategoryMap.put("categoryDesp", bean.getCategoryDesp());
-//			uomCategoryMap.put("uomCode", bean.getUomCode());
-//			namedParameterJdbcTemplate.update(CustomerMasterQueryUtil.UPDATE_UOM_CATEGORY,uomCategoryMap);
-//		
+			if(bean.getGeneralInfroWacAwapPer()==null || bean.getGeneralInfroWacAwapPer()=="" || bean.getGeneralInfroWacAwapPer().isEmpty()) {
+ 				bean.setGeneralInfroWacAwapPer("0");
+ 			}
+ 			
+ 			String result = jdbcTemplate.queryForObject(CustomerMasterQueryUtil.UPDATE_CUSTOMER_MASTER, new Object[]{
+ 					bean.getCompanyCode(),
+					bean.getCompanyName(),
+					bean.getCompanyDba(),
+					bean.getCompanyStreet(),
+					bean.getCompanyCity(),
+					bean.getCompanyState(),
+					bean.getCompanyPincode(),
+					bean.getCompanyContact(),
+					bean.getCompanyEmailID(),
+					bean.getCompanyPhone(), 
+					bean.getCompanyFax(),
+					
+					bean.getDefNumber(),
+					bean.getDefExpirationDate(),
+					 
+
+					bean.getAuthorizedClasses(),
+					bean.getCompanyFacilityType(),
+					
+					bean.getIssuesCreditsName(),
+					bean.getIssuesCreditsStreet(),
+					bean.getIssuesCreditsCity(),
+					bean.getIssuesCreditsState(),
+					bean.getIssuesCreditsZipCode(),
+					bean.getIssuesCreditsPhone(),
+
+					bean.getGeneralInfroWacAwapMyprice(),
+					//"WAC",
+					bean.getGeneralInfroWacAwapPer(),
+
+					bean.getMyWholesalerPolicyType(),
+					bean.getMyWholesalerPolicyMonths(),
+					
+					bean.isMyWholesalerCpp(),
+					bean.getCppServiceRate(),
+					bean.getCppShippingRate(),
+					bean.getCppNoOfChecks(),
+					bean.getWholesalerCode()}, String.class);
+ 			
+		    resultBean.setSuccess(true);
+		    System.out.print(result);
 		}
 		catch(Exception e){
 			e.printStackTrace();

@@ -38,10 +38,10 @@ public class WholesalerMasterController {
    	}
 	
 	@RequestMapping(value = "/edit")
-	public WholesalerMasterResultBean edit(@RequestParam("usersId") String usersId) throws Exception {
+	public WholesalerMasterResultBean edit(@RequestParam("wholesalerId") String wholesalerId) throws Exception {
 		WholesalerMasterResultBean objResultBean = new WholesalerMasterResultBean();
 		try {
-			objResultBean = wholesalerMasterService.edit(usersId);
+			objResultBean = wholesalerMasterService.edit(wholesalerId);
 		}
 		catch(Exception e) {
 			e.printStackTrace();

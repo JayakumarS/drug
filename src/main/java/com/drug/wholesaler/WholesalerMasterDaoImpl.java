@@ -28,7 +28,7 @@ public class WholesalerMasterDaoImpl implements WholesalerMasterDao {
  		try {
  		
  			
- 			int result= jdbcTemplate.update(WholesalerMasterQueryUtil.INSERT_WHOLESALER_MASTER,
+ 			String result= jdbcTemplate.queryForObject(WholesalerMasterQueryUtil.INSERT_WHOLESALER_MASTER, new Object[]{
  					bean.getPolicyCode(),
  					bean.getWholesalerName(),
  					bean.getExpiryPacket(),
@@ -42,7 +42,7 @@ public class WholesalerMasterDaoImpl implements WholesalerMasterDao {
  					bean.getPhoneNo(),
  					bean.getTollFreeNo(),
  					bean.getFax(),
- 					bean.getContact());
+ 					bean.getPhone()}, String.class);
 
 		    resultBean.setSuccess(true);
 		    System.out.print(result);
@@ -101,56 +101,25 @@ public class WholesalerMasterDaoImpl implements WholesalerMasterDao {
 	public WholesalerMasterResultBean update(WholesalerMasterBean bean) throws Exception {
 		WholesalerMasterResultBean resultBean = new WholesalerMasterResultBean();
 		try {
-			Map<String, Object> customerMasterMap = new HashMap<String, Object>();
-		    
-//			 customerMasterMap.put("country", bean.getCountry());
-//			    customerMasterMap.put("city", bean.getCity());
-//			    customerMasterMap.put("territory", bean.getTerritory());
-//			    customerMasterMap.put("salesPerson", bean.getSalesPerson());
-//			    customerMasterMap.put("addressOfCus", bean.getAddressOfCus());
-//			    customerMasterMap.put("business", bean.getBusiness());
-//			    customerMasterMap.put("stp", bean.getStp());
-//			    customerMasterMap.put("organisationName", bean.getOrganisationName());
-//			    customerMasterMap.put("zipCode", bean.getZipCode());
-//			    customerMasterMap.put("shortName", bean.getShortName());
-//			    customerMasterMap.put("cusWebsite", bean.getCusWebsite());
-//			    customerMasterMap.put("companyRegn", bean.getCompanyRegn());
-//			    customerMasterMap.put("keyName", bean.getKeyName());
-//			    
-//			    customerMasterMap.put("keyNumber", bean.getKeyNumber());
-//			    customerMasterMap.put("transactionGST", bean.getTransactionGST());
-//			    customerMasterMap.put("vatNumber", bean.getVatNumber());
-//			    customerMasterMap.put("panNumber", bean.getPanNumber());
-//			    
-//			    customerMasterMap.put("paymentCenter", bean.getPaymentCenter());
-//			    customerMasterMap.put("creditLimit", bean.getCreditLimit());
-//			    customerMasterMap.put("creditUsd", bean.getCreditUsd());
-//			    customerMasterMap.put("creditDays", bean.getCreditDays());
-//			    customerMasterMap.put("keymail", bean.getKeymail());
-//			    
-//			    customerMasterMap.put("notificationMail", bean.getNotificationMail());
-//			    customerMasterMap.put("invoiceMail", bean.getInvoiceMail());
-//			    customerMasterMap.put("creditAgreement", bean.getCreditAgreement());
-//			    customerMasterMap.put("kycDoc", bean.getKycDoc());
-//			    customerMasterMap.put("exemptionDoc", bean.getExemptionDoc());
-//			    customerMasterMap.put("nonGstDoc", bean.getNonGstDoc());
-//			    customerMasterMap.put("name", bean.getName());
-//			    customerMasterMap.put("designation", bean.getDesignation());
-//			    customerMasterMap.put("department", bean.getDepartment());
-//			    
-//			    customerMasterMap.put("phoneno", bean.getPhoneno());
-//			    customerMasterMap.put("landline", bean.getLandline());
-//			    customerMasterMap.put("email", bean.getEmail());
-//				customerMasterMap.put("cusCode", bean.getCusCode());
-			    
-				namedParameterJdbcTemplate.update(WholesalerMasterQueryUtil.GETCUSCODE,customerMasterMap);
+			String result= jdbcTemplate.queryForObject(WholesalerMasterQueryUtil.UPDATE_WHOLESALER_MASTER, new Object[]{
+	 					bean.getWholesalerCode(),
+	 					bean.getPolicyCode(),
+	 					bean.getWholesalerName(),
+	 					bean.getExpiryPacket(),
+	 					bean.getEmailID(),
+	 					bean.getAllowOverride(),
+	 					bean.getDepartment(),
+	 					bean.getStreet(),
+	 					bean.getCity(),
+	 					bean.getState(),
+	 					bean.getZipCode(),
+	 					bean.getPhoneNo(),
+	 					bean.getTollFreeNo(),
+	 					bean.getFax(),
+	 					bean.getPhone()}, String.class);
+
 			   resultBean.setSuccess(true);
-			
-//			uomCategoryMap.put("categoryName", bean.getCategoryName());
-//			uomCategoryMap.put("categoryDesp", bean.getCategoryDesp());
-//			uomCategoryMap.put("uomCode", bean.getUomCode());
-//			namedParameterJdbcTemplate.update(WholesalerMasterQueryUtil.UPDATE_UOM_CATEGORY,uomCategoryMap);
-//		
+			   System.out.print(result);
 		}
 		catch(Exception e){
 			e.printStackTrace();

@@ -1,7 +1,8 @@
 package com.drug.wholesaler;
 
 public class WholesalerMasterBean {
-
+	
+	private String wholesalerCode;
 	private String policyCode;
 	private String wholesalerName;
 	private String expiryPacket;
@@ -15,7 +16,7 @@ public class WholesalerMasterBean {
 	private String phoneNo;
 	private String tollFreeNo;
 	private String fax;
-	private String contact;
+	private String phone;
 	
 	
 	public String getPolicyCode() {
@@ -96,11 +97,18 @@ public class WholesalerMasterBean {
 	public void setFax(String fax) {
 		this.fax = fax;
 	}
-	public String getContact() {
-		return contact;
+	public String getPhone() {
+		return phone;
 	}
-	public void setContact(String contact) {
-		this.contact = contact;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
+	public String getWholesalerCode() {
+		return wholesalerCode;
+	}
+	public void setWholesalerCode(String wholesalerCode) {
+		this.wholesalerCode = wholesalerCode;
+	}
+
 	
 }
