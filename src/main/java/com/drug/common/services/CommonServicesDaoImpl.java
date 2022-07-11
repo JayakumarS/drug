@@ -63,6 +63,13 @@ public class CommonServicesDaoImpl implements CommonServicesDao {
 		return usersMasterBean;
 	}
 
+	@Override
+	public Integer getCountValue(String empid) {
+		// TODO Auto-generated method stub
+		Integer  countBean =  jdbcTemplate.queryForObject(CommonServicesQueryUtil.GETCOUNTVALUE,new Object[] { empid }, Integer .class);
+		return countBean;
+	}
+
 	
 
 }

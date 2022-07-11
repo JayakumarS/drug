@@ -82,17 +82,31 @@ public class AuthController {
 		String defaultRole = roles.get(0).getRoleName();
 		String otp = RandomStringUtils.random(6, "0123456789");
 		System.out.println("OTP is "+otp);
+		Integer count = commonServicesService.getCountValue(userDetails.getUsername());
+		boolean isSuccess = false;
+		String message = "";
+		if(count <= 5) {
+			
 		try {
 			//save OTP
 			commonServicesService.insertOtp(userDetails.getUsername(), emailId, otp);
 			EmailService.sendOtpMail(emailId,userDetails.getUsername(),otp);
+			isSuccess = true;
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			isSuccess = false;
+			message = "Failed to get OTP. Try again!";
+		}
+		
+		}
+		else {
+			isSuccess = false;
+			message = "You have Reached your maximum OTP Request. Please try again after 1 hour";
 		}
 		
 		return ResponseEntity.ok(
-				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles,true,"Success",defaultRoleId,defaultRole));
+				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles,isSuccess,message,defaultRoleId,defaultRole));
 	}
 
 	@ApiOperation(value = "Get user info by token")
@@ -167,5 +181,37 @@ public class AuthController {
 		return resultMap;
 	}
 	
+	@ApiOperation(value = "Resend OTP")
+	@PostMapping("/resendOtpvalidate")
+	public HashMap<String,Object> resendOtpvalidate(@RequestBody LoginRequest loginRequest) {
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+		HashMap<String,Object> result = new HashMap<String,Object>();
+		List<RolesMasterBean>  roles = rolesMasterService.getLoginRoleList(userDetails.getUsername());
+		String emailId = commonServicesService.getUserDetails(userDetails.getEmail());
+		String otp = RandomStringUtils.random(6, "0123456789");
+		System.out.println("OTP is "+otp);
+		Integer count = commonServicesService.getCountValue(userDetails.getUsername());
+		if(count <= 5) {
+			try {
+				//save OTP
+				commonServicesService.insertOtp(userDetails.getUsername(), emailId, otp);
+				EmailService.sendOtpMail(emailId,userDetails.getUsername(),otp);
+				result.put("success", true);
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+				result.put("success", false);
+				result.put("message", "Failed to get OTP. Try again!");
+			}
+		}
+		else {
+			result.put("success", false);
+			result.put("message", "You have Reached your maximum OTP Request. Please try again after 1 hour");
+		}
+		
+		return result;
+	}
 	
 }

@@ -14,4 +14,6 @@ public interface CommonServicesService {
 	
 	String getUserDetails(String empid);
 	
+	Integer getCountValue(String empid);
+	
 }

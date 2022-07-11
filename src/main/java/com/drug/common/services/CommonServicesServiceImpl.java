@@ -37,6 +37,12 @@ public class CommonServicesServiceImpl implements CommonServicesService {
 		return commonServicesDao.getUserDetails(empid);
 	}
 
+	@Override
+	public Integer getCountValue(String empid) {
+		// TODO Auto-generated method stub
+		return commonServicesDao.getCountValue(empid);
+	}
+
 
 	
 }
