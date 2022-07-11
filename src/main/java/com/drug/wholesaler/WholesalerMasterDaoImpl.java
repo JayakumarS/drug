@@ -82,11 +82,11 @@ public class WholesalerMasterDaoImpl implements WholesalerMasterDao {
 	}
 
 	@Override
-	public WholesalerMasterResultBean delete(Integer code) throws Exception {
+	public WholesalerMasterResultBean delete(String code) throws Exception {
 		WholesalerMasterResultBean resultBean = new WholesalerMasterResultBean();
 		try {
 			if(code!=null) {
-				jdbcTemplate.update(WholesalerMasterQueryUtil.DELETE_CUSTOMER,code);
+				jdbcTemplate.update(WholesalerMasterQueryUtil.DELETE_WHOLESALER,code);
 			}
 			resultBean.setSuccess(true);
 		}

@@ -82,11 +82,11 @@ public class ManufacturerMasterDaoImpl implements ManufacturerMasterDao {
 	}
 
 	@Override
-	public ManufacturerMasterResultBean delete(Integer code) throws Exception {
+	public ManufacturerMasterResultBean delete(String code) throws Exception {
 		ManufacturerMasterResultBean resultBean = new ManufacturerMasterResultBean();
 		try {
 			if(code!=null) {
-				jdbcTemplate.update(ManufacturerMasterQueryUtil.DELETE_CUSTOMER,code);
+				jdbcTemplate.update(ManufacturerMasterQueryUtil.DELETE_MANUFACTURE,code);
 			}
 			resultBean.setSuccess(true);
 		}

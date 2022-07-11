@@ -29,7 +29,7 @@ public class ManufacturerMasterServiceImpl implements ManufacturerMasterService 
 	}
 
 	@Override
-	public ManufacturerMasterResultBean delete(Integer bean) throws Exception {
+	public ManufacturerMasterResultBean delete(String bean) throws Exception {
 		return manufacturerMasterDao.delete(bean);
 	}
 

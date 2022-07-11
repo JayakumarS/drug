@@ -13,8 +13,10 @@ public interface DruginfoMasterService {
 
 	DruginfoMasterResultBean edit(String code) throws Exception;
 
-	DruginfoMasterResultBean delete(Integer code) throws Exception;
+	DruginfoMasterResultBean delete(String code) throws Exception;
 
 	DruginfoMasterResultBean update(DruginfoMasterBean bean) throws Exception;
+
+	DruginfoMasterResultBean getManufacturerList();
 
 }

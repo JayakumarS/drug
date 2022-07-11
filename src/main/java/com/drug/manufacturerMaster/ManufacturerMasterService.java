@@ -13,7 +13,7 @@ public interface ManufacturerMasterService {
 
 	ManufacturerMasterResultBean edit(String code) throws Exception;
 
-	ManufacturerMasterResultBean delete(Integer code) throws Exception;
+	ManufacturerMasterResultBean delete(String code) throws Exception;
 
 	ManufacturerMasterResultBean update(ManufacturerMasterBean bean) throws Exception;
 

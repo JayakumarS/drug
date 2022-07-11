@@ -12,6 +12,7 @@ private static final long serialVersionUID = 1L;
 public boolean success;
 private DruginfoMasterBean DrugInfoMasterBean;
 private List<DruginfoMasterBean> listDrugInfoMasterBean;
+private List<DropDownList> manufacturerList;
 
 public boolean isSuccess() {
 	return success;
@@ -33,6 +34,12 @@ public void setListDrugInfoMasterBean(List<DruginfoMasterBean> listDrugInfoMaste
 }
 public static long getSerialversionuid() {
 	return serialVersionUID;
+}
+public List<DropDownList> getManufacturerList() {
+	return manufacturerList;
+}
+public void setManufacturerList(List<DropDownList> manufacturerList) {
+	this.manufacturerList = manufacturerList;
 }
 
 

@@ -11,6 +11,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.drug.core.util.DropDownList;
+import com.drug.filesupload.FileUploadQueryUtil;
+import com.drug.filesupload.FileUploadResultBean;
 import com.drug.setup.users.UsersMasterBean;
 
 @Service
@@ -84,7 +87,7 @@ public class DruginfoMasterDaoImpl implements DruginfoMasterDao {
 	}
 
 	@Override
-	public DruginfoMasterResultBean delete(Integer code) throws Exception {
+	public DruginfoMasterResultBean delete(String code) throws Exception {
 		DruginfoMasterResultBean resultBean = new DruginfoMasterResultBean();
 		try {
 			if(code!=null) {
@@ -129,6 +132,23 @@ public class DruginfoMasterDaoImpl implements DruginfoMasterDao {
 		}
 		return resultBean;
 	}
+
+	@Override
+	public DruginfoMasterResultBean getManufacturerList() {
+		DruginfoMasterResultBean druginfoMasterResultBean =new DruginfoMasterResultBean ();
+		druginfoMasterResultBean.setSuccess(false);
+		try {
+			druginfoMasterResultBean.setManufacturerList(jdbcTemplate.query(DruginfoMasterQueryUtil.GET_MANUFACTURER_LIST, new BeanPropertyRowMapper<DropDownList>(DropDownList.class)));
+			druginfoMasterResultBean.setSuccess(true);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			druginfoMasterResultBean.setSuccess(false);
+		}
+		return druginfoMasterResultBean;
+	}
+
+
 
 	
 

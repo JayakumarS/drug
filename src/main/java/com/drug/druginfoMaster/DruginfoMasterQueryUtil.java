@@ -7,4 +7,6 @@ public class DruginfoMasterQueryUtil {
 	public static final String GETCUSCODE = "SELECT ndcupc_code as ndcupc, description as description, pakage_size as packageSize, strength as strength, my_price as myPrice, awp_price as awp, wac_price as wap, control_class as control, rx_or_otc as rxOtc, uom as unitOfMeasure, unit_per_pkg as unitPerPackage, is_hazardous as hazardous, is_unit_dose as unitDose, dosage as dosage, manufactured_by as manufacturerBy FROM public.drugs where ndcupc_code = ? ";
 	public static final String DELETE_DRUGINFO = "delete from drugs where ndcupc_code = ?";
 	public static final String UPDATE_DRUGINFO_MASTER = "SELECT sp_update_drugs(?, ?, ?, ?, ?, ?::integer, ?, ?::integer, ?::boolean, ?, ?, ?::boolean, ?::numeric, ?::numeric, ?::numeric, ?)";
+	public static final String GET_MANUFACTURER_LIST = "select manufacturer_code as id, manufacturer_name as text from manufacturer";
+
 }

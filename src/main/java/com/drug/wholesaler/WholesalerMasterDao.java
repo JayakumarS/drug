@@ -12,7 +12,7 @@ public interface WholesalerMasterDao {
 
 	WholesalerMasterResultBean edit(String code) throws Exception;
 
-	WholesalerMasterResultBean delete(Integer code) throws Exception;
+	WholesalerMasterResultBean delete(String code) throws Exception;
 	
 	WholesalerMasterResultBean update(WholesalerMasterBean bean) throws Exception;;
 

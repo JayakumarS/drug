@@ -29,7 +29,7 @@ public class WholesalerMasterServiceImpl implements WholesalerMasterService {
 	}
 
 	@Override
-	public WholesalerMasterResultBean delete(Integer bean) throws Exception {
+	public WholesalerMasterResultBean delete(String bean) throws Exception {
 		return wholesalerMasterDao.delete(bean);
 	}
 

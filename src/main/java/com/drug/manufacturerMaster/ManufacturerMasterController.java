@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.drug.filesupload.FileUploadResultBean;
+
 
 
 @RestController
@@ -62,15 +64,16 @@ public class ManufacturerMasterController {
 	}
 	
 	@RequestMapping(value="/delete")
-	public ManufacturerMasterResultBean delete(@RequestParam("deleteUser") Integer deleteUser) {
+	public ManufacturerMasterResultBean delete(@RequestParam("manufacturerId") String manufacturerId) {
 		ManufacturerMasterResultBean objResultBean = new ManufacturerMasterResultBean();
 		try {
-			objResultBean = manufacturerMasterService.delete(deleteUser);
+			objResultBean = manufacturerMasterService.delete(manufacturerId);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
 		return objResultBean;
 	}
+	
 	
 }

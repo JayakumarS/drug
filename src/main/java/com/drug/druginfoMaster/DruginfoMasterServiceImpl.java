@@ -29,13 +29,18 @@ public class DruginfoMasterServiceImpl implements DruginfoMasterService {
 	}
 
 	@Override
-	public DruginfoMasterResultBean delete(Integer bean) throws Exception {
+	public DruginfoMasterResultBean delete(String bean) throws Exception {
 		return drugInfoMasterDao.delete(bean);
 	}
 
 	@Override
 	public DruginfoMasterResultBean update(DruginfoMasterBean bean) throws Exception {
 		return drugInfoMasterDao.update(bean);
+	}
+
+	@Override
+	public DruginfoMasterResultBean getManufacturerList() {
+		return drugInfoMasterDao.getManufacturerList();
 	}
 
 }

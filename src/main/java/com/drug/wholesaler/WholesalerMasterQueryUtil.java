@@ -8,6 +8,6 @@ public class WholesalerMasterQueryUtil {
 			+ "state as state, zip_code as zipCode, contact_persosn as phoneNo, mail_id as emailID, \r\n"
 			+ "phone_no as phone, fax_no as fax, toll_free_no as tollFreeNo, expiry_packet as expiryPacket, policy_code as policyCode\r\n"
 			+ "FROM wholesaler where wholesaler_code = ?";
-	public static final String DELETE_CUSTOMER = "delete from wholesaler where wholesaler_code = ?";
+	public static final String DELETE_WHOLESALER = "delete from wholesaler where wholesaler_code = ?";
 	public static final String UPDATE_WHOLESALER_MASTER = "SELECT sp_upd_wholesaler(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 }

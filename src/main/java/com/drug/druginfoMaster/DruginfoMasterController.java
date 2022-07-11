@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.drug.manufacturerMaster.ManufacturerMasterResultBean;
+
 
 
 @RestController
@@ -62,15 +64,21 @@ public class DruginfoMasterController {
 	}
 	
 	@RequestMapping(value="/delete")
-	public DruginfoMasterResultBean delete(@RequestParam("deleteUser") Integer deleteUser) {
+	public DruginfoMasterResultBean delete(@RequestParam("drugInfoId") String drugInfoId) {
 		DruginfoMasterResultBean objResultBean = new DruginfoMasterResultBean();
 		try {
-			objResultBean = drugInfoMasterService.delete(deleteUser);
+			objResultBean = drugInfoMasterService.delete(drugInfoId);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
 		return objResultBean;
 	}
+	
+	
+	@RequestMapping(value = "/getManufacturerList")
+   	public DruginfoMasterResultBean getManufacturerList() throws Exception {
+   		return drugInfoMasterService.getManufacturerList();
+   	}
 	
 }

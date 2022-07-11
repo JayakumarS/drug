@@ -62,10 +62,10 @@ public class WholesalerMasterController {
 	}
 	
 	@RequestMapping(value="/delete")
-	public WholesalerMasterResultBean delete(@RequestParam("deleteUser") Integer deleteUser) {
+	public WholesalerMasterResultBean delete(@RequestParam("wholesalerId") String wholesalerId) {
 		WholesalerMasterResultBean objResultBean = new WholesalerMasterResultBean();
 		try {
-			objResultBean = wholesalerMasterService.delete(deleteUser);
+			objResultBean = wholesalerMasterService.delete(wholesalerId);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
