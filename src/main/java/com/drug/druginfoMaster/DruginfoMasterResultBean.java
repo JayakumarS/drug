@@ -1,0 +1,40 @@
+package com.drug.druginfoMaster;
+
+import java.util.List;
+
+import com.drug.core.util.DropDownList;
+import com.drug.setup.users.UsersMasterBean;
+
+public class DruginfoMasterResultBean {
+
+private static final long serialVersionUID = 1L;
+	
+public boolean success;
+private DruginfoMasterBean DrugInfoMasterBean;
+private List<DruginfoMasterBean> listDrugInfoMasterBean;
+
+public boolean isSuccess() {
+	return success;
+}
+public void setSuccess(boolean success) {
+	this.success = success;
+}
+public DruginfoMasterBean getDrugInfoMasterBean() {
+	return DrugInfoMasterBean;
+}
+public void setDrugInfoMasterBean(DruginfoMasterBean drugInfoMasterBean) {
+	DrugInfoMasterBean = drugInfoMasterBean;
+}
+public List<DruginfoMasterBean> getListDrugInfoMasterBean() {
+	return listDrugInfoMasterBean;
+}
+public void setListDrugInfoMasterBean(List<DruginfoMasterBean> listDrugInfoMasterBean) {
+	this.listDrugInfoMasterBean = listDrugInfoMasterBean;
+}
+public static long getSerialversionuid() {
+	return serialVersionUID;
+}
+
+
+	
+}
