@@ -34,8 +34,17 @@ public class CommonServicesDaoImpl implements CommonServicesDao {
 		// TODO Auto-generated method stub
 		HashMap<String,Object> saveMap = new HashMap();
 		saveMap.put("userId", userId);saveMap.put("emailId", emailId);saveMap.put("otp", otp);
-		namedParameterJdbcTemplate.update(CommonServicesQueryUtil.INSERT_OTP, saveMap);
-		namedParameterJdbcTemplate.update(CommonServicesQueryUtil.INSERT_OTP_HISTORY, saveMap);
+		Integer otpCount = jdbcTemplate.queryForObject(CommonServicesQueryUtil.GETOTPVALUE,new Object[] { userId }, Integer .class);
+		if(otpCount==0) {
+			namedParameterJdbcTemplate.update(CommonServicesQueryUtil.INSERT_OTP, saveMap);
+			namedParameterJdbcTemplate.update(CommonServicesQueryUtil.INSERT_OTP_HISTORY, saveMap);
+		}
+		else {
+			jdbcTemplate.queryForObject(CommonServicesQueryUtil.DELETE_OTP,new Object[] { userId }, String .class);
+			namedParameterJdbcTemplate.update(CommonServicesQueryUtil.INSERT_OTP, saveMap);
+			namedParameterJdbcTemplate.update(CommonServicesQueryUtil.INSERT_OTP_HISTORY, saveMap);
+		}
+		
 		
 	}
 
