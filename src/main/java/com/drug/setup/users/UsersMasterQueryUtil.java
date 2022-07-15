@@ -28,4 +28,8 @@ public class UsersMasterQueryUtil {
 	public static String GETEMPID = "SELECT CASE WHEN MAX(emp_id) IS NULL  THEN 'E0001' ELSE rpad(MAX(emp_id),1,'E')|| lpad(cast(cast((SUBSTRING(MAX(emp_id),2)) as int)+1  as text),4,'0') END FROM user_details";
 
 	public static final String INSERT_USER_ROLE_MAP = "insert into auth.user_roles (user_id,role_id) values (:userId,:roleId)";
+
+	public static final String UPDATE_CHANGE_PASSWORD = "UPDATE auth.app_user set password=:newChangePassword where user_id=:newUserName";
+
+	public static final String GET_EMAIL_ID = "select email_id as emailId from user_details where emp_user_id=?";
 }

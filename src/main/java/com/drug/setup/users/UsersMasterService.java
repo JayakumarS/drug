@@ -16,4 +16,8 @@ public interface UsersMasterService {
 	
 	UsersMasterResultBean getRoleList() throws Exception;
 
+	UsersMasterResultBean oldPasswordValidation(String validatePasswordvalidatePassword,String userId) throws Exception;
+
+	UsersMasterResultBean updatePassword(UsersMasterBean bean) throws Exception;
+
 }

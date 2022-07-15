@@ -32,4 +32,16 @@ public class CommonServicesController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/validateUnique")
+	public boolean validateUnique(@RequestParam("tableName") String tableName,@RequestParam("columnName") String columnName,@RequestParam("columnValue") String columnValue) throws Exception {
+		boolean result = false;
+		try {
+			result = commonServicesService.validateUnique(tableName,columnName,columnValue);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 }

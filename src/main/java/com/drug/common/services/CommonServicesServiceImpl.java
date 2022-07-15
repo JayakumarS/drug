@@ -43,6 +43,18 @@ public class CommonServicesServiceImpl implements CommonServicesService {
 		return commonServicesDao.getCountValue(empid);
 	}
 
+	@Override
+	public HashMap<String, Object> forgotPassword(String userNameEmailId,String otpForForgotPassword) {
+		// TODO Auto-generated method stub
+		return commonServicesDao.forgotPassword(userNameEmailId,otpForForgotPassword);
+	}
+
+	@Override
+	public boolean validateUnique(String tableName, String columnName, String columnValue) {
+		// TODO Auto-generated method stub
+		return commonServicesDao.validateUnique(tableName,columnName,columnValue);
+	}
+
 
 	
 }

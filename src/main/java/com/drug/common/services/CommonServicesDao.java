@@ -15,4 +15,8 @@ public interface CommonServicesDao {
 	String getUserDetails(String empid);
 
 	Integer getCountValue(String empid);
+
+	HashMap<String, Object> forgotPassword(String userNameEmailId,String otpForForgotPassword);
+	
+	boolean validateUnique(String tableName,String columnName,String columnValue);
 }

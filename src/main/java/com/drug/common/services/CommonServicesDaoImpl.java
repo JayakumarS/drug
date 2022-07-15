@@ -5,8 +5,10 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import com.drug.common.EmailService;
 import com.drug.setup.users.UsersMasterBean;
 
 @Repository
@@ -14,6 +16,9 @@ public class CommonServicesDaoImpl implements CommonServicesDao {
 	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	PasswordEncoder encoder;
 	
 	@Autowired
 	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -77,6 +82,40 @@ public class CommonServicesDaoImpl implements CommonServicesDao {
 		// TODO Auto-generated method stub
 		Integer  countBean =  jdbcTemplate.queryForObject(CommonServicesQueryUtil.GETCOUNTVALUE,new Object[] { empid }, Integer .class);
 		return countBean;
+	}
+
+	@Override
+	public HashMap<String, Object> forgotPassword(String userNameEmailId,String otpForForgotPassword) {
+		// TODO Auto-generated method stub
+		HashMap<String,Object> saveMap = new HashMap();
+		saveMap.put("userNameEmailId", userNameEmailId);
+		saveMap.put("otpForForgotPassword",encoder.encode(otpForForgotPassword));
+		System.out.println("New Password is "+otpForForgotPassword);
+		if(userNameEmailId.contains("@")) {
+			namedParameterJdbcTemplate.update(CommonServicesQueryUtil.UPDATE_PASSWORD_WITH_EMAIL, saveMap);
+		}
+		else{
+			try {
+				String  emailId =  jdbcTemplate.queryForObject(CommonServicesQueryUtil.GET_EMAIL_ID,new Object[] { userNameEmailId }, String .class);
+				namedParameterJdbcTemplate.update(CommonServicesQueryUtil.UPDATE_PASSWORD_WITHOUT_EMAIL, saveMap);
+				EmailService.sendForgotPasswordMail(emailId,userNameEmailId,otpForForgotPassword);
+				saveMap.put("message", "Your Password was changed");
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		saveMap.put("success", true);
+		return saveMap;
+	}
+
+	@Override
+	public boolean validateUnique(String tableName, String columnName, String columnValue) {
+		// TODO Auto-generated method stub
+		boolean count =  jdbcTemplate.queryForObject(CommonServicesQueryUtil.VALIDATE_UNIQUE,new Object[] { tableName,columnName,columnValue }, Boolean.class);
+		return count;
 	}
 
 	

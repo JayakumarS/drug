@@ -110,6 +110,23 @@ public class UsersMasterController {
 			}
 			return resultBean;
 		}
+		
+		@RequestMapping(value = "/oldPasswordValidation")
+	   	public UsersMasterResultBean oldPasswordValidation(@RequestParam("validatePassword") String validatePassword,@RequestParam("userId") String userId) throws Exception {
+	   		return usersMasterService.oldPasswordValidation(validatePassword,userId);
+	   	}
+		
+		@RequestMapping(value = "/updatePassword")
+	   	public UsersMasterResultBean updatePassword(@RequestBody UsersMasterBean bean)throws Exception {
+			UsersMasterResultBean objResultBean = new UsersMasterResultBean();
+			try {
+				objResultBean = usersMasterService.updatePassword(bean);
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			return objResultBean;
+	   	}
 	
 
 }

@@ -45,6 +45,18 @@ public class UsersMasterServiceImpl implements UsersMasterService {
 		return rolesMasterDao.getRoleList();
 	}
 
+	@Override
+	public UsersMasterResultBean oldPasswordValidation(String validatePassword,String userId) throws Exception {
+		// TODO Auto-generated method stub
+		return rolesMasterDao.oldPasswordValidation(validatePassword,userId);
+	}
+
+	@Override
+	public UsersMasterResultBean updatePassword(UsersMasterBean bean) throws Exception{
+		// TODO Auto-generated method stub
+		return rolesMasterDao.updatePassword(bean);
+	}
+
 	
 
 

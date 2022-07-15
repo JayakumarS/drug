@@ -3,6 +3,7 @@ package com.drug.security;
 import javax.validation.constraints.NotBlank;
 
 public class LoginRequest {
+	
 	@NotBlank
 	private String username;
 
@@ -11,6 +12,7 @@ public class LoginRequest {
 	
 	private String otpValue;
 	
+	private String userNameEmailId;
 	
 
 	public String getUsername() {
@@ -35,6 +37,14 @@ public class LoginRequest {
 
 	public void setOtpValue(String otpValue) {
 		this.otpValue = otpValue;
+	}
+
+	public String getUserNameEmailId() {
+		return userNameEmailId;
+	}
+
+	public void setUserNameEmailId(String userNameEmailId) {
+		this.userNameEmailId = userNameEmailId;
 	}
 	
 	
