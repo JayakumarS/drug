@@ -1,8 +1,8 @@
-package com.drug.customerMaster;
+package com.drug.companyMaster;
 
 
 
-public class CustomerMasterBean {
+public class CompanyMasterBean {
 
 	private String  wholesalerCode;
 	private String wholesalerPolicyCode;

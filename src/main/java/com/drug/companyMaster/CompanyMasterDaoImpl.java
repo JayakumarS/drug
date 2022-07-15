@@ -1,24 +1,19 @@
-package com.drug.customerMaster;
+package com.drug.companyMaster;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.drug.wholesaler.WholesalerMasterQueryUtil;
 
 @Repository
  
-public class CustomerMasterDaoImpl implements CustomerMasterDao {
+public class CompanyMasterDaoImpl implements CompanyMasterDao {
 	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
@@ -28,8 +23,8 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
 	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	@Override
-	public CustomerMasterResultBean save(CustomerMasterBean bean) throws Exception {
-		CustomerMasterResultBean resultBean = new CustomerMasterResultBean();
+	public CompanyMasterResultBean save(CompanyMasterBean bean) throws Exception {
+		CompanyMasterResultBean resultBean = new CompanyMasterResultBean();
  		try {
  			//save whosalar
  			String Wholesaler_Code = jdbcTemplate.queryForObject(WholesalerMasterQueryUtil.INSERT_WHOLESALER_MASTER, new Object[]{
@@ -53,7 +48,7 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
  				bean.setGeneralInfroWacAwapPer("0");
  			}
  			
- 			String result = jdbcTemplate.queryForObject(CustomerMasterQueryUtil.INSERT_CUSTOMER_MASTER, new Object[]{
+ 			String result = jdbcTemplate.queryForObject(CompanyMasterQueryUtil.INSERT_COMPANY_MASTER, new Object[]{
 					bean.getCompanyName(),
 					bean.getCompanyDba(),
 					bean.getCompanyStreet(),
@@ -103,23 +98,23 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
 	}
 
 	@Override
-	public List<CustomerMasterBean> getCustomerList() throws Exception {
-		List<CustomerMasterBean> objCustomerMasterBean = new ArrayList<CustomerMasterBean>();
+	public List<CompanyMasterBean> getCompanyList() throws Exception {
+		List<CompanyMasterBean> objCompanyMasterBean = new ArrayList<CompanyMasterBean>();
 		try {
-			objCustomerMasterBean = jdbcTemplate.query(CustomerMasterQueryUtil.getCustomerList, new BeanPropertyRowMapper<CustomerMasterBean>(CustomerMasterBean.class));
+			objCompanyMasterBean = jdbcTemplate.query(CompanyMasterQueryUtil.GETCOMPANY_LIST, new BeanPropertyRowMapper<CompanyMasterBean>(CompanyMasterBean.class));
 			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return objCustomerMasterBean;
+		return objCompanyMasterBean;
 	}
 
 	@Override
-	public CustomerMasterResultBean edit(String code) throws Exception {
-		CustomerMasterResultBean resultBean = new CustomerMasterResultBean();
+	public CompanyMasterResultBean edit(String code) throws Exception {
+		CompanyMasterResultBean resultBean = new CompanyMasterResultBean();
 		resultBean.setSuccess(false);
 		try {
-			resultBean.setCustomerMasterBean(jdbcTemplate.queryForObject(CustomerMasterQueryUtil.SELECT_CUSTOMER_DTL,new Object[] { code }, new BeanPropertyRowMapper<CustomerMasterBean>(CustomerMasterBean.class)));
+			resultBean.setCompanyMaster(jdbcTemplate.queryForObject(CompanyMasterQueryUtil.SELECT_COMPANY_DTL,new Object[] { code }, new BeanPropertyRowMapper<CompanyMasterBean>(CompanyMasterBean.class)));
 			resultBean.setSuccess(true);
 		}
 		catch(Exception e) {
@@ -130,11 +125,11 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
 	}
 
 	@Override
-	public CustomerMasterResultBean delete(String cusCode) throws Exception {
-		CustomerMasterResultBean resultBean = new CustomerMasterResultBean();
+	public CompanyMasterResultBean delete(String cusCode) throws Exception {
+		CompanyMasterResultBean resultBean = new CompanyMasterResultBean();
 		try {
 			if(cusCode!=null) {
-				jdbcTemplate.update(CustomerMasterQueryUtil.DELETE_CUSTOMER,cusCode);
+				jdbcTemplate.update(CompanyMasterQueryUtil.DELETE_COMPANY,cusCode);
 			}
 			resultBean.setSuccess(true);
 		}
@@ -146,8 +141,8 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
 	}
 
 	@Override
-	public CustomerMasterResultBean update(CustomerMasterBean bean) throws Exception {
-		CustomerMasterResultBean resultBean = new CustomerMasterResultBean();
+	public CompanyMasterResultBean update(CompanyMasterBean bean) throws Exception {
+		CompanyMasterResultBean resultBean = new CompanyMasterResultBean();
 		try {
 
 			String Wholesaler_Code= jdbcTemplate.queryForObject(WholesalerMasterQueryUtil.UPDATE_WHOLESALER_MASTER, new Object[]{
@@ -171,7 +166,7 @@ public class CustomerMasterDaoImpl implements CustomerMasterDao {
  				bean.setGeneralInfroWacAwapPer("0");
  			}
  			
- 			String result = jdbcTemplate.queryForObject(CustomerMasterQueryUtil.UPDATE_CUSTOMER_MASTER, new Object[]{
+ 			String result = jdbcTemplate.queryForObject(CompanyMasterQueryUtil.UPDATE_COMPANY_MASTER, new Object[]{
  					bean.getCompanyCode(),
 					bean.getCompanyName(),
 					bean.getCompanyDba(),
