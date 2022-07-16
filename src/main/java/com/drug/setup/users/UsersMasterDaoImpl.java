@@ -53,6 +53,9 @@ public class UsersMasterDaoImpl implements UsersMasterDao {
 			saveMap.put("roleId", bean.getRoles());
 			saveMap.put("empName", bean.getFirstName());
 			saveMap.put("companyCode", bean.getCompanyCode());
+			saveMap.put("userName", bean.getUserName());
+
+			
 			String empId =  jdbcTemplate.queryForObject(UsersMasterQueryUtil.GETEMPID, String.class);
 			saveMap.put("empId", empId);
 			

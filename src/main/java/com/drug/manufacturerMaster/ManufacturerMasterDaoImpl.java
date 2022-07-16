@@ -5,17 +5,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import com.drug.setup.users.UsersMasterBean;
+import com.drug.common.ErrorMessage;
+import com.drug.core.util.CustomException;
 
 @Service
 public class ManufacturerMasterDaoImpl implements ManufacturerMasterDao {
-
+	private final static Logger LOGGER = LoggerFactory.getLogger(ManufacturerMasterDaoImpl.class);
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
@@ -25,32 +29,49 @@ public class ManufacturerMasterDaoImpl implements ManufacturerMasterDao {
 	@Override
 	public ManufacturerMasterResultBean save(ManufacturerMasterBean bean) throws Exception {
 		ManufacturerMasterResultBean resultBean = new ManufacturerMasterResultBean();
+	//	UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
  		try {
  		
- 			
+ 		//	user.getUsername();
+
  			String result= jdbcTemplate.queryForObject(ManufacturerMasterQueryUtil.INSERT_MANUFACTURE_MASTER, new Object[]{
- 					bean.getManufacturerName(),
- 					bean.getLinkTo(),
- 					bean.getBillTo(),
- 					bean.getReturnService(),
- 					bean.getContact(),
- 					bean.getEmailId(),
- 					bean.getDepartmentName(),
- 					bean.getStreetName(),
- 					bean.getCityName(),
- 					bean.getStateName(),
- 					bean.getZipCode(),
- 					bean.getPhoneNo(),
- 					bean.getTollFreeNo(),
- 					bean.getFax()}, String.class);
+// 					bean.getManufacturerName(),
+// 					bean.getLinkTo(),
+// 					bean.getBillTo(),
+// 					bean.getReturnService(),
+// 					bean.getContact(),
+// 					bean.getEmailId(),
+// 					bean.getDepartmentName(),
+// 					bean.getStreetName(),
+// 					bean.getCityName(),
+// 					bean.getStateName(),
+// 					bean.getZipCode(),
+// 					bean.getPhoneNo(),
+// 					bean.getTollFreeNo(),
+// 					bean.getFax(),
+// 					bean.getUseName(),
+// 
+ 					}, String.class);
 
 		    resultBean.setSuccess(true);
 		    System.out.print(result);
-		}catch(Exception e) {
-			e.printStackTrace();
-			resultBean.setSuccess(false);
 		}
-		
+ 		catch (Exception e) {
+			LOGGER.error("Error in addManufacturer", e);
+			resultBean.setSuccess(false);
+			resultBean.setMessage(ErrorMessage.ERROR_ADD);
+			//throw new CustomException(ErrorMessage.ERROR_ADD);
+ 		//catch(Exception e) {
+//			e.printStackTrace();
+//			resultBean.setSuccess(false);
+//		}
+ 	//	catch (Exception e) {
+	//		LOGGER.error("Unable to add record...", e);
+// 		catch (DataAccessException e) {
+//			LOGGER.error("Unable to add record...", e.getMessage());
+//		resultBean.setMessage(e.getMessage());
+		}
 		return resultBean;
 	}
 
@@ -116,7 +137,8 @@ public class ManufacturerMasterDaoImpl implements ManufacturerMasterDao {
 	 					bean.getZipCode(),
 	 					bean.getPhoneNo(),
 	 					bean.getTollFreeNo(),
-	 					bean.getFax()}, String.class);
+	 					bean.getFax(),
+	 					bean.getUseName()}, String.class);
 
 			   resultBean.setSuccess(true);
 			   System.out.print(result);

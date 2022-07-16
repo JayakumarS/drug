@@ -19,7 +19,7 @@ public class UsersMasterQueryUtil {
 	
 	public static final String GET_ROLE_LIST = "select role_id as id ,name as text from auth.role ";
 	
-	public static final String INSERT_USER_DETAILS = "INSERT INTO user_details (emp_id, email_id,created_by,created_dt,first_name,last_name,phone_no,photo_url,emp_name,emp_user_id,company_code) VALUES (:empId, :emailId,'',now(),:firstName,:lastName,:mobileNo,:photoUrl,:empName,:userId,:companyCode)";
+	public static final String INSERT_USER_DETAILS = "INSERT INTO user_details (emp_id, email_id,created_by,created_dt,first_name,last_name,phone_no,photo_url,emp_name,emp_user_id,company_code) VALUES (:empId, :emailId,:userName,now(),:firstName,:lastName,:mobileNo,:photoUrl,:empName,:userId,:companyCode)";
 	
 	public static final String INSERT_AppUser = "INSERT INTO auth.app_user(user_id,password,reference_id)values(:userId,:password,:empId)";
 	

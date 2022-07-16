@@ -27,6 +27,7 @@ public class RolesMasterDaoImpl implements RolesMasterDao {
 			Map<String, Object> saveMap = new HashMap<String, Object>();
 			saveMap.put("roleName", bean.getRoleName());
 			saveMap.put("remarks", bean.getRemarks());
+			saveMap.put("userName", bean.getUserName());
 			
 			namedParameterJdbcTemplate.update(RolesMasterQueryUtil.INSERT,saveMap);
 		   resultBean.setSuccess(true);

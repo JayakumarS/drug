@@ -2,7 +2,7 @@ package com.drug.setup.rolerights;
 
 public class RoleRightsQueryUtil {
 
-	public static final String INSERT = "insert into auth.role_rights (role_id,form_property_id) values(:roleId,:formPropertyId) ";
+	public static final String INSERT = "insert into auth.role_rights (role_id,form_property_id,created_by,created_on) values(:roleId,:formPropertyId,:userName,now()) ";
 	
 	public static final String getList = "select role_id as roleId,name as roleName,remark as remarks from auth.role order by name asc";
 

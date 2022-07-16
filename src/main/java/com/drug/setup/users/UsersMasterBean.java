@@ -14,9 +14,17 @@ public class UsersMasterBean {
 	private String roleText;
 	private String companyCode;
 	private String empId;
-	
+
+	private String userName;
+
 	// Change Password pop up beans
 	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	private String oldChangePassword;
 	private String newChangePassword;
 	private String confirmChangePassword;
@@ -32,6 +40,7 @@ public class UsersMasterBean {
 	}
 	public void setConfirmChangePassword(String confirmChangePassword) {
 		this.confirmChangePassword = confirmChangePassword;
+
 	}
 	public String getRoleText() {
 		return roleText;

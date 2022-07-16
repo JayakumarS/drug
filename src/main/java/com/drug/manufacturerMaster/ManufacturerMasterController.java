@@ -20,13 +20,15 @@ public class ManufacturerMasterController {
 	
 	@RequestMapping(value="/save")
 	public ManufacturerMasterResultBean save(@RequestBody ManufacturerMasterBean bean) {
-		ManufacturerMasterResultBean objbean = new ManufacturerMasterResultBean();
+		ManufacturerMasterResultBean resultBean = new ManufacturerMasterResultBean();
 		try {
-			objbean = manufacturerMasterService.save(bean);
+			resultBean = manufacturerMasterService.save(bean);
+			resultBean.setSuccess(true);
 		}catch(Exception e){
+			resultBean.setSuccess(false);
 			e.printStackTrace();	
 		}
-		return objbean;
+		return resultBean;
 		
 	}
 	
