@@ -14,7 +14,11 @@ private static final long serialVersionUID = 1L;
 	private String returnMemo;
 	private String ndcupcCode;
 	private String pakageUnit;
-	private String quantity;
+	private String quanTity;
+	private String priceRs;
+	private String expDate;
+	private String reasoNo;
+	private String lotNo;
 	
 	public boolean isSuccess() {
 		return Success;
@@ -46,17 +50,17 @@ private static final long serialVersionUID = 1L;
 	public void setPakageUnit(String pakageUnit) {
 		this.pakageUnit = pakageUnit;
 	}
-	public String getQuantity() {
-		return quantity;
+	public String getQuanTity() {
+		return quanTity;
 	}
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
+	public void setQuanTity(String quanTity) {
+		this.quanTity = quanTity;
 	}
-	public String getPrice() {
-		return price;
+	public String getPriceRs() {
+		return priceRs;
 	}
-	public void setPrice(String price) {
-		this.price = price;
+	public void setPriceRs(String priceRs) {
+		this.priceRs = priceRs;
 	}
 	public String getExpDate() {
 		return expDate;
@@ -64,11 +68,11 @@ private static final long serialVersionUID = 1L;
 	public void setExpDate(String expDate) {
 		this.expDate = expDate;
 	}
-	public String getReason() {
-		return reason;
+	public String getReasoNo() {
+		return reasoNo;
 	}
-	public void setReason(String reason) {
-		this.reason = reason;
+	public void setReasoNo(String reasoNo) {
+		this.reasoNo = reasoNo;
 	}
 	public String getLotNo() {
 		return lotNo;
@@ -79,11 +83,9 @@ private static final long serialVersionUID = 1L;
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	private String price;	
-	private String expDate;	
-	private String reason;	 
-	private String lotNo;	
 	
+	
+		
 	
 	
 	

@@ -10,11 +10,25 @@ public class ControlledSubstanceResultBean {
 	public boolean Success;
 	
 	private List<ControlledSubstanceResultBean> companyNameList;
-	
+	private List<ControlledSubstanceResultBean> returnMemoNoList;
+
 	
 	private String id;
 	private String text;
+	private String no;
 	
+	public String getNo() {
+		return no;
+	}
+	public void setNo(String no) {
+		this.no = no;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	public boolean isSuccess() {
+		return Success;
+	}
 	public String getId() {
 		return id;
 	}
@@ -39,6 +53,14 @@ public class ControlledSubstanceResultBean {
 
 	public void setCompanyNameList(List<ControlledSubstanceResultBean> list) {
 		this.companyNameList = list;
+	}
+	
+	public List<ControlledSubstanceResultBean> getReturnMemoNo() {
+		return returnMemoNoList;
+	}
+
+	public void setReturnMemoNo(List<ControlledSubstanceResultBean> list) {
+		this.returnMemoNoList = list;
 	}
 
 
