@@ -12,10 +12,13 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import com.drug.common.EmailService;
+import com.drug.common.services.CommonServicesQueryUtil;
 import com.drug.core.util.DropDownList;
 import com.drug.employeeMaster.EmployeeMasterQueryUtil;
 import com.drug.filesupload.FileUploadQueryUtil;
 import com.drug.filesupload.FileUploadResultBean;
+import com.drug.security.JwtUtils;
 
 @Repository
 public class UsersMasterDaoImpl implements UsersMasterDao {
@@ -28,6 +31,9 @@ public class UsersMasterDaoImpl implements UsersMasterDao {
 
 	@Autowired
 	PasswordEncoder encoder;
+	
+	@Autowired
+	JwtUtils jwtUtils;
 	
 	@Override
 	public UsersMasterResultBean save(UsersMasterBean bean) throws Exception {
@@ -138,6 +144,48 @@ public class UsersMasterDaoImpl implements UsersMasterDao {
 			e.printStackTrace();
 			resultBean.setSuccess(false);
 		}
+		return resultBean;
+	}
+
+	@Override
+	public UsersMasterResultBean oldPasswordValidation(String inputPwd, String userId) throws Exception {
+		// TODO Auto-generated method stub
+		UsersMasterResultBean usersMasterResultBean = new UsersMasterResultBean();
+		String password = jdbcTemplate.queryForObject(CommonServicesQueryUtil.GETOLDPASSWORD,new Object[] { userId }, String.class);
+		
+		usersMasterResultBean.setSuccess(false);
+		if(!password.isEmpty()) {
+			
+			if(encoder.matches(inputPwd, password)) {
+				usersMasterResultBean.setSuccess(true);
+			}else {
+				usersMasterResultBean.setSuccess(false);
+			}
+		}
+		
+		return usersMasterResultBean;
+	}
+
+	@Override
+	public UsersMasterResultBean updatePassword(UsersMasterBean bean) throws Exception {
+		// TODO Auto-generated method stub
+UsersMasterResultBean resultBean = new UsersMasterResultBean();
+		
+		try {
+			Map<String, Object> updateChangePasswordMap = new HashMap<String, Object>();
+			
+			updateChangePasswordMap.put("newUserName", bean.getNewUserName());
+			updateChangePasswordMap.put("newChangePassword", encoder.encode(bean.getNewChangePassword()));
+			String  emailId =  jdbcTemplate.queryForObject(UsersMasterQueryUtil.GET_EMAIL_ID,new Object[] { bean.getNewUserName() }, String .class);
+			int insertUserRoleMap = namedParameterJdbcTemplate.update(UsersMasterQueryUtil.UPDATE_CHANGE_PASSWORD, updateChangePasswordMap);
+			EmailService.sendChangePasswordMail(emailId,bean.getNewUserName());
+			
+		   resultBean.setSuccess(true);
+		}catch(Exception e) {
+			e.printStackTrace();
+			resultBean.setSuccess(false);
+		}
+		
 		return resultBean;
 	}
 

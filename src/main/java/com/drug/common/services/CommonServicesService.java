@@ -21,5 +21,8 @@ public interface CommonServicesService {
 	List<DropDownList> getCompanyMasterList();
 
 	List<DropDownList> getDebitMemoList();
+	HashMap<String, Object> forgotPassword(String userNameEmailId,String otpForForgotPassword);
+	
+	boolean validateUnique(String tableName,String columnName,String columnValue);
 	
 }

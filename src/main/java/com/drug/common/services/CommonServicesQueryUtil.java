@@ -13,5 +13,10 @@ public class CommonServicesQueryUtil {
 	public static final String COMPANY_MASTER_DROPDOWNLIST = "select company_code as id, company_name as text from company order by company_name asc";
 	public static final String DEBIT_MEMO_DROPDOWNLIST = "select return_memo_no as id, return_memo_name as text from return_memo order by return_memo_name asc";
 	
+	public static final String GETOLDPASSWORD = "select password  from auth.app_user where user_id = ?";
+	public static final String UPDATE_PASSWORD_WITH_EMAIL = "UPDATE auth.app_user set password=:otpForForgotPassword where user_id=:userNameEmailId";
+	public static final String UPDATE_PASSWORD_WITHOUT_EMAIL = "UPDATE auth.app_user set password=:otpForForgotPassword where user_id=:userNameEmailId";
+	public static final String GET_EMAIL_ID = "select email_id as emailId from user_details where emp_user_id=?";
+	public static final String VALIDATE_UNIQUE = "SELECT * FROM fn_unique_validation(?,?,?)";
 	
 }

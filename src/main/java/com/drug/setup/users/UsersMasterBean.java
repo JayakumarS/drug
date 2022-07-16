@@ -15,6 +15,24 @@ public class UsersMasterBean {
 	private String companyCode;
 	private String empId;
 	
+	// Change Password pop up beans
+	
+	private String oldChangePassword;
+	private String newChangePassword;
+	private String confirmChangePassword;
+	
+	public String getNewChangePassword() {
+		return newChangePassword;
+	}
+	public void setNewChangePassword(String newChangePassword) {
+		this.newChangePassword = newChangePassword;
+	}
+	public String getConfirmChangePassword() {
+		return confirmChangePassword;
+	}
+	public void setConfirmChangePassword(String confirmChangePassword) {
+		this.confirmChangePassword = confirmChangePassword;
+	}
 	public String getRoleText() {
 		return roleText;
 	}
@@ -97,6 +115,12 @@ public class UsersMasterBean {
 	}
 	public void setEmpId(String empId) {
 		this.empId = empId;
+	}
+	public String getOldChangePassword() {
+		return oldChangePassword;
+	}
+	public void setOldChangePassword(String oldChangePassword) {
+		this.oldChangePassword = oldChangePassword;
 	}
 	
 	

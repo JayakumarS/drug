@@ -214,4 +214,12 @@ public class AuthController {
 		return result;
 	}
 	
+	@ApiOperation(value = "Forgotten Password")
+	@PostMapping("/forgotPassword")
+	public HashMap<String,Object> forgotPassword(@RequestBody LoginRequest loginRequest) {
+		String otpForForgotPassword = RandomStringUtils.random(8, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789");
+		HashMap<String,Object> resultMap = commonServicesService.forgotPassword(loginRequest.getUserNameEmailId(),otpForForgotPassword);
+		return resultMap;
+	}
+	
 }

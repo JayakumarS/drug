@@ -15,5 +15,9 @@ public interface UsersMasterDao {
 	UsersMasterResultBean update(UsersMasterBean bean) throws Exception;
 
 	UsersMasterResultBean getRoleList() throws Exception;
+
+	UsersMasterResultBean oldPasswordValidation(String validatePassword,String userId) throws Exception;
+
+	UsersMasterResultBean updatePassword(UsersMasterBean bean) throws Exception;
 	
 }
