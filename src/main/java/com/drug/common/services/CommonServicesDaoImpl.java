@@ -109,6 +109,7 @@ public class CommonServicesDaoImpl implements CommonServicesDao {
 			e.printStackTrace();
 		}
 		return customerMasterList;
+	}
 	public HashMap<String, Object> forgotPassword(String userNameEmailId,String otpForForgotPassword) {
 		// TODO Auto-generated method stub
 		HashMap<String,Object> saveMap = new HashMap();

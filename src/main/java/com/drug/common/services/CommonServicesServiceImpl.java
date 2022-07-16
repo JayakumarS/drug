@@ -52,6 +52,8 @@ public class CommonServicesServiceImpl implements CommonServicesService {
 	@Override
 	public List<DropDownList> getDebitMemoList() {
 		return commonServicesDao.getDebitMemoList();
+	}
+	
 	public HashMap<String, Object> forgotPassword(String userNameEmailId,String otpForForgotPassword) {
 		// TODO Auto-generated method stub
 		return commonServicesDao.forgotPassword(userNameEmailId,otpForForgotPassword);
