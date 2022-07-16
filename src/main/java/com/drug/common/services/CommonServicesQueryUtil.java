@@ -10,6 +10,8 @@ public class CommonServicesQueryUtil {
 	public static final String GETCOUNTVALUE = "SELECT COUNT(*) FROM login_otp_history AS \"Login_otp_history\" WHERE \"Login_otp_history\".\"created_on\" BETWEEN NOW() - INTERVAL '1 HOURS' AND NOW() AND \"Login_otp_history\".\"user_id\"= ? ";
 	public static final String DELETE_OTP = "DELETE from login_otp where user_id=? returning user_id as userId";
 	public static final String GETOTPVALUE = "select count(*) from login_otp where user_id= ? ";
+	public static final String COMPANY_MASTER_DROPDOWNLIST = "select company_code as id, company_name as text from company order by company_name asc";
+	public static final String DEBIT_MEMO_DROPDOWNLIST = "select return_memo_no as id, return_memo_name as text from return_memo order by return_memo_name asc";
 	
 	
 }

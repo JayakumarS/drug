@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.drug.core.util.DropDownList;
 import com.drug.setup.users.UsersMasterBean;
 
 @Service
@@ -41,6 +42,16 @@ public class CommonServicesServiceImpl implements CommonServicesService {
 	public Integer getCountValue(String empid) {
 		// TODO Auto-generated method stub
 		return commonServicesDao.getCountValue(empid);
+	}
+
+	@Override
+	public List<DropDownList> getCompanyMasterList() {
+		return commonServicesDao.getCompanyMasterList();
+	}
+
+	@Override
+	public List<DropDownList> getDebitMemoList() {
+		return commonServicesDao.getDebitMemoList();
 	}
 
 

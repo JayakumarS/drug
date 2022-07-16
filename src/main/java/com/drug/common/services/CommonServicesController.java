@@ -1,5 +1,7 @@
 package com.drug.common.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.drug.common.FileUploadUtill;
+import com.drug.core.util.DropDownList;
 import com.drug.filesupload.FileUploadResultBean;
 import com.drug.setup.users.UsersMasterResultBean;
 
@@ -30,6 +33,18 @@ public class CommonServicesController {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	
+	@RequestMapping(value= "/getCompanyMasterDropdownList")
+	public List<DropDownList> getCompanyMasterList(){
+			return commonServicesService.getCompanyMasterList();	
+	}
+	
+	
+	@RequestMapping(value= "/getDebitMemoDropdownList")
+	public List<DropDownList> getDebitMemoList(){
+			return commonServicesService.getDebitMemoList();	
 	}
 	
 }

@@ -1,10 +1,10 @@
-package com.drug.companyMaster;
+package com.drug.setup.companyMaster;
 
 
 
 public class CompanyMasterBean {
 
-	private String  wholesalerCode;
+	private String wholesalerCode;
 	private String wholesalerPolicyCode;
 	private String wholesalerName;
 	private String wholesalerExpiryPacket;

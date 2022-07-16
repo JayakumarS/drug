@@ -1,10 +1,14 @@
-package com.drug.companyMaster;
+package com.drug.setup.companyMaster;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.drug.core.util.DropDownList;
 
 
 @RestController
@@ -70,4 +74,16 @@ public class CompanyMasterController {
 		return objResultBean;
 	}
 
+	
+	@RequestMapping(value= "/getCompanyMasterDropdownList")
+	public List<DropDownList> getCompanyMasterList(){
+			return companyMasterService.getCompanyMasterList();	
+	}
+	
+	
+	@RequestMapping(value= "/getDebitMemoDropdownList")
+	public List<DropDownList> getDebitMemoList(){
+			return companyMasterService.getDebitMemoList();	
+	}
+	
 }

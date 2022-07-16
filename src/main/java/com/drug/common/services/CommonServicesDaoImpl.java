@@ -1,12 +1,17 @@
 package com.drug.common.services;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.drug.core.util.DropDownList;
+import com.drug.setup.companyMaster.CompanyMasterQueryUtil;
 import com.drug.setup.users.UsersMasterBean;
 
 @Repository
@@ -77,6 +82,28 @@ public class CommonServicesDaoImpl implements CommonServicesDao {
 		// TODO Auto-generated method stub
 		Integer  countBean =  jdbcTemplate.queryForObject(CommonServicesQueryUtil.GETCOUNTVALUE,new Object[] { empid }, Integer .class);
 		return countBean;
+	}
+
+	@Override
+	public List<DropDownList> getCompanyMasterList() {
+		List<DropDownList> customerMasterList = new ArrayList<DropDownList>();
+		try {
+			customerMasterList = jdbcTemplate.query(CommonServicesQueryUtil.COMPANY_MASTER_DROPDOWNLIST, new BeanPropertyRowMapper<DropDownList>(DropDownList.class));	
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return customerMasterList;
+	}
+
+	@Override
+	public List<DropDownList> getDebitMemoList() {
+		List<DropDownList> customerMasterList = new ArrayList<DropDownList>();
+		try {
+			customerMasterList = jdbcTemplate.query(CommonServicesQueryUtil.DEBIT_MEMO_DROPDOWNLIST, new BeanPropertyRowMapper<DropDownList>(DropDownList.class));	
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return customerMasterList;
 	}
 
 	

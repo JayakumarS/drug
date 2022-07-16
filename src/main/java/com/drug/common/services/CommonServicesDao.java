@@ -1,7 +1,9 @@
 package com.drug.common.services;
 
 import java.util.HashMap;
+import java.util.List;
 
+import com.drug.core.util.DropDownList;
 import com.drug.setup.users.UsersMasterBean;
 
 public interface CommonServicesDao {
@@ -15,4 +17,8 @@ public interface CommonServicesDao {
 	String getUserDetails(String empid);
 
 	Integer getCountValue(String empid);
+
+	List<DropDownList> getCompanyMasterList();
+
+	List<DropDownList> getDebitMemoList();
 }

@@ -1,6 +1,8 @@
-package com.drug.companyMaster;
+package com.drug.setup.companyMaster;
 
 import java.util.List;
+
+import com.drug.core.util.DropDownList;
 
 public interface CompanyMasterService {
 
@@ -13,5 +15,9 @@ public interface CompanyMasterService {
 	CompanyMasterResultBean delete(String code) throws Exception;
 	
 	CompanyMasterResultBean update(CompanyMasterBean bean) throws Exception;
+
+	List<DropDownList> getCompanyMasterList();
+
+	List<DropDownList> getDebitMemoList();
 
 }

@@ -1,4 +1,4 @@
-package com.drug.companyMaster;
+package com.drug.setup.companyMaster;
 
 import java.io.Serializable;
 import java.util.List;

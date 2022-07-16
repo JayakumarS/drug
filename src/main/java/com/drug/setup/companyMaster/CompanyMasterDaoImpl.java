@@ -1,4 +1,4 @@
-package com.drug.companyMaster;
+package com.drug.setup.companyMaster;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.drug.core.util.DropDownList;
 import com.drug.wholesaler.WholesalerMasterQueryUtil;
 
 @Repository
@@ -215,5 +216,25 @@ public class CompanyMasterDaoImpl implements CompanyMasterDao {
 		return resultBean;
 	}
 
+	@Override
+	public List<DropDownList> getCompanyMasterList() {
+		List<DropDownList> customerMasterList = new ArrayList<DropDownList>();
+		try {
+			customerMasterList = jdbcTemplate.query(CompanyMasterQueryUtil.COMPANY_MASTER_DROPDOWNLIST, new BeanPropertyRowMapper<DropDownList>(DropDownList.class));	
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return customerMasterList;
+	}
 
+	@Override
+	public List<DropDownList> getDebitMemoList() {
+		List<DropDownList> customerMasterList = new ArrayList<DropDownList>();
+		try {
+			customerMasterList = jdbcTemplate.query(CompanyMasterQueryUtil.DEBIT_MEMO_DROPDOWNLIST, new BeanPropertyRowMapper<DropDownList>(DropDownList.class));	
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return customerMasterList;
+	}
 }

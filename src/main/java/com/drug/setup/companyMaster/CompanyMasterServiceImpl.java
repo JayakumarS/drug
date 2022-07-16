@@ -1,9 +1,11 @@
-package com.drug.companyMaster;
+package com.drug.setup.companyMaster;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.drug.core.util.DropDownList;
 
 @Service
 public class CompanyMasterServiceImpl implements CompanyMasterService {
@@ -37,6 +39,16 @@ public class CompanyMasterServiceImpl implements CompanyMasterService {
 	public CompanyMasterResultBean edit(String bean) throws Exception {
 		// TODO Auto-generated method stub
 		return companyMasterDao.edit(bean);
+	}
+
+	@Override
+	public List<DropDownList> getCompanyMasterList() {
+		return companyMasterDao.getCompanyMasterList();
+	}
+
+	@Override
+	public List<DropDownList> getDebitMemoList() {
+		return companyMasterDao.getDebitMemoList();
 	}
 
 	
