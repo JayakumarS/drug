@@ -45,11 +45,34 @@ public class DebitMemoDaoImpl implements DebitMemoDao {
 	}
 
 	@Override
-	public List<DebitMemoBean> getDebitMemoList() throws Exception {
+	public List<DebitMemoBean> getDebitMemoList(DebitMemoBean bean) throws Exception {
 		List<DebitMemoBean> objCompanyMasterBean = new ArrayList<DebitMemoBean>();
 		try {
-			objCompanyMasterBean = jdbcTemplate.query(DebitMemoQueryUtil.GETDEBITMEMO_LIST, new BeanPropertyRowMapper<DebitMemoBean>(DebitMemoBean.class));
+			if (bean.getCompany() != null && bean.getCompany().trim() != ""
+					&& !bean.getCompany().trim().isEmpty() && bean.getReturnMemoNo() != null && bean.getReturnMemoNo().trim() != ""
+							&& !bean.getReturnMemoNo().trim().isEmpty()) {
 			
+				
+				objCompanyMasterBean =  jdbcTemplate.query(
+					DebitMemoQueryUtil.GETDEBITMEMO_LIST,
+					new Object[] { bean.getCompany(),bean.getReturnMemoNo() },
+					new BeanPropertyRowMapper<>(
+							DebitMemoBean.class));
+					
+				return objCompanyMasterBean;
+				
+			}else if (bean.getCompany() != null && bean.getCompany().trim() != ""
+					&& !bean.getCompany().trim().isEmpty()){
+				
+
+				objCompanyMasterBean =  jdbcTemplate.query(
+						DebitMemoQueryUtil.GETDEBITMEMO_LIST_1,
+						new Object[] { bean.getCompany() },
+						new BeanPropertyRowMapper<>(
+								DebitMemoBean.class));
+				
+				return objCompanyMasterBean;
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}

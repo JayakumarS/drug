@@ -4,35 +4,64 @@ package com.drug.setup.companyMaster.ReturnMemoItems;
 
 public class ReturnMemoItemsBean {
 
-	private String returnMemoNo;
-	private String returnMemoName;
-	private String returnMemoDate;
-	private String company;
+	private String ndcupcCode;
+	private String lotNo;
+	private String reason;
+	private String expDate;
+	private String invoiceNo;
+	private String itemNo;
+	private String quantity;
+	private String price;
 	private String createdBy;
 	
-	public String getReturnMemoNo() {
-		return returnMemoNo;
+	
+	public String getNdcupcCode() {
+		return ndcupcCode;
 	}
-	public void setReturnMemoNo(String returnMemoNo) {
-		this.returnMemoNo = returnMemoNo;
+	public void setNdcupcCode(String ndcupcCode) {
+		this.ndcupcCode = ndcupcCode;
 	}
-	public String getReturnMemoName() {
-		return returnMemoName;
+	public String getLotNo() {
+		return lotNo;
 	}
-	public void setReturnMemoName(String returnMemoName) {
-		this.returnMemoName = returnMemoName;
+	public void setLotNo(String lotNo) {
+		this.lotNo = lotNo;
 	}
-	public String getReturnMemoDate() {
-		return returnMemoDate;
+	public String getReason() {
+		return reason;
 	}
-	public void setReturnMemoDate(String returnMemoDate) {
-		this.returnMemoDate = returnMemoDate;
+	public void setReason(String reason) {
+		this.reason = reason;
 	}
-	public String getCompany() {
-		return company;
+	public String getExpDate() {
+		return expDate;
 	}
-	public void setCompany(String company) {
-		this.company = company;
+	public void setExpDate(String expDate) {
+		this.expDate = expDate;
+	}
+	public String getInvoiceNo() {
+		return invoiceNo;
+	}
+	public void setInvoiceNo(String invoiceNo) {
+		this.invoiceNo = invoiceNo;
+	}
+	public String getItemNo() {
+		return itemNo;
+	}
+	public void setItemNo(String itemNo) {
+		this.itemNo = itemNo;
+	}
+	public String getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
 	}
 	public String getCreatedBy() {
 		return createdBy;
@@ -41,5 +70,5 @@ public class ReturnMemoItemsBean {
 		this.createdBy = createdBy;
 	}
 	
-
+	
 }

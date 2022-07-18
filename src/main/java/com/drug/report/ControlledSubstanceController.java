@@ -34,13 +34,6 @@ public class ControlledSubstanceController {
    		return objResultBean;
    	}
 	
-//	@RequestMapping(value = "/getSearchList")
-//   	public SearchBean getSearchList() throws Exception {
-//		SearchBean objResultBean = new SearchBean();
-//		objResultBean.setSearchList(controlledSubstanceService.getSearchList());
-//		objResultBean.setSuccess(true);
-//   		return objResultBean;
-//   	}
 	
 	
 	
@@ -55,4 +48,12 @@ public class ControlledSubstanceController {
 		return objbean;
 		
 	}
+	
+//	@RequestMapping(value = "/getSearchList")
+//   	public SearchResultBean getSearchList() throws Exception {
+//		SearchResultBean objResultBean = new SearchResultBean();
+//		objResultBean.setListSearchBean(controlledSubstanceService.getSearchList());
+//		objResultBean.setSuccess(true);
+//   		return objResultBean;
+//   	}
 }
