@@ -49,18 +49,6 @@ public class ControlledSubstanceDaoImpl implements ControlledSubsatanceDao{
 		
 	}
 	
-//	@Override
-//	public List<SearchBean> getSearchList() throws Exception {
-//		List<SearchBean> objSearchBean = new ArrayList<SearchBean>();
-//		try {
-//			objSearchBean = jdbcTemplate.query(ControlledSubstanceQueryUtil.getSearchList, new BeanPropertyRowMapper<SearchBean>(SearchBean.class));
-//			
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}
-//		return objSearchBean;
-//		
-//	}
 
 	
 	@Override
@@ -84,6 +72,19 @@ resultBean.setListSearchBean(searchBean);
 		
 		return resultBean;
 	}
+
+	
+//	@Override
+//	public List<SearchBean> getSearchList() throws Exception {
+//		List<SearchBean> objSearchBean = new ArrayList<SearchBean>();
+//		try {
+//			objSearchBean = jdbcTemplate.query(ControlledSubstanceQueryUtil.getSearchList, new BeanPropertyRowMapper<objSearchBean>(objSearchBean.class));
+//			
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
+//		return objSearchBean;
+//	}
 
 
 }

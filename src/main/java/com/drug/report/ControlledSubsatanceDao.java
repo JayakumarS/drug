@@ -10,10 +10,11 @@ public interface ControlledSubsatanceDao {
 	
 	List<ControlledSubstanceResultBean> getCompanyNameList() throws Exception;
 	List<ControlledSubstanceResultBean> getReturnMemoNo() throws Exception;
-//	List<SearchBean> getSearchList() throws Exception;
 
 	
 	SearchResultBean getSearchList(SearchBean bean) throws Exception;
+//	public List<SearchBean> getSearchList() throws Exception;
+
 
 	
 }
