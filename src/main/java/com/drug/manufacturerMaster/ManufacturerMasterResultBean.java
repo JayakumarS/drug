@@ -12,7 +12,14 @@ private static final long serialVersionUID = 1L;
 public boolean success;
 private ManufacturerMasterBean manufacturerMasterBean;
 private List<ManufacturerMasterBean> listmanufacturerMasterBean;
+public String message;
 
+	public String getMessage() {
+	return message;
+}
+public void setMessage(String message) {
+	this.message = message;
+}
 	public boolean isSuccess() {
 	return success;
 }

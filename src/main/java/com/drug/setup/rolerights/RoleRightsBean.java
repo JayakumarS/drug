@@ -7,7 +7,15 @@ public class RoleRightsBean {
 	
 	private Integer roleId;
 	private List<Map<String,Object>> formList;
+	private String userName;
 	
+	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public List<Map<String, Object>> getFormList() {
 		return formList;
 	}

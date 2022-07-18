@@ -80,6 +80,7 @@ public class AuthController {
 		
 		Integer defaultRoleId =  roles.get(0).getRoleId();
 		String defaultRole = roles.get(0).getRoleName();
+		boolean captchaVerified = commonServicesService.verify(loginRequest.getRecaptchaResponse());
 		String otp = RandomStringUtils.random(6, "0123456789");
 		System.out.println("OTP is "+otp);
 		Integer count = commonServicesService.getCountValue(userDetails.getUsername());

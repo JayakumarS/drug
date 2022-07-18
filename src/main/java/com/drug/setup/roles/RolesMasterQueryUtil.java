@@ -2,7 +2,7 @@ package com.drug.setup.roles;
 
 public class RolesMasterQueryUtil {
 
-	public static final String INSERT = "insert into auth.role (name,remark) values(:roleName,:remarks) ";
+	public static final String INSERT = "insert into auth.role (name,remark,created_by,created_on) values(:roleName,:remarks,:userName,now())";
 	
 	public static final String getList = "select role_id as roleId,name as roleName,remark as remarks from auth.role order by name asc";
 

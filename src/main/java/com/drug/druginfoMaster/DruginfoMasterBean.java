@@ -18,6 +18,14 @@ public class DruginfoMasterBean {
 	private String awp;
 	private String wap;
 	private String myPrice;
+	private String userName;
+	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public String getNdcupc() {
 		return ndcupc;
 	}

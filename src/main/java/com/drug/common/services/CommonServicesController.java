@@ -59,4 +59,16 @@ public class CommonServicesController {
 		return result;
 	}
 	
+//	@RequestMapping(value = "/generateCaptcha")
+//	public boolean generateCaptcha(@RequestParam("tableName") String tableName,@RequestParam("columnName") String columnName,@RequestParam("columnValue") String columnValue) throws Exception {
+//		boolean result = false;
+//		try {
+//			result = commonServicesService.generateCaptcha(tableName,columnName,columnValue);
+//		}
+//		catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		return result;
+//	}
+//	
 }

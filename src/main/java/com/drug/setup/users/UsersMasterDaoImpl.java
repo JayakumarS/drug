@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -40,6 +41,7 @@ public class UsersMasterDaoImpl implements UsersMasterDao {
 		UsersMasterResultBean resultBean = new UsersMasterResultBean();
 		
 		try {
+			String alphaNumericpassword = RandomStringUtils.random(8, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789");
 			Map<String, Object> saveMap = new HashMap<String, Object>();
 			
 			
@@ -47,12 +49,15 @@ public class UsersMasterDaoImpl implements UsersMasterDao {
 			saveMap.put("firstName", bean.getFirstName());
 			saveMap.put("lastName", bean.getLastName());
 			saveMap.put("mobileNo", bean.getMobileNo());
-			saveMap.put("password", encoder.encode(bean.getNewPassword()));
+			saveMap.put("password", encoder.encode(alphaNumericpassword));
 			saveMap.put("emailId", bean.getEmailId());
 			saveMap.put("photoUrl", bean.getFileUploadUrl());
 			saveMap.put("roleId", bean.getRoles());
 			saveMap.put("empName", bean.getFirstName());
 			saveMap.put("companyCode", bean.getCompanyCode());
+			saveMap.put("userName", bean.getUserName());
+
+			
 			String empId =  jdbcTemplate.queryForObject(UsersMasterQueryUtil.GETEMPID, String.class);
 			saveMap.put("empId", empId);
 			
@@ -62,6 +67,7 @@ public class UsersMasterDaoImpl implements UsersMasterDao {
 			
 			int insertUserRoleMap = namedParameterJdbcTemplate.update(UsersMasterQueryUtil.INSERT_USER_ROLE_MAP, saveMap);
 			
+			EmailService.sendPasswordMail(bean.getEmailId(),bean.getNewUserName(),alphaNumericpassword);
 			
 			
 		   resultBean.setSuccess(true);

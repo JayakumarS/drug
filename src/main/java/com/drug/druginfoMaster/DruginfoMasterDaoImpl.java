@@ -47,6 +47,7 @@ public class DruginfoMasterDaoImpl implements DruginfoMasterDao {
  					bean.getAwp(),
  					bean.getWap(),
  					bean.getMyPrice(),
+ 					bean.getUserName(),
  					"API"}, String.class);
 
 		    resultBean.setSuccess(true);
@@ -122,6 +123,7 @@ public class DruginfoMasterDaoImpl implements DruginfoMasterDao {
  					bean.getAwp(),
  					bean.getWap(),
  					bean.getMyPrice(),
+ 					bean.getUserName(),
  					"API"}, String.class);
 
 			   resultBean.setSuccess(true);

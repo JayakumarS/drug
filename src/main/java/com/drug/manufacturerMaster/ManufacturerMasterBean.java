@@ -17,7 +17,22 @@ public class ManufacturerMasterBean {
 	private String phoneNo;
 	private String tollFreeNo;
 	private String fax;
+	private String createdBy;
+	private String createdOn;
+	private String useName;
 	
+	public String getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+	public String getCreatedOn() {
+		return createdOn;
+	}
+	public void setCreatedOn(String createdOn) {
+		this.createdOn = createdOn;
+	}
 	public String getManufacturerCode() {
 		return manufacturerCode;
 	}
@@ -107,6 +122,12 @@ public class ManufacturerMasterBean {
 	}
 	public void setFax(String fax) {
 		this.fax = fax;
+	}
+	public String getUseName() {
+		return useName;
+	}
+	public void setUseName(String useName) {
+		this.useName = useName;
 	}
 	
 	

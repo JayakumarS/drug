@@ -5,7 +5,14 @@ public class RolesMasterBean {
 	private Integer roleId;
 	private String roleName;
 	private String remarks;
+	private String userName;
 	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public Integer getRoleId() {
 		return roleId;
 	}

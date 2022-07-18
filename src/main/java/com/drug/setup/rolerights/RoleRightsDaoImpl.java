@@ -40,6 +40,7 @@ public class RoleRightsDaoImpl implements RoleRightsDao {
 					Map<String, Object> saveMap = new HashMap<String, Object>();
 					saveMap.put("roleId", bean.getRoleId());
 					saveMap.put("formPropertyId", formPropertyId);
+					saveMap.put("userName", bean.getUserName());
 					namedParameterJdbcTemplate.update(RoleRightsQueryUtil.INSERT,saveMap);
 				}
 			}
