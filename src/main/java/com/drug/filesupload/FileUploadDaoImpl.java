@@ -11,7 +11,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.drug.common.services.CommonServicesQueryUtil;
 import com.drug.core.util.DropDownList;
+import com.drug.setup.users.UsersMasterBean;
 
 @Repository
 public class FileUploadDaoImpl implements FileUploadDao {
@@ -106,6 +108,22 @@ public class FileUploadDaoImpl implements FileUploadDao {
 		customerBean.setSuccess(false);
 		try {
 			customerBean.setCustomerList(jdbcTemplate.query(FileUploadQueryUtil.GET_CUSTOMER_LIST, new BeanPropertyRowMapper<DropDownList>(DropDownList.class)));
+			customerBean.setSuccess(true);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			customerBean.setSuccess(false);
+		}
+		return customerBean;
+	}
+
+	@Override
+	public FileUploadResultBean getCustomerList(String companyCode) throws Exception {
+		// TODO Auto-generated method stub
+		FileUploadResultBean customerBean =new FileUploadResultBean ();
+		customerBean.setSuccess(false);
+		try {
+			customerBean.setCustomerList(jdbcTemplate.query(FileUploadQueryUtil.GET_CUSTOMER_LIST, new Object[] { companyCode },new BeanPropertyRowMapper<DropDownList>(DropDownList.class)));
 			customerBean.setSuccess(true);
 			
 		}catch(Exception e){

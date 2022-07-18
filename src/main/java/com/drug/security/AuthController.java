@@ -75,7 +75,7 @@ public class AuthController {
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		List<RolesMasterBean>  roles = rolesMasterService.getLoginRoleList(userDetails.getUsername());
 		
-		String emailId = commonServicesService.getUserDetails(userDetails.getEmail());
+		UsersMasterBean usersMasterBean = commonServicesService.getUserDetails(userDetails.getEmail());
 		
 		
 		Integer defaultRoleId =  roles.get(0).getRoleId();
@@ -90,8 +90,8 @@ public class AuthController {
 			
 		try {
 			//save OTP
-			commonServicesService.insertOtp(userDetails.getUsername(), emailId, otp);
-			EmailService.sendOtpMail(emailId,userDetails.getUsername(),otp);
+			commonServicesService.insertOtp(userDetails.getUsername(), usersMasterBean.getEmailId(), otp);
+			EmailService.sendOtpMail(usersMasterBean.getEmailId(),userDetails.getUsername(),otp);
 			isSuccess = true;
 		}
 		catch(Exception e) {
@@ -107,7 +107,7 @@ public class AuthController {
 		}
 		
 		return ResponseEntity.ok(
-				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles,isSuccess,message,defaultRoleId,defaultRole));
+				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles,isSuccess,message,defaultRoleId,defaultRole,usersMasterBean.getCompanyCode()));
 	}
 
 	@ApiOperation(value = "Get user info by token")
@@ -190,15 +190,15 @@ public class AuthController {
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		HashMap<String,Object> result = new HashMap<String,Object>();
 		List<RolesMasterBean>  roles = rolesMasterService.getLoginRoleList(userDetails.getUsername());
-		String emailId = commonServicesService.getUserDetails(userDetails.getEmail());
+		UsersMasterBean usersMasterBean = commonServicesService.getUserDetails(userDetails.getEmail());
 		String otp = RandomStringUtils.random(6, "0123456789");
 		System.out.println("OTP is "+otp);
 		Integer count = commonServicesService.getCountValue(userDetails.getUsername());
 		if(count <= 5) {
 			try {
 				//save OTP
-				commonServicesService.insertOtp(userDetails.getUsername(), emailId, otp);
-				EmailService.sendOtpMail(emailId,userDetails.getUsername(),otp);
+				commonServicesService.insertOtp(userDetails.getUsername(), usersMasterBean.getEmailId(), otp);
+				EmailService.sendOtpMail(usersMasterBean.getEmailId(),userDetails.getUsername(),otp);
 				result.put("success", true);
 			}
 			catch(Exception e) {

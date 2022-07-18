@@ -14,4 +14,5 @@ public class FileUploadQueryUtil {
 	
 	public static final String GET_CUSTOMER_LIST = "select company_code as id ,company_name as text from company";
 
+	public static final String getCustomerReportList = "select ar.id, ar.report_url as reportUrl, c.company_name as companyCode from admin_reports ar inner join company c on c.company_code = ar.company_code where ar.company_code = ? order by ar.company_code asc ";
 }

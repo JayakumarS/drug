@@ -46,5 +46,11 @@ public class FileUploadServiceImpl implements FileUploadService {
 		return customerMasterDao.getCustomerList();
 	}
 
+	@Override
+	public FileUploadResultBean getCustomerListFiles(String companyCode) throws Exception{
+		// TODO Auto-generated method stub
+		return customerMasterDao.getCustomerList(companyCode);
+	}
+
 	
 }

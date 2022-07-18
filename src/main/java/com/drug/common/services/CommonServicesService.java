@@ -14,13 +14,14 @@ public interface CommonServicesService {
 	
 	HashMap<String, Object> validateOtp(String userId,String otp);
 	
-	String getUserDetails(String empid);
+	UsersMasterBean getUserDetails(String empid);
 	
 	Integer getCountValue(String empid);
 
 	List<DropDownList> getCompanyMasterList();
 
 	List<DropDownList> getDebitMemoList();
+	
 	HashMap<String, Object> forgotPassword(String userNameEmailId,String otpForForgotPassword);
 	
 	boolean validateUnique(String tableName,String columnName,String columnValue);

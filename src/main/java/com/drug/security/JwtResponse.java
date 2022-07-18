@@ -16,6 +16,9 @@ public class JwtResponse {
 	private Integer defaultRoleId;
 	private String defaultRole;
 	
+	private String companyCode;
+	
+	
 	public boolean isSuccess() {
 		return success;
 	}
@@ -32,7 +35,7 @@ public class JwtResponse {
 		this.message = message;
 	}
 
-	public JwtResponse(String accessToken, Long id, String username, String email, List<RolesMasterBean> roles,boolean success,String message,Integer defaultRoleId,String defaultRole) {
+	public JwtResponse(String accessToken, Long id, String username, String email, List<RolesMasterBean> roles,boolean success,String message,Integer defaultRoleId,String defaultRole,String companyCode) {
 		this.token = accessToken;
 		this.id = id;
 		this.username = username;
@@ -42,6 +45,7 @@ public class JwtResponse {
 		this.message = message;
 		this.defaultRoleId = defaultRoleId;
 		this.defaultRole = defaultRole;
+		this.companyCode = companyCode;
 	}
 
 	public String getAccessToken() {
@@ -102,5 +106,13 @@ public class JwtResponse {
 
 	public void setDefaultRole(String defaultRole) {
 		this.defaultRole = defaultRole;
+	}
+
+	public String getCompanyCode() {
+		return companyCode;
+	}
+
+	public void setCompanyCode(String companyCode) {
+		this.companyCode = companyCode;
 	}
 }
