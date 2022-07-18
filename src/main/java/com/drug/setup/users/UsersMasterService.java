@@ -20,4 +20,6 @@ public interface UsersMasterService {
 
 	UsersMasterResultBean updatePassword(UsersMasterBean bean) throws Exception;
 
+	boolean resetPasswordCheck(String userId) throws Exception;
+
 }

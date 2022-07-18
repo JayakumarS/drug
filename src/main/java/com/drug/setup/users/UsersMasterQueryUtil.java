@@ -21,7 +21,7 @@ public class UsersMasterQueryUtil {
 	
 	public static final String INSERT_USER_DETAILS = "INSERT INTO user_details (emp_id, email_id,created_by,created_dt,first_name,last_name,phone_no,photo_url,emp_name,emp_user_id,company_code) VALUES (:empId, :emailId,:userName,now(),:firstName,:lastName,:mobileNo,:photoUrl,:empName,:userId,:companyCode)";
 	
-	public static final String INSERT_AppUser = "INSERT INTO auth.app_user(user_id,password,reference_id)values(:userId,:password,:empId)";
+	public static final String INSERT_AppUser = "INSERT INTO auth.app_user(user_id,password,reference_id,pwd_changed)values(:userId,:password,:empId,'false')";
 	
 	public static String GETUSERDETAILS = "select user_id as username,reference_id as email,password as password from auth.app_user where user_id=?";
 	
@@ -29,7 +29,9 @@ public class UsersMasterQueryUtil {
 
 	public static final String INSERT_USER_ROLE_MAP = "insert into auth.user_roles (user_id,role_id) values (:userId,:roleId)";
 
-	public static final String UPDATE_CHANGE_PASSWORD = "UPDATE auth.app_user set password=:newChangePassword where user_id=:newUserName";
+	public static final String UPDATE_CHANGE_PASSWORD = "UPDATE auth.app_user set password=:newChangePassword,pwd_changed='true' where user_id=:newUserName";
 
 	public static final String GET_EMAIL_ID = "select email_id as emailId from user_details where emp_user_id=?";
+
+	public static final String GET_FLAG_VALUE = "select pwd_changed as pwdChanged from auth.app_user where user_id=?";
 }

@@ -57,6 +57,12 @@ public class UsersMasterServiceImpl implements UsersMasterService {
 		return rolesMasterDao.updatePassword(bean);
 	}
 
+	@Override
+	public boolean resetPasswordCheck(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		return rolesMasterDao.resetPasswordCheck(userId);
+	}
+
 	
 
 

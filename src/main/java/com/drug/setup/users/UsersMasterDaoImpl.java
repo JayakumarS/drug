@@ -63,9 +63,9 @@ public class UsersMasterDaoImpl implements UsersMasterDao {
 			
 			int insetEmp = namedParameterJdbcTemplate.update(UsersMasterQueryUtil.INSERT_USER_DETAILS, saveMap);
 			
-			int insertAppUser = namedParameterJdbcTemplate.update(UsersMasterQueryUtil.INSERT_AppUser, saveMap);
+	//		int insertAppUser = namedParameterJdbcTemplate.update(UsersMasterQueryUtil.INSERT_AppUser, saveMap);
 			
-			int insertUserRoleMap = namedParameterJdbcTemplate.update(UsersMasterQueryUtil.INSERT_USER_ROLE_MAP, saveMap);
+	//		int insertUserRoleMap = namedParameterJdbcTemplate.update(UsersMasterQueryUtil.INSERT_USER_ROLE_MAP, saveMap);
 			
 			EmailService.sendPasswordMail(bean.getEmailId(),bean.getNewUserName(),alphaNumericpassword);
 			
@@ -193,6 +193,15 @@ UsersMasterResultBean resultBean = new UsersMasterResultBean();
 		}
 		
 		return resultBean;
+	}
+
+	@Override
+	public boolean resetPasswordCheck(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		
+		boolean  emailId =  jdbcTemplate.queryForObject(UsersMasterQueryUtil.GET_FLAG_VALUE,new Object[] { userId }, boolean .class);
+		
+		return emailId;
 	}
 
 

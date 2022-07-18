@@ -19,5 +19,7 @@ public interface UsersMasterDao {
 	UsersMasterResultBean oldPasswordValidation(String validatePassword,String userId) throws Exception;
 
 	UsersMasterResultBean updatePassword(UsersMasterBean bean) throws Exception;
+
+	boolean resetPasswordCheck(String userId) throws Exception;
 	
 }

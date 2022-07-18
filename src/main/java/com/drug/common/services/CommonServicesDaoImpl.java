@@ -125,7 +125,7 @@ public class CommonServicesDaoImpl implements CommonServicesDao {
 				String  emailId =  jdbcTemplate.queryForObject(CommonServicesQueryUtil.GET_EMAIL_ID,new Object[] { userNameEmailId }, String .class);
 				namedParameterJdbcTemplate.update(CommonServicesQueryUtil.UPDATE_PASSWORD_WITHOUT_EMAIL, saveMap);
 				EmailService.sendForgotPasswordMail(emailId,userNameEmailId,otpForForgotPassword);
-				saveMap.put("message", "Your Password was changed");
+				saveMap.put("message", "Your Password was changed.Please Check your email");
 			}
 			catch(Exception e) {
 				e.printStackTrace();
