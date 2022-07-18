@@ -8,7 +8,7 @@ public interface DebitMemoService {
 
 	DebitMemoResultBean save(DebitMemoBean bean) throws Exception;
 
-	public List<DebitMemoBean> getDebitMemoList() throws Exception;
+	public List<DebitMemoBean> getDebitMemoList(DebitMemoBean bean) throws Exception;
 
 	DebitMemoResultBean edit(String code) throws Exception;
 

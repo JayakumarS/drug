@@ -18,9 +18,9 @@ public class DebitMemoServiceImpl implements DebitMemoService {
 	}
 
 	@Override
-	public List<DebitMemoBean> getDebitMemoList() throws Exception {
+	public List<DebitMemoBean> getDebitMemoList(DebitMemoBean bean) throws Exception {
 		// TODO Auto-generated method stub
-		return debitMemoDao.getDebitMemoList();
+		return debitMemoDao.getDebitMemoList(bean);
 	}
 
 	@Override

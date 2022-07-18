@@ -31,9 +31,9 @@ public class DebitMemoController {
 	
 	
 	@RequestMapping(value = "/getList")
-   	public DebitMemoResultBean getdebitMemoList() throws Exception {
+   	public DebitMemoResultBean getdebitMemoList(@RequestBody DebitMemoBean bean) throws Exception {
 		DebitMemoResultBean objResultBean = new DebitMemoResultBean();
-		objResultBean.setListDebitMemo(debitMemoService.getDebitMemoList());
+		objResultBean.setListDebitMemo(debitMemoService.getDebitMemoList(bean));
 		objResultBean.setSuccess(true);
    		return objResultBean;
    	}
