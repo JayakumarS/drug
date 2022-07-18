@@ -28,11 +28,11 @@ public class ReturnMemoItemsDaoImpl implements ReturnMemoItemsDao {
 		ReturnMemoItemsResultBean resultBean = new ReturnMemoItemsResultBean();
  		try {
  			String result = jdbcTemplate.queryForObject(ReturnMemoItemsQueryUtil.INSERT_DEBITMEMO_MASTER, new Object[]{	
- 					bean.getReturnMemoNo(),
- 					bean.getReturnMemoName(),
- 					bean.getReturnMemoDate(),
- 					bean.getCompany(),
- 					"WEB",
+// 					bean.getReturnMemoNo(),
+// 					bean.getReturnMemoName(),
+// 					bean.getReturnMemoDate(),
+// 					bean.getCompany(),
+// 					"WEB",
  					bean.getCreatedBy()}, String.class);
 		    resultBean.setSuccess(true);
 		    System.out.print(result);
@@ -93,10 +93,11 @@ public class ReturnMemoItemsDaoImpl implements ReturnMemoItemsDao {
 		try {
  			
  			String result = jdbcTemplate.queryForObject(ReturnMemoItemsQueryUtil.UPDATE_DEBITMEMO, new Object[]{
- 					bean.getCompany(),
- 					bean.getReturnMemoDate(),
- 					bean.getReturnMemoName(),
- 					bean.getReturnMemoNo()}, String.class);
+// 					bean.getCompany(),
+// 					bean.getReturnMemoDate(),
+// 					bean.getReturnMemoName(),
+// 					bean.getReturnMemoNo()
+ 					}, String.class);
  			
 		    resultBean.setSuccess(true);
 		    System.out.print(result);
