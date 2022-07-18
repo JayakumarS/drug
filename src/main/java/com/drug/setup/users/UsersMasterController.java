@@ -127,6 +127,11 @@ public class UsersMasterController {
 			}
 			return objResultBean;
 	   	}
+		
+		@RequestMapping(value = "/resetPasswordCheck")
+	   	public boolean resetPasswordCheck(@RequestParam("resetPasswordPopUp") String userId) throws Exception {
+	   		return usersMasterService.resetPasswordCheck(userId);
+	   	}
 	
 
 }
