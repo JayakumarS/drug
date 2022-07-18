@@ -1,18 +1,42 @@
 package com.drug.common.services;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.net.ssl.HttpsURLConnection;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
 
 import com.drug.core.util.DropDownList;
 import com.drug.setup.users.UsersMasterBean;
 
 @Service
 public class CommonServicesServiceImpl implements CommonServicesService {
+	
+	public static final String url = "https://www.google.com/recaptcha/api/siteverify";
+	public static final String secret = "6LeiApIfAAAAAFIrMh9iBzdm-5BBoZEB5hh-XfkW";
+	private final static String USER_AGENT = "Mozilla/5.0";
+	
+	private final RestTemplate restTemplate = new RestTemplate();
+	
 	@Autowired
 	CommonServicesDao commonServicesDao;
+	
+//	@Value("${google.recaptcha.secret.key}")
+//    public String recaptchaSecret;
+//	
+//    @Value("${google.recaptcha.verify.url}")
+//    public String recaptchaVerifyUrl;
 
 	@Override
 	public boolean validateUserName(String userName) {
@@ -64,6 +88,80 @@ public class CommonServicesServiceImpl implements CommonServicesService {
 		// TODO Auto-generated method stub
 		return commonServicesDao.validateUnique(tableName,columnName,columnValue);
 	}
+
+	@Override
+	public boolean verify(String gRecaptchaResponse) {
+		// TODO Auto-generated method stub
+//		MultiValueMap param= new LinkedMultiValueMap<>();
+//        param.add("secret", recaptchaSecret);
+//        param.add("response", response);
+//
+//        RecaptchaResponse recaptchaResponse = null;
+//        try {
+//            recaptchaResponse = this.restTemplate.postForObject(recaptchaVerifyUrl, param, RecaptchaResponse.class);
+//        }catch(RestClientException e){
+//            System.out.print(e.getMessage());
+//        }
+//       if(recaptchaResponse.isSuccess()){
+//            return true;
+//        }else {
+//            return false;
+//        }
+		
+		if (gRecaptchaResponse == null || "".equals(gRecaptchaResponse)) {
+			return false;
+		}
+		
+		try{
+		URL obj = new URL(url);
+		HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+
+		// add reuqest header
+		con.setRequestMethod("POST");
+		con.setRequestProperty("User-Agent", USER_AGENT);
+		con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+
+		String postParams = "secret=" + secret + "&response="
+				+ gRecaptchaResponse;
+
+		// Send post request
+		con.setDoOutput(true);
+		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+		wr.writeBytes(postParams);
+		wr.flush();
+		wr.close();
+
+		int responseCode = con.getResponseCode();
+		System.out.println("\nSending 'POST' request to URL : " + url);
+		System.out.println("Post parameters : " + postParams);
+		System.out.println("Response Code : " + responseCode);
+
+		BufferedReader in = new BufferedReader(new InputStreamReader(
+				con.getInputStream()));
+		String inputLine;
+		StringBuffer response = new StringBuffer();
+
+		while ((inputLine = in.readLine()) != null) {
+			response.append(inputLine);
+		}
+		in.close();
+
+		// print result
+		System.out.println(response.toString());
+		
+		//parse JSON response and return 'success' value
+		//JsonReader jsonReader = Json.createReader(new StringReader(response.toString()));
+		//JsonObject jsonObject = jsonReader.readObject();
+		//jsonReader.close();
+		
+		return true;// jsonObject.getBoolean("success");
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		
+    }
+	
 
 
 	

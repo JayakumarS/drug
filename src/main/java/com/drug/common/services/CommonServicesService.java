@@ -24,5 +24,7 @@ public interface CommonServicesService {
 	HashMap<String, Object> forgotPassword(String userNameEmailId,String otpForForgotPassword);
 	
 	boolean validateUnique(String tableName,String columnName,String columnValue);
+
+	boolean verify(String recaptchaResponse);
 	
 }
