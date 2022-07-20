@@ -91,24 +91,25 @@ public class CommonServicesDaoImpl implements CommonServicesDao {
 
 	@Override
 	public List<DropDownList> getCompanyMasterList() {
-		List<DropDownList> customerMasterList = new ArrayList<DropDownList>();
+		List<DropDownList> dropDownList = new ArrayList<DropDownList>();
 		try {
-			customerMasterList = jdbcTemplate.query(CommonServicesQueryUtil.COMPANY_MASTER_DROPDOWNLIST, new BeanPropertyRowMapper<DropDownList>(DropDownList.class));	
+			dropDownList = jdbcTemplate.query(CommonServicesQueryUtil.COMPANY_MASTER_DROPDOWNLIST, new BeanPropertyRowMapper<DropDownList>(DropDownList.class));	
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return customerMasterList;
+		return dropDownList;
 	}
 
 	@Override
-	public List<DropDownList> getDebitMemoList() {
-		List<DropDownList> customerMasterList = new ArrayList<DropDownList>();
+	public List<DropDownList> getDebitMemoList(String companyId) {
+		List<DropDownList> dropDownList = new ArrayList<DropDownList>();
 		try {
-			customerMasterList = jdbcTemplate.query(CommonServicesQueryUtil.DEBIT_MEMO_DROPDOWNLIST, new BeanPropertyRowMapper<DropDownList>(DropDownList.class));	
+		//String  emailId =  jdbcTemplate.queryForObject(CommonServicesQueryUtil.GET_EMAIL_ID,new Object[] { userNameEmailId }, String .class);
+			dropDownList = jdbcTemplate.query(CommonServicesQueryUtil.DEBIT_MEMO_DROPDOWNLIST, new Object[] { companyId }, new BeanPropertyRowMapper<>(DropDownList.class));	
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return customerMasterList;
+		return dropDownList;
 	}
 	
 	public HashMap<String, Object> forgotPassword(String userNameEmailId,String otpForForgotPassword) {
@@ -142,6 +143,17 @@ public class CommonServicesDaoImpl implements CommonServicesDao {
 		// TODO Auto-generated method stub
 		boolean count =  jdbcTemplate.queryForObject(CommonServicesQueryUtil.VALIDATE_UNIQUE,new Object[] { tableName,columnName,columnValue }, Boolean.class);
 		return count;
+	}
+
+	@Override
+	public List<DropDownList> getManufacturerList() {
+		List<DropDownList> dropDownList = new ArrayList<DropDownList>();
+		try {
+			dropDownList = jdbcTemplate.query(CommonServicesQueryUtil.GET_MANUFACTURER_LIST, new BeanPropertyRowMapper<DropDownList>(DropDownList.class));	
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return dropDownList;
 	}
 
 	

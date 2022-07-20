@@ -20,11 +20,15 @@ public interface CommonServicesService {
 
 	List<DropDownList> getCompanyMasterList();
 
-	List<DropDownList> getDebitMemoList();
+	List<DropDownList> getDebitMemoList(String companyId);
+	
+	List<DropDownList> getManufacturerList();
+	
 	HashMap<String, Object> forgotPassword(String userNameEmailId,String otpForForgotPassword);
 	
 	boolean validateUnique(String tableName,String columnName,String columnValue);
 
 	boolean verify(String recaptchaResponse);
+
 	
 }

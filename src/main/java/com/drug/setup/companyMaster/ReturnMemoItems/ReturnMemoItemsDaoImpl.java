@@ -27,12 +27,14 @@ public class ReturnMemoItemsDaoImpl implements ReturnMemoItemsDao {
 	public ReturnMemoItemsResultBean save(ReturnMemoItemsBean bean) throws Exception {
 		ReturnMemoItemsResultBean resultBean = new ReturnMemoItemsResultBean();
  		try {
- 			String result = jdbcTemplate.queryForObject(ReturnMemoItemsQueryUtil.INSERT_DEBITMEMO_MASTER, new Object[]{	
-// 					bean.getReturnMemoNo(),
-// 					bean.getReturnMemoName(),
-// 					bean.getReturnMemoDate(),
-// 					bean.getCompany(),
-// 					"WEB",
+ 			String result = jdbcTemplate.queryForObject(ReturnMemoItemsQueryUtil.INSERT_RETURNMEMOITEMS_MASTER, new Object[]{	
+ 					bean.getNdcupcCode(),
+ 					"P",
+ 					bean.getQuantity(),
+ 					bean.getPrice(),
+ 					bean.getExpDate(),
+ 					bean.getReason(),
+ 					bean.getLotNo(),
  					bean.getCreatedBy()}, String.class);
 		    resultBean.setSuccess(true);
 		    System.out.print(result);
@@ -48,7 +50,7 @@ public class ReturnMemoItemsDaoImpl implements ReturnMemoItemsDao {
 	public List<ReturnMemoItemsBean> getDebitMemoList() throws Exception {
 		List<ReturnMemoItemsBean> objCompanyMasterBean = new ArrayList<ReturnMemoItemsBean>();
 		try {
-			objCompanyMasterBean = jdbcTemplate.query(ReturnMemoItemsQueryUtil.GETDEBITMEMO_LIST, new BeanPropertyRowMapper<ReturnMemoItemsBean>(ReturnMemoItemsBean.class));
+			objCompanyMasterBean = jdbcTemplate.query(ReturnMemoItemsQueryUtil.GET_RETURNMEMOITEMS_LIST, new BeanPropertyRowMapper<ReturnMemoItemsBean>(ReturnMemoItemsBean.class));
 			
 		}catch(Exception e){
 			e.printStackTrace();
@@ -61,7 +63,7 @@ public class ReturnMemoItemsDaoImpl implements ReturnMemoItemsDao {
 		ReturnMemoItemsResultBean resultBean = new ReturnMemoItemsResultBean();
 		resultBean.setSuccess(false);
 		try {
-			resultBean.setDebitMemo(jdbcTemplate.queryForObject(ReturnMemoItemsQueryUtil.SELECT_DEBITMEMO,new Object[] { code }, new BeanPropertyRowMapper<ReturnMemoItemsBean>(ReturnMemoItemsBean.class)));
+			resultBean.setReturnMemoItems(jdbcTemplate.queryForObject(ReturnMemoItemsQueryUtil.SELECT_DEBITMEMO,new Object[] { code }, new BeanPropertyRowMapper<ReturnMemoItemsBean>(ReturnMemoItemsBean.class)));
 			resultBean.setSuccess(true);
 		}
 		catch(Exception e) {
@@ -76,7 +78,7 @@ public class ReturnMemoItemsDaoImpl implements ReturnMemoItemsDao {
 		ReturnMemoItemsResultBean resultBean = new ReturnMemoItemsResultBean();
 		try {
 			if(cusCode!=null) {
-				jdbcTemplate.update(ReturnMemoItemsQueryUtil.DELETE_DEBITMEMO,cusCode);
+				jdbcTemplate.update(ReturnMemoItemsQueryUtil.DELETE_RETURNMEMOITEMS,cusCode);
 			}
 			resultBean.setSuccess(true);
 		}
@@ -93,11 +95,15 @@ public class ReturnMemoItemsDaoImpl implements ReturnMemoItemsDao {
 		try {
  			
  			String result = jdbcTemplate.queryForObject(ReturnMemoItemsQueryUtil.UPDATE_DEBITMEMO, new Object[]{
-// 					bean.getCompany(),
-// 					bean.getReturnMemoDate(),
-// 					bean.getReturnMemoName(),
-// 					bean.getReturnMemoNo()
- 					}, String.class);
+ 					bean.getReturnMemoNo(),
+ 					bean.getNdcupcCode(),
+ 					"P",
+ 					bean.getQuantity(),
+ 					bean.getPrice(),
+ 					bean.getExpDate(),
+ 					bean.getReason(),
+ 					bean.getLotNo(),
+ 					bean.getCreatedBy()}, String.class);
  			
 		    resultBean.setSuccess(true);
 		    System.out.print(result);

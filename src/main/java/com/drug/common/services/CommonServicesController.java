@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.drug.common.FileUploadUtill;
 import com.drug.core.util.DropDownList;
+import com.drug.druginfoMaster.DruginfoMasterResultBean;
 import com.drug.filesupload.FileUploadResultBean;
 import com.drug.setup.users.UsersMasterResultBean;
 
@@ -43,9 +44,16 @@ public class CommonServicesController {
 	
 	
 	@RequestMapping(value= "/getDebitMemoDropdownList")
-	public List<DropDownList> getDebitMemoList(){
-			return commonServicesService.getDebitMemoList();	
+	public List<DropDownList> getDebitMemoList(@RequestParam("companyId") String companyId){
+			return commonServicesService.getDebitMemoList(companyId);	
 	}
+	
+	@RequestMapping(value = "/getManufacturerDropdownList")
+   	public List<DropDownList> getManufacturerList() throws Exception {
+   		return commonServicesService.getManufacturerList();
+   	}
+	
+	
 			
 	@RequestMapping(value = "/validateUnique")
 	public boolean validateUnique(@RequestParam("tableName") String tableName,@RequestParam("columnName") String columnName,@RequestParam("columnValue") String columnValue) throws Exception {

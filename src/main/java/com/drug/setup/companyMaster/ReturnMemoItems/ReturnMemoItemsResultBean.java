@@ -10,9 +10,9 @@ public class ReturnMemoItemsResultBean extends BasicResultBean implements Serial
 	
 	public boolean success;
 	
-	private ReturnMemoItemsBean debitMemo;
+	private ReturnMemoItemsBean returnMemoItems;
 	
-	private List<ReturnMemoItemsBean> listDebitMemo;
+	private List<ReturnMemoItemsBean> listReturnMemoItems;
 
 	public boolean isSuccess() {
 		return success;
@@ -22,32 +22,25 @@ public class ReturnMemoItemsResultBean extends BasicResultBean implements Serial
 		this.success = success;
 	}
 
-	
-
-	public ReturnMemoItemsBean getDebitMemo() {
-		return debitMemo;
+	public ReturnMemoItemsBean getReturnMemoItems() {
+		return returnMemoItems;
 	}
 
-	public void setDebitMemo(ReturnMemoItemsBean debitMemo) {
-		this.debitMemo = debitMemo;
+	public void setReturnMemoItems(ReturnMemoItemsBean returnMemoItems) {
+		this.returnMemoItems = returnMemoItems;
 	}
 
-	public List<ReturnMemoItemsBean> getListDebitMemo() {
-		return listDebitMemo;
+	public List<ReturnMemoItemsBean> getListReturnMemoItems() {
+		return listReturnMemoItems;
 	}
 
-	public void setListDebitMemo(List<ReturnMemoItemsBean> listDebitMemo) {
-		this.listDebitMemo = listDebitMemo;
+	public void setListReturnMemoItems(List<ReturnMemoItemsBean> listReturnMemoItems) {
+		this.listReturnMemoItems = listReturnMemoItems;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
-
-	
-	
 
 	
 }

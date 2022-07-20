@@ -20,9 +20,11 @@ public interface CommonServicesDao {
 
 	List<DropDownList> getCompanyMasterList();
 
-	List<DropDownList> getDebitMemoList();
+	List<DropDownList> getDebitMemoList(String companyId);
 	
 	HashMap<String, Object> forgotPassword(String userNameEmailId,String otpForForgotPassword);
 	
 	boolean validateUnique(String tableName,String columnName,String columnValue);
+
+	List<DropDownList> getManufacturerList();
 }

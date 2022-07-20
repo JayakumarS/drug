@@ -74,8 +74,8 @@ public class CommonServicesServiceImpl implements CommonServicesService {
 	}
 
 	@Override
-	public List<DropDownList> getDebitMemoList() {
-		return commonServicesDao.getDebitMemoList();
+	public List<DropDownList> getDebitMemoList(String companyId) {
+		return commonServicesDao.getDebitMemoList(companyId);
 	}
 	
 	public HashMap<String, Object> forgotPassword(String userNameEmailId,String otpForForgotPassword) {
@@ -161,6 +161,11 @@ public class CommonServicesServiceImpl implements CommonServicesService {
 		}
 		
     }
+
+	@Override
+	public List<DropDownList> getManufacturerList() {
+		return commonServicesDao.getManufacturerList();
+	}
 	
 
 

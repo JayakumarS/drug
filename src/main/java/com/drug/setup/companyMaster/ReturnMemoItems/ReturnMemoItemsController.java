@@ -33,16 +33,16 @@ public class ReturnMemoItemsController {
 	@RequestMapping(value = "/getList")
    	public ReturnMemoItemsResultBean getdebitMemoList() throws Exception {
 		ReturnMemoItemsResultBean objResultBean = new ReturnMemoItemsResultBean();
-		objResultBean.setListDebitMemo(returnMemoItemsService.getDebitMemoList());
+		objResultBean.setListReturnMemoItems(returnMemoItemsService.getDebitMemoList());
 		objResultBean.setSuccess(true);
    		return objResultBean;
    	}
 	
 	@RequestMapping(value = "/edit")
-	public ReturnMemoItemsResultBean edit(@RequestParam("debitMemo") String debitMemo) throws Exception {
+	public ReturnMemoItemsResultBean edit(@RequestParam("returnMemoNo") String returnMemoNo) throws Exception {
 		ReturnMemoItemsResultBean objResultBean = new ReturnMemoItemsResultBean();
 		try {
-			objResultBean = returnMemoItemsService.edit(debitMemo);
+			objResultBean = returnMemoItemsService.edit(returnMemoNo);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -63,10 +63,10 @@ public class ReturnMemoItemsController {
 	}
 	
 	@RequestMapping(value="/delete")
-	public ReturnMemoItemsResultBean delete(@RequestParam("debitMemo") String debitMemo) {
+	public ReturnMemoItemsResultBean delete(@RequestParam("returnMemoNo") String returnMemoNo) {
 		ReturnMemoItemsResultBean objResultBean = new ReturnMemoItemsResultBean();
 		try {
-			objResultBean = returnMemoItemsService.delete(debitMemo);
+			objResultBean = returnMemoItemsService.delete(returnMemoNo);
 		}
 		catch(Exception e) {
 			e.printStackTrace();

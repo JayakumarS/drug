@@ -116,10 +116,12 @@ public class DebitMemoDaoImpl implements DebitMemoDao {
 		try {
  			
  			String result = jdbcTemplate.queryForObject(DebitMemoQueryUtil.UPDATE_DEBITMEMO, new Object[]{
- 					bean.getCompany(),
- 					bean.getReturnMemoDate(),
+ 					bean.getReturnMemoNo(),
  					bean.getReturnMemoName(),
- 					bean.getReturnMemoNo()}, String.class);
+ 					bean.getReturnMemoDate(),
+ 					bean.getCompany(),
+ 					"WEB",
+ 					bean.getCreatedBy()}, String.class);
  			
 		    resultBean.setSuccess(true);
 		    System.out.print(result);

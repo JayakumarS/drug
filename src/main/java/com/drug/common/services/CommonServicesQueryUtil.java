@@ -11,8 +11,9 @@ public class CommonServicesQueryUtil {
 	public static final String DELETE_OTP = "DELETE from login_otp where user_id=? returning user_id as userId";
 	public static final String GETOTPVALUE = "select count(*) from login_otp where user_id= ? ";
 	public static final String COMPANY_MASTER_DROPDOWNLIST = "select company_code as id, company_name as text from company order by company_name asc";
-	public static final String DEBIT_MEMO_DROPDOWNLIST = "select return_memo_no as id, return_memo_name as text from return_memo order by return_memo_name asc";
-	
+	public static final String DEBIT_MEMO_DROPDOWNLIST = "select return_memo_no as id, return_memo_name as text from return_memo where company=? order by return_memo_name asc";
+	public static final String GET_MANUFACTURER_LIST = "select manufacturer_code as id, manufacturer_name as text from manufacturer";
+
 	public static final String GETOLDPASSWORD = "select password  from auth.app_user where user_id = ?";
 	public static final String UPDATE_PASSWORD_WITH_EMAIL = "UPDATE auth.app_user set password=:otpForForgotPassword,pwd_changed='false' where user_id=:userNameEmailId";
 	public static final String UPDATE_PASSWORD_WITHOUT_EMAIL = "UPDATE auth.app_user set password=:otpForForgotPassword,pwd_changed='false' where user_id=:userNameEmailId";
