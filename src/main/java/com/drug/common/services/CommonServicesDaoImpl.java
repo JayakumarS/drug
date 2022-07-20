@@ -76,9 +76,9 @@ public class CommonServicesDaoImpl implements CommonServicesDao {
 	}
 
 	@Override
-	public String getUserDetails(String empid) {
+	public UsersMasterBean getUserDetails(String empid) {
 		// TODO Auto-generated method stub
-		String  usersMasterBean =  jdbcTemplate.queryForObject(CommonServicesQueryUtil.GETUSERDETAILS,new Object[] { empid }, String .class);
+		UsersMasterBean  usersMasterBean =  jdbcTemplate.queryForObject(CommonServicesQueryUtil.GETUSERDETAILS,new Object[] { empid }, new BeanPropertyRowMapper<UsersMasterBean>(UsersMasterBean.class));
 		return usersMasterBean;
 	}
 

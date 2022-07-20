@@ -15,4 +15,6 @@ public interface FileUploadDao {
 	FileUploadResultBean update(FileUploadBean bean) throws Exception;
 	
 	FileUploadResultBean getCustomerList() throws Exception;
+
+	FileUploadResultBean getCustomerList(String companyCode) throws Exception;
 }

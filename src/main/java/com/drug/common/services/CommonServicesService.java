@@ -14,7 +14,7 @@ public interface CommonServicesService {
 	
 	HashMap<String, Object> validateOtp(String userId,String otp);
 	
-	String getUserDetails(String empid);
+	UsersMasterBean getUserDetails(String empid);
 	
 	Integer getCountValue(String empid);
 

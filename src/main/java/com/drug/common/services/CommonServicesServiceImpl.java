@@ -57,7 +57,7 @@ public class CommonServicesServiceImpl implements CommonServicesService {
 	}
 
 	@Override
-	public String getUserDetails(String empid) {
+	public UsersMasterBean getUserDetails(String empid) {
 		// TODO Auto-generated method stub
 		return commonServicesDao.getUserDetails(empid);
 	}

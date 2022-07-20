@@ -2,6 +2,7 @@ package com.drug.filesupload;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -108,4 +109,12 @@ public class FileUploadController {
 		}
 		return resultBean;
 	}
+	
+	@GetMapping(value = "/getCustomerListFiles")
+   	public FileUploadResultBean getCustomerListFiles(@RequestBody String companyCode) throws Exception {
+		FileUploadResultBean objResultBean = new FileUploadResultBean();
+		fileUploadService.getCustomerListFiles(companyCode);
+		objResultBean.setSuccess(true);
+   		return objResultBean;
+   	}
 }

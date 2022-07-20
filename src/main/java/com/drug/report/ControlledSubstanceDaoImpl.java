@@ -1,6 +1,8 @@
 package com.drug.report;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,11 +58,24 @@ public class ControlledSubstanceDaoImpl implements ControlledSubsatanceDao{
 		
 		SearchResultBean resultBean = new SearchResultBean();
  		try {
+ 			
+ 			
+ 			if(bean.getStartDate()!=""&&bean.getEndDate()!="") {
+ 		String[] startdt = bean.getStartDate().split("T");
+ 		String startdate = startdt[0];
+ 		String[] enddt = bean.getEndDate().split("T");
+ 		String enddate = enddt[0];
  		
-List<SearchBean> searchBean = jdbcTemplate.query(ControlledSubstanceQueryUtil.getSearchList, new Object[] { bean.getCompanyName(),
-			bean.getReturnMemoNo(),
-			bean.getStartDate(),
-			bean.getEndDate()}, new BeanPropertyRowMapper<>(
+ 		
+ 		SimpleDateFormat fromdatt = new SimpleDateFormat("yyyy-mm-dd");
+ 		SimpleDateFormat fromdt = new SimpleDateFormat("dd/mm/yyyy");
+			String startdate1 = fromdt.format(fromdatt.parse(startdate));
+			String enddate1 = fromdt.format(fromdatt.parse(enddate));
+			bean.setStartDate((startdate1).toString());
+			bean.setEndDate((enddate1).toString());
+ 			}
+
+List<SearchBean> searchBean = jdbcTemplate.query(ControlledSubstanceQueryUtil.getSearchList(bean.getCompany(),bean.getReturnMemoNo(),bean.getStartDate(),bean.getEndDate()), new BeanPropertyRowMapper<SearchBean>(
 					SearchBean.class));
 resultBean.setListSearchBean(searchBean);
 		    resultBean.setSuccess(true);

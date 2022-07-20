@@ -15,4 +15,6 @@ public interface FileUploadService {
 	FileUploadResultBean update(FileUploadBean bean) throws Exception;
 	
 	FileUploadResultBean getCustomerList()throws Exception;
+
+	FileUploadResultBean getCustomerListFiles(String companyCode) throws Exception;
 }
