@@ -89,17 +89,40 @@ resultBean.setListSearchBean(searchBean);
 	}
 
 	
-//	@Override
-//	public List<SearchBean> getSearchList() throws Exception {
-//		List<SearchBean> objSearchBean = new ArrayList<SearchBean>();
-//		try {
-//			objSearchBean = jdbcTemplate.query(ControlledSubstanceQueryUtil.getSearchList, new BeanPropertyRowMapper<objSearchBean>(objSearchBean.class));
-//			
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}
-//		return objSearchBean;
-//	}
+	@Override
+	public NonReturableSearchResultBean getNonReturnSearchList(NonReturnableSearchBean bean) throws Exception {
+		
+		NonReturableSearchResultBean resultBean = new NonReturableSearchResultBean();
+ 		try {
+ 			
+ 			
+ 			if(bean.getStartDate()!=""&&bean.getEndDate()!="") {
+ 		String[] startdt = bean.getStartDate().split("T");
+ 		String startdate = startdt[0];
+ 		String[] enddt = bean.getEndDate().split("T");
+ 		String enddate = enddt[0];
+ 		
+ 		
+ 		SimpleDateFormat fromdatt = new SimpleDateFormat("yyyy-mm-dd");
+ 		SimpleDateFormat fromdt = new SimpleDateFormat("dd/mm/yyyy");
+			String startdate1 = fromdt.format(fromdatt.parse(startdate));
+			String enddate1 = fromdt.format(fromdatt.parse(enddate));
+			bean.setStartDate((startdate1).toString());
+			bean.setEndDate((enddate1).toString());
+ 			}
+
+List<NonReturnableSearchBean> nonReturnableSearchBean = jdbcTemplate.query(ControlledSubstanceQueryUtil.getNonReturnSearchList(bean.getCompany(),bean.getReturnMemoNo(),bean.getStartDate(),bean.getEndDate()), new BeanPropertyRowMapper<NonReturnableSearchBean>(
+		NonReturnableSearchBean.class));
+resultBean.setNonListSearchBean(nonReturnableSearchBean);
+		    resultBean.setSuccess(true);
+		  //  System.out.print(result);
+		}catch(Exception e) {
+			e.printStackTrace();
+			resultBean.setSuccess(false);
+		}
+		
+		return resultBean;
+	}
 
 
 }

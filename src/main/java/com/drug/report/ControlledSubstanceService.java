@@ -11,7 +11,8 @@ public interface ControlledSubstanceService {
 	public List<ControlledSubstanceResultBean> getReturnMemoNo() throws Exception;
 
 	SearchResultBean getSearchList(SearchBean bean) throws Exception;
-//	public List<SearchBean> getSearchList() throws Exception;
+	NonReturableSearchResultBean getNonReturnSearchList(NonReturnableSearchBean bean) throws Exception;
+
 
 
 

@@ -49,13 +49,20 @@ public class ControlledSubstanceController {
 		
 	}
 	
-//	@RequestMapping(value = "/getSearchList")
-//   	public SearchResultBean getSearchList() throws Exception {
-//		SearchResultBean objResultBean = new SearchResultBean();
-//		objResultBean.setListSearchBean(controlledSubstanceService.getSearchList());
-//		objResultBean.setSuccess(true);
-//   		return objResultBean;
-//   	}
+	
+	@RequestMapping(value="/getNonReturnSearchList")
+	public NonReturableSearchResultBean getNonReturnSearchList(@RequestBody NonReturnableSearchBean bean) {
+		NonReturableSearchResultBean objbean = new NonReturableSearchResultBean();
+		try {
+			objbean = controlledSubstanceService.getNonReturnSearchList(bean);
+		}catch(Exception e){
+			e.printStackTrace();	
+		}
+		return objbean;
+		
+	}
+	
+
 	
 
 }
