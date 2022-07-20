@@ -48,7 +48,7 @@ public class ManufacturerMasterDaoImpl implements ManufacturerMasterDao {
  					bean.getPhoneNo(),
  					bean.getTollFreeNo(),
  					bean.getFax(),
- 					bean.getUseName(),
+ 					//bean.getUseName(),
  
  					}, String.class);
 
@@ -126,7 +126,8 @@ public class ManufacturerMasterDaoImpl implements ManufacturerMasterDao {
 	 					bean.getPhoneNo(),
 	 					bean.getTollFreeNo(),
 	 					bean.getFax(),
-	 					bean.getUseName()}, String.class);
+	 					// bean.getUseName()
+	 					}, String.class);
 
 			   resultBean.setSuccess(true);
 			   System.out.print(result);
