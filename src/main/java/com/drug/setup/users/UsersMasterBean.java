@@ -16,7 +16,7 @@ public class UsersMasterBean {
 	private String empId;
 
 	private String userName;
-
+	private String imgUrl;
 	// Change Password pop up beans
 	
 	public String getUserName() {
@@ -130,6 +130,12 @@ public class UsersMasterBean {
 	}
 	public void setOldChangePassword(String oldChangePassword) {
 		this.oldChangePassword = oldChangePassword;
+	}
+	public String getImgUrl() {
+		return imgUrl;
+	}
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 	
 	

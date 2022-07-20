@@ -86,6 +86,7 @@ public class AuthController {
 		Integer count = commonServicesService.getCountValue(userDetails.getUsername());
 		boolean isSuccess = false;
 		String message = "";
+		if(captchaVerified==true) {
 		if(count <= 5) {
 			
 		try {
@@ -101,13 +102,19 @@ public class AuthController {
 		}
 		
 		}
+		
 		else {
 			isSuccess = false;
 			message = "You have Reached your maximum OTP Request. Please try again after 1 hour";
 		}
+		}
+		else {
+			isSuccess = false;
+			message = "Please Click on Google Captcha Checkbox and then submit again";
+		}
 		
 		return ResponseEntity.ok(
-				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles,isSuccess,message,defaultRoleId,defaultRole,usersMasterBean.getCompanyCode()));
+				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles,isSuccess,message,defaultRoleId,defaultRole,usersMasterBean.getCompanyCode(),usersMasterBean.getImgUrl()));
 	}
 
 	@ApiOperation(value = "Get user info by token")
