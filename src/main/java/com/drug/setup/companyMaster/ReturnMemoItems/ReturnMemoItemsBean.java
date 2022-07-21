@@ -4,6 +4,7 @@ package com.drug.setup.companyMaster.ReturnMemoItems;
 
 public class ReturnMemoItemsBean {
 
+	private String returnMemoItemsCode;
 	private String returnMemoNo;
 	private String ndcupcCode;
 	private String lotNo;
@@ -82,6 +83,12 @@ public class ReturnMemoItemsBean {
 	}
 	public void setPakageOrUnit(String pakageOrUnit) {
 		this.pakageOrUnit = pakageOrUnit;
+	}
+	public String getReturnMemoItemsCode() {
+		return returnMemoItemsCode;
+	}
+	public void setReturnMemoItemsCode(String returnMemoItemsCode) {
+		this.returnMemoItemsCode = returnMemoItemsCode;
 	}
 	
 	

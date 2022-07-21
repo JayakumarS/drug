@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.drug.core.util.DropDownList;
+import com.drug.core.util.ResultResponse;
+import com.drug.setup.companyMaster.DebitMemo.DebitMemoBean;
 import com.drug.wholesaler.WholesalerMasterQueryUtil;
 
 @Repository
@@ -28,6 +30,7 @@ public class ReturnMemoItemsDaoImpl implements ReturnMemoItemsDao {
 		ReturnMemoItemsResultBean resultBean = new ReturnMemoItemsResultBean();
  		try {
  			String result = jdbcTemplate.queryForObject(ReturnMemoItemsQueryUtil.INSERT_RETURNMEMOITEMS_MASTER, new Object[]{	
+ 					bean.getReturnMemoNo(),
  					bean.getNdcupcCode(),
  					"P",
  					bean.getQuantity(),
@@ -47,11 +50,23 @@ public class ReturnMemoItemsDaoImpl implements ReturnMemoItemsDao {
 	}
 
 	@Override
-	public List<ReturnMemoItemsBean> getDebitMemoList() throws Exception {
+	public List<ReturnMemoItemsBean> getDebitMemoList(ReturnMemoItemsBean bean) throws Exception {
 		List<ReturnMemoItemsBean> objCompanyMasterBean = new ArrayList<ReturnMemoItemsBean>();
 		try {
-			objCompanyMasterBean = jdbcTemplate.query(ReturnMemoItemsQueryUtil.GET_RETURNMEMOITEMS_LIST, new BeanPropertyRowMapper<ReturnMemoItemsBean>(ReturnMemoItemsBean.class));
 			
+			String Query = "SELECT return_memo_items_code as returnMemoItemsCode, lot_no as lotNo, return_memo_no as returnMemoNo, ndcupc_code as ndcupcCode, quantity as quantity, price as price, exp_date as expDate FROM public.return_memo_items where LOWER(return_memo_no) like '%" + bean.getReturnMemoNo().toLowerCase()+ "%'";
+			
+			   if (bean.getNdcupcCode() != null && bean.getNdcupcCode().trim() != "" && !bean.getNdcupcCode().trim().isEmpty()) {
+				   Query += " and LOWER(ndcupc_code) like '%" + bean.getNdcupcCode().toLowerCase() + "%'";				
+				}
+			   if (bean.getLotNo() != null && bean.getLotNo().trim() != "" && !bean.getLotNo().trim().isEmpty()) {
+				   Query += " and LOWER(lot_no) like '%" + bean.getLotNo().toLowerCase() + "%'";				
+				}
+			   Query += " order by ndcupc_code desc";
+			   
+			   objCompanyMasterBean =  jdbcTemplate.query(Query,BeanPropertyRowMapper.newInstance(ReturnMemoItemsBean.class));
+			   
+			   return objCompanyMasterBean;
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -95,6 +110,7 @@ public class ReturnMemoItemsDaoImpl implements ReturnMemoItemsDao {
 		try {
  			
  			String result = jdbcTemplate.queryForObject(ReturnMemoItemsQueryUtil.UPDATE_DEBITMEMO, new Object[]{
+ 					bean.getReturnMemoItemsCode(),
  					bean.getReturnMemoNo(),
  					bean.getNdcupcCode(),
  					"P",
@@ -134,5 +150,19 @@ public class ReturnMemoItemsDaoImpl implements ReturnMemoItemsDao {
 			e.printStackTrace();
 		}
 		return customerMasterList;
+	}
+
+	@Override
+	public ResultResponse fetchreturnMemoNamebyId(String bean) {
+		ResultResponse resultBean = new ResultResponse();
+		String returnMemoName="";
+		try {
+			returnMemoName = jdbcTemplate.queryForObject(ReturnMemoItemsQueryUtil.RETURN_MEMO_NAMEBYID, new Object[]{
+					bean}, String.class);	
+			resultBean.setText(returnMemoName);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return resultBean;
 	}
 }

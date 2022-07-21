@@ -48,31 +48,19 @@ public class DebitMemoDaoImpl implements DebitMemoDao {
 	public List<DebitMemoBean> getDebitMemoList(DebitMemoBean bean) throws Exception {
 		List<DebitMemoBean> objCompanyMasterBean = new ArrayList<DebitMemoBean>();
 		try {
-			if (bean.getCompany() != null && bean.getCompany().trim() != ""
-					&& !bean.getCompany().trim().isEmpty() && bean.getReturnMemoNo() != null && bean.getReturnMemoNo().trim() != ""
-							&& !bean.getReturnMemoNo().trim().isEmpty()) {
 			
-				
-				objCompanyMasterBean =  jdbcTemplate.query(
-					DebitMemoQueryUtil.GETDEBITMEMO_LIST,
-					new Object[] { bean.getCompany(),bean.getReturnMemoNo() },
-					new BeanPropertyRowMapper<>(
-							DebitMemoBean.class));
+			String Query = "SELECT retMom.return_memo_no as returnMemoNo , retMom.return_memo_name as returnMemoName, retMom.return_memo_date as returnMemoDate, com.company_name as company from public.return_memo retMom left outer join company com on com.company_code=retMom.company where LOWER(retMom.company) like '%" + bean.getCompany().toLowerCase()+ "%'";
 					
-				return objCompanyMasterBean;
-				
-			}else if (bean.getCompany() != null && bean.getCompany().trim() != ""
-					&& !bean.getCompany().trim().isEmpty()){
-				
-
-				objCompanyMasterBean =  jdbcTemplate.query(
-						DebitMemoQueryUtil.GETDEBITMEMO_LIST_1,
-						new Object[] { bean.getCompany() },
-						new BeanPropertyRowMapper<>(
-								DebitMemoBean.class));
-				
-				return objCompanyMasterBean;
+		   if (bean.getReturnMemoNo() != null && bean.getReturnMemoNo().trim() != "" && !bean.getReturnMemoNo().trim().isEmpty()) {
+			   Query += " and LOWER(retMom.return_memo_no) like '%" + bean.getReturnMemoNo().toLowerCase() + "%'";				
 			}
+		   
+		   Query += " order by return_memo_no desc";
+		   
+		   objCompanyMasterBean =  jdbcTemplate.query(Query,BeanPropertyRowMapper.newInstance(DebitMemoBean.class));
+		   
+		   return objCompanyMasterBean;
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}

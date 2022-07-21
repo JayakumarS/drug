@@ -3,12 +3,13 @@ package com.drug.setup.companyMaster.ReturnMemoItems;
 import java.util.List;
 
 import com.drug.core.util.DropDownList;
+import com.drug.core.util.ResultResponse;
 
 public interface ReturnMemoItemsDao {
 
 	ReturnMemoItemsResultBean save(ReturnMemoItemsBean bean) throws Exception;
 
-	List<ReturnMemoItemsBean> getDebitMemoList() throws Exception;
+	List<ReturnMemoItemsBean> getDebitMemoList(ReturnMemoItemsBean bean) throws Exception;
 
 	ReturnMemoItemsResultBean edit(String bean) throws Exception;
 
@@ -19,5 +20,7 @@ public interface ReturnMemoItemsDao {
 	List<DropDownList> getCompanyMasterList();
 
 	List<DropDownList> getDebitMemoDropdownList();
+
+	ResultResponse fetchreturnMemoNamebyId(String bean);
 
 }

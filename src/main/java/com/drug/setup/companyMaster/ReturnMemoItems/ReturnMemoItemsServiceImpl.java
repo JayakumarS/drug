@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.drug.core.util.DropDownList;
+import com.drug.core.util.ResultResponse;
 
 @Service
 public class ReturnMemoItemsServiceImpl implements ReturnMemoItemsService {
@@ -18,9 +19,9 @@ public class ReturnMemoItemsServiceImpl implements ReturnMemoItemsService {
 	}
 
 	@Override
-	public List<ReturnMemoItemsBean> getDebitMemoList() throws Exception {
+	public List<ReturnMemoItemsBean> getDebitMemoList(ReturnMemoItemsBean bean) throws Exception {
 		// TODO Auto-generated method stub
-		return returnMemoItemsDao.getDebitMemoList();
+		return returnMemoItemsDao.getDebitMemoList(bean);
 	}
 
 	@Override
@@ -49,6 +50,12 @@ public class ReturnMemoItemsServiceImpl implements ReturnMemoItemsService {
 	@Override
 	public List<DropDownList> getDebitMemoDropdownList() {
 		return returnMemoItemsDao.getDebitMemoDropdownList();
+	}
+
+	@Override
+	public ResultResponse fetchreturnMemoNamebyId(String bean) throws Exception{
+		// TODO Auto-generated method stub
+		return returnMemoItemsDao.fetchreturnMemoNamebyId(bean);
 	}
 
 	

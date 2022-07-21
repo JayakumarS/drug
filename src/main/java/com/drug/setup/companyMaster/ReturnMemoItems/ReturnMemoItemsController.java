@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.drug.core.util.DropDownList;
+import com.drug.core.util.ResultResponse;
 
 
 @RestController
@@ -31,9 +33,9 @@ public class ReturnMemoItemsController {
 	
 	
 	@RequestMapping(value = "/getList")
-   	public ReturnMemoItemsResultBean getdebitMemoList() throws Exception {
+   	public ReturnMemoItemsResultBean getdebitMemoList(@RequestBody ReturnMemoItemsBean bean) throws Exception {
 		ReturnMemoItemsResultBean objResultBean = new ReturnMemoItemsResultBean();
-		objResultBean.setListReturnMemoItems(returnMemoItemsService.getDebitMemoList());
+		objResultBean.setListReturnMemoItems(returnMemoItemsService.getDebitMemoList(bean));
 		objResultBean.setSuccess(true);
    		return objResultBean;
    	}
@@ -85,5 +87,13 @@ public class ReturnMemoItemsController {
 	public List<DropDownList> getDebitMemoList(){
 			return returnMemoItemsService.getDebitMemoDropdownList();	
 	}
+	
+	
+
+	@RequestMapping(value="/fetchreturnMemoNamebyId")
+	public ResultResponse fetchreturnMemoNamebyId(@RequestParam("returnMemoNo") String returnMemoNo) throws Exception{
+			return returnMemoItemsService.fetchreturnMemoNamebyId(returnMemoNo);	
+	}
+	
 	
 }
