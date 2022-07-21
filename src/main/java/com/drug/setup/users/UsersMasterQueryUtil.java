@@ -12,8 +12,7 @@ public class UsersMasterQueryUtil {
 
 	public static final String DELETE = "delete from auth.role where role_id = ?";
 	
-	public static final String SELECT_DTL = "select emp_id as empId,email_id as emailId,first_name as firstName,last_name as lastName,phone_no as mobileNo,\n"
-			+ "emp_name as empName,emp_user_id as newUserName ,auth.role_id as roles from user_details left join auth.user_roles auth on auth.user_id= user_details.emp_user_id where emp_id=?";
+//	public static final String SELECT_DTL = "select emp_id as empId,email_id as emailId,first_name as firstName,last_name as lastName,phone_no as mobileNo,emp_name as empName,emp_user_id as newUserName ,role.name as roleName from user_details left join auth.user_roles auth on auth.user_id= user_details.emp_user_id left join auth.role  role on auth.role_id = role.role_id where emp_id =?";
 	
 	public static final String UPDATE_CUSTOMER_MASTER = "update auth.role set name=:roleName,remark=:remarks where role_id=:roleId";
 	
@@ -27,11 +26,28 @@ public class UsersMasterQueryUtil {
 	
 	public static String GETEMPID = "SELECT CASE WHEN MAX(emp_id) IS NULL  THEN 'E0001' ELSE rpad(MAX(emp_id),1,'E')|| lpad(cast(cast((SUBSTRING(MAX(emp_id),2)) as int)+1  as text),4,'0') END FROM user_details";
 
-	public static final String INSERT_USER_ROLE_MAP = "insert into auth.user_roles (user_id,role_id) values (:userId,:roleId)";
+	public static final String INSERT_USER_ROLE_MAP = "insert into auth.user_roles (user_id,role_id) values (:userId,:id)";
+
 
 	public static final String UPDATE_CHANGE_PASSWORD = "UPDATE auth.app_user set password=:newChangePassword,pwd_changed='true' where user_id=:newUserName";
 
 	public static final String GET_EMAIL_ID = "select email_id as emailId from user_details where emp_user_id=?";
 
 	public static final String GET_FLAG_VALUE = "select pwd_changed as pwdChanged from auth.app_user where user_id=?";
+
+	public static final String DELETE_USER_ROLE_MAP = " delete from auth.user_roles where user_id =:userId ";
+	
+//	public static final String UPDATE_CHANGE_PASSWORD = "UPDATE auth.app_user set password=:newChangePassword where user_id=:newUserName";
+//
+//	public static final String GET_EMAIL_ID = "select email_id as emailId from user_details where emp_user_id=?";
+
+//	public static final String SELECT_ROLE_DTL = "select ur.user_id as newUserName ,ur.role_id as roles ,role.name as roleName from auth.user_roles ur left join auth.role role on role.role_id = ur.role_id where user_id =?";
+
+	public static final String SELECT_DTL = "select emp_id as empId,email_id as emailId,first_name as firstName,last_name as lastName,phone_no as mobileNo,emp_name as empName,emp_user_id as newUserName  from user_details where emp_id =?";
+
+	public static final String SELECT_User_Name = "select emp_user_id as newUserName from user_details where emp_id = ?";
+	public static final String SELECT_ROLE_DTL = "select distinct ur.role_id as id ,role.name as text from auth.user_roles ur left join auth.role role on role.role_id = ur.role_id where user_id =?";
+//	public static final String SELECT_ROLE_DTL = "select string_agg(role_id::text, ',') roles from auth.user_roles where user_id = ?	";
+	 
+
 }

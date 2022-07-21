@@ -2,6 +2,7 @@ package com.drug.setup.users;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import com.drug.core.util.BasicResultBean;
 import com.drug.core.util.DropDownList;
@@ -18,7 +19,31 @@ public class UsersMasterResultBean extends BasicResultBean implements Serializab
 	
 	private String fileName;
 	private String filePath;
+	private String newUserName;
+	private String userName;
 	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	private List<Map<String,Object>> roles;
+	
+	
+	
+	public List<Map<String, Object>> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Map<String, Object>> roles) {
+		this.roles = roles;
+	}
+	public String getNewUserName() {
+		return newUserName;
+	}
+	public void setNewUserName(String newUserName) {
+		this.newUserName = newUserName;
+	}
 	public boolean isSuccess() {
 		return success;
 	}

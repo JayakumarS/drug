@@ -34,9 +34,9 @@ public class UsersMasterServiceImpl implements UsersMasterService {
 	}
 
 	@Override
-	public UsersMasterResultBean edit(String bean) throws Exception {
+	public UsersMasterResultBean edit(String usersId ) throws Exception {
 		// TODO Auto-generated method stub
-		return rolesMasterDao.edit(bean);
+		return rolesMasterDao.edit(usersId);
 	}
 
 	@Override

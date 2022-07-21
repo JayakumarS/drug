@@ -20,6 +20,7 @@ import com.drug.employeeMaster.EmployeeMasterQueryUtil;
 import com.drug.filesupload.FileUploadQueryUtil;
 import com.drug.filesupload.FileUploadResultBean;
 import com.drug.security.JwtUtils;
+import com.drug.setup.rolerights.RoleRightsQueryUtil;
 
 @Repository
 public class UsersMasterDaoImpl implements UsersMasterDao {
@@ -65,8 +66,15 @@ public class UsersMasterDaoImpl implements UsersMasterDao {
 			
 			int insertAppUser = namedParameterJdbcTemplate.update(UsersMasterQueryUtil.INSERT_AppUser, saveMap);
 			
-			int insertUserRoleMap = namedParameterJdbcTemplate.update(UsersMasterQueryUtil.INSERT_USER_ROLE_MAP, saveMap);
-			
+				if(bean.getRoles().size()>0) {
+					for(Map<String, Object>  roleMap:bean.getRoles()) {
+						roleMap.put("userId",saveMap.get("userId"));
+						roleMap.put("id", Integer.parseInt(roleMap.get("id").toString()));
+						int insertUserRoleMap = namedParameterJdbcTemplate.update(UsersMasterQueryUtil.INSERT_USER_ROLE_MAP, roleMap);
+						
+					}
+				}
+
 			EmailService.sendPasswordMail(bean.getEmailId(),bean.getNewUserName(),alphaNumericpassword);
 			
 			
@@ -92,11 +100,19 @@ public class UsersMasterDaoImpl implements UsersMasterDao {
 	}
 
 	@Override
-	public UsersMasterResultBean edit(String code) throws Exception {
+	public UsersMasterResultBean edit(String usersId) throws Exception {
 		UsersMasterResultBean resultBean = new UsersMasterResultBean();
+		HashMap<String, Object> saveMap = new HashMap<String, Object>();
+
 		resultBean.setSuccess(false);
+		UsersMasterBean newUserName = jdbcTemplate.queryForObject(UsersMasterQueryUtil.SELECT_User_Name,new Object[] { usersId }, new BeanPropertyRowMapper<UsersMasterBean>(UsersMasterBean.class));
 		try {
-			resultBean.setUsersMasterBean(jdbcTemplate.queryForObject(UsersMasterQueryUtil.SELECT_DTL,new Object[] { code }, new BeanPropertyRowMapper<UsersMasterBean>(UsersMasterBean.class)));
+			resultBean.setUsersMasterBean(jdbcTemplate.queryForObject(UsersMasterQueryUtil.SELECT_DTL,new Object[] { usersId }, new BeanPropertyRowMapper<UsersMasterBean>(UsersMasterBean.class)));
+			
+			 List<Map<String, Object>> roleName = jdbcTemplate.queryForList(UsersMasterQueryUtil.SELECT_ROLE_DTL,new Object[]{newUserName.getNewUserName()});
+			
+			resultBean.setRoles(roleName);
+		
 			resultBean.setSuccess(true);
 		}
 		catch(Exception e) {

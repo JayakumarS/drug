@@ -47,7 +47,7 @@ public class UsersMasterController {
    	}
 	
 	@RequestMapping(value = "/edit")
-	public UsersMasterResultBean edit(@RequestParam("usersId") String usersId) throws Exception {
+	public UsersMasterResultBean edit(@RequestParam("usersId") String usersId ) throws Exception {
 		UsersMasterResultBean objResultBean = new UsersMasterResultBean();
 		try {
 			objResultBean = usersMasterService.edit(usersId);
