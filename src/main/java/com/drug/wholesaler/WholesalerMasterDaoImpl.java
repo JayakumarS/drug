@@ -43,7 +43,8 @@ public class WholesalerMasterDaoImpl implements WholesalerMasterDao {
  					bean.getTollFreeNo(),
  					bean.getFax(),
  					bean.getPhone(),
- 					bean.getUserName()}, String.class);
+ 					//bean.getUserName()
+ 					}, String.class);
 
 		    resultBean.setSuccess(true);
 		    System.out.print(result);
@@ -118,7 +119,8 @@ public class WholesalerMasterDaoImpl implements WholesalerMasterDao {
 	 					bean.getTollFreeNo(),
 	 					bean.getFax(),
 	 					bean.getPhone(),
-	 					bean.getUserName()}, String.class);
+	 				//	bean.getUserName()
+	 					}, String.class);
 
 			   resultBean.setSuccess(true);
 			   System.out.print(result);

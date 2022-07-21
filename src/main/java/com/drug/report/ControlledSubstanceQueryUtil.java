@@ -13,6 +13,12 @@ public class ControlledSubstanceQueryUtil {
 		return query;
 	}
 	
+	public static final String getNonReturnSearchList(String company,String returnno,String fromdt,String todt) {
+		String query = "select * from vw_get_nonreturnable_products('"+company+"','"+returnno+"','"+fromdt+"','"+todt+"')";
+		return query;
+	}
+	
+	
 	
 
 }

@@ -2,20 +2,20 @@ package com.drug.report;
 
 import java.util.List;
 
-public class SearchBean {
+public class NonReturnableSearchBean {
 	
 private static final long serialVersionUID = 1L;
 	
 	public boolean Success;
 	
-	private List<SearchBean> searchList;
+	private List<NonReturnableSearchBean> nonSearchList;
 
 	
-	public List<SearchBean> getSearchList() {
-		return searchList;
+	public List<NonReturnableSearchBean> getSearchList() {
+		return nonSearchList;
 	}
-	public void setSearchList(List<SearchBean> searchList) {
-		this.searchList = searchList;
+	public void setNonSearchListt(List<NonReturnableSearchBean> nonSearchList) {
+		this.nonSearchList = nonSearchList;
 	}
 	
 	
@@ -47,6 +47,12 @@ private static final long serialVersionUID = 1L;
 	}
 	public void setSuccess(boolean success) {
 		Success = success;
+	}
+	public List<NonReturnableSearchBean> getNonSearchList() {
+		return nonSearchList;
+	}
+	public void setNonSearchList(List<NonReturnableSearchBean> nonSearchList) {
+		this.nonSearchList = nonSearchList;
 	}
 	public String getCompany() {
 		return company;
@@ -167,11 +173,12 @@ private static final long serialVersionUID = 1L;
 	}
 
 
-
-	
 	
 
 	
 	
 
 }
+
+
+

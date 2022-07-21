@@ -92,21 +92,6 @@ public class CommonServicesServiceImpl implements CommonServicesService {
 	@Override
 	public boolean verify(String gRecaptchaResponse) {
 		// TODO Auto-generated method stub
-//		MultiValueMap param= new LinkedMultiValueMap<>();
-//        param.add("secret", recaptchaSecret);
-//        param.add("response", response);
-//
-//        RecaptchaResponse recaptchaResponse = null;
-//        try {
-//            recaptchaResponse = this.restTemplate.postForObject(recaptchaVerifyUrl, param, RecaptchaResponse.class);
-//        }catch(RestClientException e){
-//            System.out.print(e.getMessage());
-//        }
-//       if(recaptchaResponse.isSuccess()){
-//            return true;
-//        }else {
-//            return false;
-//        }
 		
 		if (gRecaptchaResponse == null || "".equals(gRecaptchaResponse)) {
 			return false;
@@ -148,11 +133,6 @@ public class CommonServicesServiceImpl implements CommonServicesService {
 
 		// print result
 		System.out.println(response.toString());
-		
-		//parse JSON response and return 'success' value
-		//JsonReader jsonReader = Json.createReader(new StringReader(response.toString()));
-		//JsonObject jsonObject = jsonReader.readObject();
-		//jsonReader.close();
 		
 		return true;// jsonObject.getBoolean("success");
 		}catch(Exception e){

@@ -17,6 +17,7 @@ public class JwtResponse {
 	private String defaultRole;
 	
 	private String companyCode;
+	private String imgUrl;
 	
 	
 	public boolean isSuccess() {
@@ -35,7 +36,7 @@ public class JwtResponse {
 		this.message = message;
 	}
 
-	public JwtResponse(String accessToken, Long id, String username, String email, List<RolesMasterBean> roles,boolean success,String message,Integer defaultRoleId,String defaultRole,String companyCode) {
+	public JwtResponse(String accessToken, Long id, String username, String email, List<RolesMasterBean> roles,boolean success,String message,Integer defaultRoleId,String defaultRole,String companyCode,String imgUrl) {
 		this.token = accessToken;
 		this.id = id;
 		this.username = username;
@@ -46,6 +47,7 @@ public class JwtResponse {
 		this.defaultRoleId = defaultRoleId;
 		this.defaultRole = defaultRole;
 		this.companyCode = companyCode;
+		this.imgUrl = imgUrl;
 	}
 
 	public String getAccessToken() {
@@ -114,5 +116,13 @@ public class JwtResponse {
 
 	public void setCompanyCode(String companyCode) {
 		this.companyCode = companyCode;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 }
