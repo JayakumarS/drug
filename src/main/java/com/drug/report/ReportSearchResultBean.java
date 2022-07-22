@@ -28,7 +28,7 @@ private static final long serialVersionUID = 1L;
 	}
 
 
-	public void setreportSearchList(List<ReportSearchBean> reportSearchBean) {
+	public void setReportSearchList(List<ReportSearchBean> reportSearchBean) {
 		this.reportSearchList = reportSearchList;
 	}
 
