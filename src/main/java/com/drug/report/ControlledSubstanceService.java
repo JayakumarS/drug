@@ -16,8 +16,14 @@ public interface ControlledSubstanceService {
 	ReportSearchResultBean getReportII(ReportSearchBean bean) throws Exception;
 	
 	ReportSearchResultBean getReportIII_V(ReportSearchBean bean) throws Exception;
+	
+	ReportSearchResultBean getInventory(ReportSearchBean bean) throws Exception;
+	
+	ReportSearchResultBean getPackingSlip(ReportSearchBean bean) throws Exception;
 
 
+
+	
 
 
 }

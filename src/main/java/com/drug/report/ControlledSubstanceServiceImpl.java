@@ -26,10 +26,12 @@ public class ControlledSubstanceServiceImpl implements ControlledSubstanceServic
 		return controlledSubsatanceDao.getSearchList(bean);
 	}
 	
+	
 	@Override
 	public NonReturableSearchResultBean getNonReturnSearchList(NonReturnableSearchBean bean) throws Exception {
 		return controlledSubsatanceDao.getNonReturnSearchList(bean);
 	}
+	
 	
 	@Override
 	public ReportSearchResultBean getReportII(ReportSearchBean bean) throws Exception {
@@ -42,5 +44,19 @@ public class ControlledSubstanceServiceImpl implements ControlledSubstanceServic
 		return controlledSubsatanceDao.getReportIII_V(bean);
 	}
 	
+	
+	@Override
+	public ReportSearchResultBean getInventory(ReportSearchBean bean) throws Exception {
+		return controlledSubsatanceDao.getInventory(bean);
+	}
+	
+	
+	@Override
+	public ReportSearchResultBean getPackingSlip(ReportSearchBean bean) throws Exception {
+		return controlledSubsatanceDao.getPackingSlip(bean);
+	}
+	
 
+	
+	
 }

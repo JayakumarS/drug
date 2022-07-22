@@ -18,6 +18,8 @@ public class ControlledSubstanceController {
 	ControlledSubstanceService controlledSubstanceService;
 	
 	
+	//Returnable  //Search
+	
 	@RequestMapping(value="/getSearchList")
 	public SearchResultBean getSearchList(@RequestBody SearchBean bean) {
 		SearchResultBean objbean = new SearchResultBean();
@@ -30,6 +32,9 @@ public class ControlledSubstanceController {
 		
 	}
 	
+	
+	
+	//NonReturable 
 	
 	@RequestMapping(value="/getNonReturnSearchList")
 	public NonReturableSearchResultBean getNonReturnSearchList(@RequestBody NonReturnableSearchBean bean) {
@@ -66,6 +71,37 @@ public class ControlledSubstanceController {
 		ReportSearchResultBean objbean = new ReportSearchResultBean();
 		try {
 			objbean = controlledSubstanceService.getReportIII_V(bean);
+		}catch(Exception e){
+			e.printStackTrace();	
+		}
+		return objbean;
+		
+	}
+	
+	
+	//Inventory
+	
+	
+	@RequestMapping(value="/getInventory")
+	public ReportSearchResultBean getInventory(@RequestBody ReportSearchBean bean) {
+		ReportSearchResultBean objbean = new ReportSearchResultBean();
+		try {
+			objbean = controlledSubstanceService.getInventory(bean);
+		}catch(Exception e){
+			e.printStackTrace();	
+		}
+		return objbean;
+		
+	}
+	
+	
+	//Packing Slip
+	
+	@RequestMapping(value="/getPackingSlip")
+	public ReportSearchResultBean getPackingSlip(@RequestBody ReportSearchBean bean) {
+		ReportSearchResultBean objbean = new ReportSearchResultBean();
+		try {
+			objbean = controlledSubstanceService.getPackingSlip(bean);
 		}catch(Exception e){
 			e.printStackTrace();	
 		}
