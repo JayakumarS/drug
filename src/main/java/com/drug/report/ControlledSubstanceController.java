@@ -62,6 +62,20 @@ public class ControlledSubstanceController {
 		
 	}
 	
+	
+	
+//	@RequestMapping(value="/getReportList")
+//	public NonReturableSearchResultBean getReportList(@RequestBody NonReturnableSearchBean bean) {
+//		NonReturableSearchResultBean objbean = new NonReturableSearchResultBean();
+//		try {
+//			objbean = controlledSubstanceService.getReportList(bean);
+//		}catch(Exception e){
+//			e.printStackTrace();	
+//		}
+//		return objbean;
+//		
+//	}
+	
 
 	
 

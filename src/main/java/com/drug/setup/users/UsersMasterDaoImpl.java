@@ -76,7 +76,7 @@ public class UsersMasterDaoImpl implements UsersMasterDao {
 				}
 
 			EmailService.sendPasswordMail(bean.getEmailId(),bean.getNewUserName(),alphaNumericpassword);
-			
+			System.out.println(alphaNumericpassword);
 			
 		   resultBean.setSuccess(true);
 		}catch(Exception e) {
