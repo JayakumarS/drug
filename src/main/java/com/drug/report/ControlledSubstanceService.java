@@ -7,13 +7,23 @@ import com.drug.druginfoMaster.DruginfoMasterResultBean;
 
 public interface ControlledSubstanceService {
 	
-	public List<ControlledSubstanceResultBean> getCompanyNameList() throws Exception;
-	public List<ControlledSubstanceResultBean> getReturnMemoNo() throws Exception;
+
 
 	SearchResultBean getSearchList(SearchBean bean) throws Exception;
+	
 	NonReturableSearchResultBean getNonReturnSearchList(NonReturnableSearchBean bean) throws Exception;
+	
+	ReportSearchResultBean getReportII(ReportSearchBean bean) throws Exception;
+	
+	ReportSearchResultBean getReportIII_V(ReportSearchBean bean) throws Exception;
+	
+	ReportSearchResultBean getInventory(ReportSearchBean bean) throws Exception;
+	
+	ReportSearchResultBean getPackingSlip(ReportSearchBean bean) throws Exception;
 
 
+
+	
 
 
 }

@@ -8,12 +8,23 @@ import com.drug.druginfoMaster.DruginfoMasterResultBean;
 
 public interface ControlledSubsatanceDao {
 	
-	List<ControlledSubstanceResultBean> getCompanyNameList() throws Exception;
-	List<ControlledSubstanceResultBean> getReturnMemoNo() throws Exception;
+
 
 	
 	SearchResultBean getSearchList(SearchBean bean) throws Exception;
+	
 	NonReturableSearchResultBean getNonReturnSearchList(NonReturnableSearchBean bean) throws Exception;
+	
+	ReportSearchResultBean getReportII(ReportSearchBean bean) throws Exception;
+	
+	ReportSearchResultBean getReportIII_V(ReportSearchBean bean) throws Exception;
+	
+	ReportSearchResultBean getInventory(ReportSearchBean bean) throws Exception;
+	
+	ReportSearchResultBean getPackingSlip(ReportSearchBean bean) throws Exception;
+
+
+	
 
 
 

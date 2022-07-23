@@ -16,15 +16,8 @@ public class ControlledSubstanceServiceImpl implements ControlledSubstanceServic
 	ControlledSubsatanceDao controlledSubsatanceDao;
 
 	
-	@Override
-	public List<ControlledSubstanceResultBean> getCompanyNameList() throws Exception {
-		return controlledSubsatanceDao.getCompanyNameList();
-	}
 
-	@Override
-	public List<ControlledSubstanceResultBean> getReturnMemoNo() throws Exception {
-		return controlledSubsatanceDao.getReturnMemoNo();
-	}
+
 	
 
 	
@@ -33,10 +26,37 @@ public class ControlledSubstanceServiceImpl implements ControlledSubstanceServic
 		return controlledSubsatanceDao.getSearchList(bean);
 	}
 	
+	
 	@Override
 	public NonReturableSearchResultBean getNonReturnSearchList(NonReturnableSearchBean bean) throws Exception {
 		return controlledSubsatanceDao.getNonReturnSearchList(bean);
 	}
 	
+	
+	@Override
+	public ReportSearchResultBean getReportII(ReportSearchBean bean) throws Exception {
+		return controlledSubsatanceDao.getReportII(bean);
+	}
+	
+	
+	@Override
+	public ReportSearchResultBean getReportIII_V(ReportSearchBean bean) throws Exception {
+		return controlledSubsatanceDao.getReportIII_V(bean);
+	}
+	
+	
+	@Override
+	public ReportSearchResultBean getInventory(ReportSearchBean bean) throws Exception {
+		return controlledSubsatanceDao.getInventory(bean);
+	}
+	
+	
+	@Override
+	public ReportSearchResultBean getPackingSlip(ReportSearchBean bean) throws Exception {
+		return controlledSubsatanceDao.getPackingSlip(bean);
+	}
+	
 
+	
+	
 }

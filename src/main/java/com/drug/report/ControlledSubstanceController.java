@@ -18,24 +18,7 @@ public class ControlledSubstanceController {
 	ControlledSubstanceService controlledSubstanceService;
 	
 	
-	@RequestMapping(value = "/getCompanyNameList")
-   	public ControlledSubstanceResultBean getCompanyNameList() throws Exception {
-		ControlledSubstanceResultBean objResultBean = new ControlledSubstanceResultBean();
-		objResultBean.setCompanyNameList(controlledSubstanceService.getCompanyNameList());
-		objResultBean.setSuccess(true);
-   		return objResultBean;
-   	}
-	
-	@RequestMapping(value = "/getReturnMemoNo")
-   	public ControlledSubstanceResultBean getReturnMemoNo() throws Exception {
-		ControlledSubstanceResultBean objResultBean = new ControlledSubstanceResultBean();
-		objResultBean.setReturnMemoNo(controlledSubstanceService.getReturnMemoNo());
-		objResultBean.setSuccess(true);
-   		return objResultBean;
-   	}
-	
-	
-	
+	//Returnable  //Search
 	
 	@RequestMapping(value="/getSearchList")
 	public SearchResultBean getSearchList(@RequestBody SearchBean bean) {
@@ -50,6 +33,9 @@ public class ControlledSubstanceController {
 	}
 	
 	
+	
+	//NonReturable 
+	
 	@RequestMapping(value="/getNonReturnSearchList")
 	public NonReturableSearchResultBean getNonReturnSearchList(@RequestBody NonReturnableSearchBean bean) {
 		NonReturableSearchResultBean objbean = new NonReturableSearchResultBean();
@@ -61,6 +47,70 @@ public class ControlledSubstanceController {
 		return objbean;
 		
 	}
+	
+	//ScheduleII
+	
+	@RequestMapping(value="/getReportII")
+	public ReportSearchResultBean getReportII(@RequestBody ReportSearchBean bean) {
+		ReportSearchResultBean objbean = new ReportSearchResultBean();
+		try {
+			objbean = controlledSubstanceService.getReportII(bean);
+		}catch(Exception e){
+			e.printStackTrace();	
+		}
+		return objbean;
+		
+	}
+	
+	
+	//ScheduleIII_V
+
+	
+	@RequestMapping(value="/getReportIII_V")
+	public ReportSearchResultBean getReportIII_V(@RequestBody ReportSearchBean bean) {
+		ReportSearchResultBean objbean = new ReportSearchResultBean();
+		try {
+			objbean = controlledSubstanceService.getReportIII_V(bean);
+		}catch(Exception e){
+			e.printStackTrace();	
+		}
+		return objbean;
+		
+	}
+	
+	
+	//Inventory
+	
+	
+	@RequestMapping(value="/getInventory")
+	public ReportSearchResultBean getInventory(@RequestBody ReportSearchBean bean) {
+		ReportSearchResultBean objbean = new ReportSearchResultBean();
+		try {
+			objbean = controlledSubstanceService.getInventory(bean);
+		}catch(Exception e){
+			e.printStackTrace();	
+		}
+		return objbean;
+		
+	}
+	
+	
+	//Packing Slip
+	
+	@RequestMapping(value="/getPackingSlip")
+	public ReportSearchResultBean getPackingSlip(@RequestBody ReportSearchBean bean) {
+		ReportSearchResultBean objbean = new ReportSearchResultBean();
+		try {
+			objbean = controlledSubstanceService.getPackingSlip(bean);
+		}catch(Exception e){
+			e.printStackTrace();	
+		}
+		return objbean;
+		
+	}
+	
+	
+
 	
 
 	
