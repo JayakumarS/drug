@@ -53,7 +53,10 @@ public class CommonServicesController {
    		return commonServicesService.getManufacturerList();
    	}
 	
-	
+	@RequestMapping(value = "/getStateDropdownList")
+   	public List<DropDownList> getStateDropdownList() throws Exception {
+   		return commonServicesService.getStateDropdownList();
+   	}
 			
 	@RequestMapping(value = "/validateUnique")
 	public boolean validateUnique(@RequestParam("tableName") String tableName,@RequestParam("columnName") String columnName,@RequestParam("columnValue") String columnValue) throws Exception {

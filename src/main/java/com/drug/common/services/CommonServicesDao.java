@@ -27,4 +27,6 @@ public interface CommonServicesDao {
 	boolean validateUnique(String tableName,String columnName,String columnValue);
 
 	List<DropDownList> getManufacturerList();
+
+	List<DropDownList> getStateDropdownList();
 }

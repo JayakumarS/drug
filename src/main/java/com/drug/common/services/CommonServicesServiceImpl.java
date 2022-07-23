@@ -147,6 +147,10 @@ public class CommonServicesServiceImpl implements CommonServicesService {
 		return commonServicesDao.getManufacturerList();
 	}
 	
+	@Override
+	public List<DropDownList> getStateDropdownList() {
+		return commonServicesDao.getStateDropdownList();
+	}
 
 
 	

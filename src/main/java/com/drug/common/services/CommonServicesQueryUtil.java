@@ -19,5 +19,8 @@ public class CommonServicesQueryUtil {
 	public static final String UPDATE_PASSWORD_WITHOUT_EMAIL = "UPDATE auth.app_user set password=:otpForForgotPassword,pwd_changed='false' where user_id=:userNameEmailId";
 	public static final String GET_EMAIL_ID = "select email_id as emailId from user_details where emp_user_id=?";
 	public static final String VALIDATE_UNIQUE = "SELECT * FROM fn_unique_validation(?,?,?)";
+	public static final String STATE_MASTER_DROPDOWNLIST = "select state_id as id, state_name as text from state";
+
+	
 	
 }

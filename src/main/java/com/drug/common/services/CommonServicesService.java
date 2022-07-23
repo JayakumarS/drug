@@ -30,5 +30,7 @@ public interface CommonServicesService {
 
 	boolean verify(String recaptchaResponse);
 
+	List<DropDownList> getStateDropdownList();
+
 	
 }

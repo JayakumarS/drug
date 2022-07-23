@@ -48,6 +48,26 @@ public class CompanyMasterDaoImpl implements CompanyMasterDao {
  			if(bean.getGeneralInfroWacAwapPer()==null || bean.getGeneralInfroWacAwapPer()=="" || bean.getGeneralInfroWacAwapPer().isEmpty()) {
  				bean.setGeneralInfroWacAwapPer("0");
  			}
+			
+ 			if(bean.getMyWholesalerPolicyMonths()==null || bean.getMyWholesalerPolicyMonths()=="" || bean.getMyWholesalerPolicyMonths().isEmpty()) {
+ 				bean.setMyWholesalerPolicyMonths("0");
+ 			}
+ 			
+ 			if(bean.getMyWholesalerPolicyType()==null || bean.getMyWholesalerPolicyType()=="" || bean.getMyWholesalerPolicyType().isEmpty()) {
+ 				bean.setMyWholesalerPolicyType("0");
+ 			}
+ 			
+			if(bean.getCppServiceRate()==null || bean.getCppServiceRate()=="" || bean.getCppServiceRate().isEmpty()) {
+ 				bean.setCppServiceRate("0");
+ 			}
+			
+			if(bean.getCppShippingRate()==null || bean.getCppShippingRate()=="" || bean.getCppShippingRate().isEmpty()) {
+ 				bean.setCppShippingRate("0");
+ 			}
+ 			
+			if(bean.getCppNoOfChecks()==null || bean.getCppNoOfChecks()=="" || bean.getCppNoOfChecks().isEmpty()) {
+ 				bean.setCppNoOfChecks("0");
+ 			}
  			
  			String result = jdbcTemplate.queryForObject(CompanyMasterQueryUtil.INSERT_COMPANY_MASTER, new Object[]{
 					bean.getCompanyName(),
@@ -82,7 +102,7 @@ public class CompanyMasterDaoImpl implements CompanyMasterDao {
 					bean.getMyWholesalerPolicyType(),
 					bean.getMyWholesalerPolicyMonths(),
 					
-					bean.isMyWholesalerCpp(),
+					bean.getMyWholesalerCpp(),
 					bean.getCppServiceRate(),
 					bean.getCppShippingRate(),
 					bean.getCppNoOfChecks(),
@@ -163,10 +183,32 @@ public class CompanyMasterDaoImpl implements CompanyMasterDao {
  					bean.getWholesalerFax(),
  					bean.getWholesalerPhone()}, String.class);
 			
-			if(bean.getGeneralInfroWacAwapPer()==null || bean.getGeneralInfroWacAwapPer()=="" || bean.getGeneralInfroWacAwapPer().isEmpty()) {
+			
+
+ 			if(bean.getGeneralInfroWacAwapPer()==null || bean.getGeneralInfroWacAwapPer()=="" || bean.getGeneralInfroWacAwapPer().isEmpty()) {
  				bean.setGeneralInfroWacAwapPer("0");
  			}
+			
+ 			if(bean.getMyWholesalerPolicyMonths()==null || bean.getMyWholesalerPolicyMonths()=="" || bean.getMyWholesalerPolicyMonths().isEmpty()) {
+ 				bean.setMyWholesalerPolicyMonths("0");
+ 			}
  			
+ 			if(bean.getMyWholesalerPolicyType()==null || bean.getMyWholesalerPolicyType()=="" || bean.getMyWholesalerPolicyType().isEmpty()) {
+ 				bean.setMyWholesalerPolicyType("0");
+ 			}
+ 			
+			if(bean.getCppServiceRate()==null || bean.getCppServiceRate()=="" || bean.getCppServiceRate().isEmpty()) {
+ 				bean.setCppServiceRate("0");
+ 			}
+			
+			if(bean.getCppShippingRate()==null || bean.getCppShippingRate()=="" || bean.getCppShippingRate().isEmpty()) {
+ 				bean.setCppShippingRate("0");
+ 			}
+ 			
+			if(bean.getCppNoOfChecks()==null || bean.getCppNoOfChecks()=="" || bean.getCppNoOfChecks().isEmpty()) {
+ 				bean.setCppNoOfChecks("0");
+ 			}
+			
  			String result = jdbcTemplate.queryForObject(CompanyMasterQueryUtil.UPDATE_COMPANY_MASTER, new Object[]{
  					bean.getCompanyCode(),
 					bean.getCompanyName(),
@@ -201,7 +243,7 @@ public class CompanyMasterDaoImpl implements CompanyMasterDao {
 					bean.getMyWholesalerPolicyType(),
 					bean.getMyWholesalerPolicyMonths(),
 					
-					bean.isMyWholesalerCpp(),
+					bean.getMyWholesalerCpp(),
 					bean.getCppServiceRate(),
 					bean.getCppShippingRate(),
 					bean.getCppNoOfChecks(),

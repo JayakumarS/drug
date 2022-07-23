@@ -46,19 +46,16 @@ public class CompanyMasterBean {
 
 	private String generalInfroWacAwapMyprice;
 	//con double to string
-	private String generalInfroWacAwapPer="0";
+	private String generalInfroWacAwapPer;
 
-	private Integer myWholesalerPolicyType;
-	private Integer myWholesalerPolicyMonths=0;
-	private boolean myWholesalerCpp;
+	private String myWholesalerPolicyType;
+	private String myWholesalerPolicyMonths;
+	private String myWholesalerCpp;
 	//con double to string
 	private String cppServiceRate;
 	//con double to string
 	private String cppShippingRate;
-	private Integer cppNoOfChecks;
-	
-	
-	
+	private String cppNoOfChecks;
 	public String getWholesalerCode() {
 		return wholesalerCode;
 	}
@@ -287,22 +284,22 @@ public class CompanyMasterBean {
 	public void setGeneralInfroWacAwapPer(String generalInfroWacAwapPer) {
 		this.generalInfroWacAwapPer = generalInfroWacAwapPer;
 	}
-	public Integer getMyWholesalerPolicyType() {
+	public String getMyWholesalerPolicyType() {
 		return myWholesalerPolicyType;
 	}
-	public void setMyWholesalerPolicyType(Integer myWholesalerPolicyType) {
+	public void setMyWholesalerPolicyType(String myWholesalerPolicyType) {
 		this.myWholesalerPolicyType = myWholesalerPolicyType;
 	}
-	public Integer getMyWholesalerPolicyMonths() {
+	public String getMyWholesalerPolicyMonths() {
 		return myWholesalerPolicyMonths;
 	}
-	public void setMyWholesalerPolicyMonths(Integer myWholesalerPolicyMonths) {
+	public void setMyWholesalerPolicyMonths(String myWholesalerPolicyMonths) {
 		this.myWholesalerPolicyMonths = myWholesalerPolicyMonths;
 	}
-	public boolean isMyWholesalerCpp() {
+	public String getMyWholesalerCpp() {
 		return myWholesalerCpp;
 	}
-	public void setMyWholesalerCpp(boolean myWholesalerCpp) {
+	public void setMyWholesalerCpp(String myWholesalerCpp) {
 		this.myWholesalerCpp = myWholesalerCpp;
 	}
 	public String getCppServiceRate() {
@@ -317,13 +314,13 @@ public class CompanyMasterBean {
 	public void setCppShippingRate(String cppShippingRate) {
 		this.cppShippingRate = cppShippingRate;
 	}
-	public Integer getCppNoOfChecks() {
+	public String getCppNoOfChecks() {
 		return cppNoOfChecks;
 	}
-	public void setCppNoOfChecks(Integer cppNoOfChecks) {
+	public void setCppNoOfChecks(String cppNoOfChecks) {
 		this.cppNoOfChecks = cppNoOfChecks;
 	}
-
+	
 	
 
 }

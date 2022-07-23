@@ -156,6 +156,17 @@ public class CommonServicesDaoImpl implements CommonServicesDao {
 		return dropDownList;
 	}
 
+	@Override
+	public List<DropDownList> getStateDropdownList() {
+		List<DropDownList> dropDownList = new ArrayList<DropDownList>();
+		try {
+			dropDownList = jdbcTemplate.query(CommonServicesQueryUtil.STATE_MASTER_DROPDOWNLIST, new BeanPropertyRowMapper<DropDownList>(DropDownList.class));	
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return dropDownList;
+	}
+
 	
 
 }
