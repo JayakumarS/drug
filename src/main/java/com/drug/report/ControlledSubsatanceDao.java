@@ -13,6 +13,8 @@ public interface ControlledSubsatanceDao {
 	
 	SearchResultBean getSearchList(SearchBean bean) throws Exception;
 	
+	ReturnableResultBean getReturnSearchList(ReturableSearchBean bean) throws Exception;
+	
 	NonReturableSearchResultBean getNonReturnSearchList(NonReturnableSearchBean bean) throws Exception;
 	
 	ReportSearchResultBean getReportII(ReportSearchBean bean) throws Exception;

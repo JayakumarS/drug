@@ -2,15 +2,14 @@ package com.drug.report;
 
 import java.util.List;
 
-public class ReportSearchResultBean {
-	
+public class ReturnableResultBean {
 	
 private static final long serialVersionUID = 1L;
 	
 	public boolean success;
 
 
-	private List<ReportSearchBean> reportSearchList;
+	private List<ReturableSearchBean> returnableSearchBean;
 
 
 	public boolean isSuccess() {
@@ -23,13 +22,13 @@ private static final long serialVersionUID = 1L;
 	}
 
 
-	public List<ReportSearchBean> get() {
-		return reportSearchList;
+	public List<ReturableSearchBean> getReturnableSearchBean() {
+		return returnableSearchBean;
 	}
 
 
-	public void setReportSearchList(List<ReportSearchBean> reportSearchBean) {
-		this.reportSearchList = reportSearchList;
+	public void setReturnableSearchBean(List<ReturableSearchBean> returnableSearchBean) {
+		this.returnableSearchBean = returnableSearchBean;
 	}
 
 

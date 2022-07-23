@@ -2,28 +2,20 @@ package com.drug.report;
 
 import java.util.List;
 
-/**
- * @author PARAGON
- *
- */
-/**
- * @author PARAGON
- *
- */
-public class NonReturnableSearchBean {
+public class ReturableSearchBean {
 	
 private static final long serialVersionUID = 1L;
 	
 	public boolean Success;
 	
-	private List<NonReturnableSearchBean> nonSearchList;
+	private List<ReturableSearchBean> returnableList;
 
 	
-	public List<NonReturnableSearchBean> getNonSearchList() {
-		return nonSearchList;
+	public List<ReturableSearchBean> getReturnList() {
+		return returnableList;
 	}
-	public void setNonSearchList(List<NonReturnableSearchBean> nonSearchList) {
-		this.nonSearchList = nonSearchList;
+	public void seReturnableList(List<ReturableSearchBean> returnableList) {
+		this.returnableList = returnableList;
 	}
 	
 	
@@ -55,6 +47,12 @@ private static final long serialVersionUID = 1L;
 	}
 	public void setSuccess(boolean success) {
 		Success = success;
+	}
+	public List<ReturableSearchBean> getReturnSearchList() {
+		return returnableList;
+	}
+	public void setReturnableList(List<ReturableSearchBean> returnableList) {
+		this.returnableList = returnableList;
 	}
 	public String getCompany() {
 		return company;
@@ -174,14 +172,4 @@ private static final long serialVersionUID = 1L;
 		return serialVersionUID;
 	}
 
-
-	
-	
-
-	
-	
-
 }
-
-
-

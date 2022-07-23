@@ -18,7 +18,7 @@ public class ControlledSubstanceController {
 	ControlledSubstanceService controlledSubstanceService;
 	
 	
-	//Returnable  //Search
+	//Search
 	
 	@RequestMapping(value="/getSearchList")
 	public SearchResultBean getSearchList(@RequestBody SearchBean bean) {
@@ -32,9 +32,23 @@ public class ControlledSubstanceController {
 		
 	}
 	
+	//Returnable 
+		
+	@RequestMapping(value="/getReturnSearchList")
+	public ReturnableResultBean getReturnSearchList(@RequestBody ReturableSearchBean bean) {
+		ReturnableResultBean objbean = new ReturnableResultBean();
+		try {
+			objbean = controlledSubstanceService.getReturnSearchList(bean);
+		}catch(Exception e){
+			e.printStackTrace();	
+		}
+		return objbean;
+		
+	}
 	
 	
-	//NonReturable 
+	
+	//NonReturnable 
 	
 	@RequestMapping(value="/getNonReturnSearchList")
 	public NonReturableSearchResultBean getNonReturnSearchList(@RequestBody NonReturnableSearchBean bean) {

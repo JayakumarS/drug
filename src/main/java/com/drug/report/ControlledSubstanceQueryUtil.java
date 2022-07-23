@@ -35,10 +35,19 @@ public class ControlledSubstanceQueryUtil {
 	
 	//search
 	
-	public static final String getReturnSearchList(String company,String returnno,String fromdt,String todt) {
+	public static final String getSearchList(String company,String returnno,String fromdt,String todt) {
 		String query = "select * from vw_get_returnable_products('"+company+"','"+returnno+"','"+fromdt+"','"+todt+"')";
 		return query;
 	}
+	
+	
+	//Returnable
+	
+		public static final String getReturnSearchList(String company,String returnno,String fromdt,String todt) {
+			String query = "select * from vw_get_returnable_products('"+company+"','"+returnno+"','"+fromdt+"','"+todt+"')";
+			return query;
+		}
+		
 	
 	//nonReturnable
 	

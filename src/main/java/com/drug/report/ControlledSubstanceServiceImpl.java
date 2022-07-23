@@ -28,6 +28,12 @@ public class ControlledSubstanceServiceImpl implements ControlledSubstanceServic
 	
 	
 	@Override
+	public ReturnableResultBean getReturnSearchList(ReturableSearchBean bean) throws Exception {
+		return controlledSubsatanceDao.getReturnSearchList(bean);
+	}
+	
+	
+	@Override
 	public NonReturableSearchResultBean getNonReturnSearchList(NonReturnableSearchBean bean) throws Exception {
 		return controlledSubsatanceDao.getNonReturnSearchList(bean);
 	}
