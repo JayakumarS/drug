@@ -2,9 +2,12 @@ package com.drug.report;
 
 import java.util.List;
 
+import javax.xml.crypto.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.drug.core.util.DropDownList;
 import com.drug.druginfoMaster.DruginfoMasterBean;
 import com.drug.druginfoMaster.DruginfoMasterResultBean;
 
@@ -62,7 +65,14 @@ public class ControlledSubstanceServiceImpl implements ControlledSubstanceServic
 		return controlledSubsatanceDao.getPackingSlip(bean);
 	}
 	
-
+//
+//	@Override
+//	public ManufacturerResultBean getManufacturerAddress(ManufacturerBean bean) throws Exception {
+//		return controlledSubsatanceDao.getManufacturerAddress(bean);
+//	}
 	
-	
+	@Override
+	public List<ManufacturerBean> getManufacturerAddress(String manufacturercode) {
+		return controlledSubsatanceDao.getManufacturerAddress(manufacturercode);
+	}
 }

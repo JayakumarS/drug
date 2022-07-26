@@ -2,6 +2,9 @@ package com.drug.report;
 
 import java.util.List;
 
+import javax.xml.crypto.Data;
+
+import com.drug.core.util.DropDownList;
 import com.drug.druginfoMaster.DruginfoMasterBean;
 import com.drug.druginfoMaster.DruginfoMasterResultBean;
 
@@ -22,6 +25,10 @@ public interface ControlledSubstanceService {
 	ReportSearchResultBean getInventory(ReportSearchBean bean) throws Exception;
 	
 	ReportSearchResultBean getPackingSlip(ReportSearchBean bean) throws Exception;
+	
+//	ManufacturerResultBean getManufacturerAddress(ManufacturerBean bean) throws Exception;
+
+	List<ManufacturerBean> getManufacturerAddress(String manufacturercode);
 
 
 

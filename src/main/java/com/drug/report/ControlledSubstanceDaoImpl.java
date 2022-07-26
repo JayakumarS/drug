@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.xml.crypto.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.drug.common.services.CommonServicesQueryUtil;
 import com.drug.core.util.DropDownList;
 import com.drug.druginfoMaster.DruginfoMasterBean;
 import com.drug.druginfoMaster.DruginfoMasterQueryUtil;
@@ -24,7 +27,7 @@ public class ControlledSubstanceDaoImpl implements ControlledSubsatanceDao{
 	JdbcTemplate jdbcTemplate;
 	
 	
-   //Returnable    //Search
+     //Search
 	
 	@Override
 	public SearchResultBean getSearchList(SearchBean bean) throws Exception {
@@ -289,4 +292,59 @@ resultBean.setReportSearchList(reportSearchBean);
 					return resultBean;
 				}
 
+				
+				
+      //ManufacturerAddress 
+		
+				
+//				@Override
+//				public ManufacturerResultBean getManufacturerAddress(ManufacturerBean bean) throws Exception {
+//					
+//					ManufacturerResultBean resultBean = new ManufacturerResultBean();
+//			 		try {
+//			 			
+//			 			
+////			 			if(bean.getStartDate()!=""&&bean.getEndDate()!="") {
+////			 		String[] startdt = bean.getStartDate().split("T");
+////			 		String startdate = startdt[0];
+////			 		String[] enddt = bean.getEndDate().split("T");
+////			 		String enddate = enddt[0];
+////			 		
+////			 		
+////			 		SimpleDateFormat fromdatt = new SimpleDateFormat("yyyy-mm-dd");
+////			 		SimpleDateFormat fromdt = new SimpleDateFormat("dd/mm/yyyy");
+////						String startdate1 = fromdt.format(fromdatt.parse(startdate));
+////						String enddate1 = fromdt.format(fromdatt.parse(enddate));
+////						bean.setStartDate((startdate1).toString());
+////						bean.setEndDate((enddate1).toString());
+////			 			}
+//
+//			List<ManufacturerBean> manufacturerBean = jdbcTemplate.query(ControlledSubstanceQueryUtil.getManufacturerAddress(bean.getManufacturercode()), new BeanPropertyRowMapper<ManufacturerBean>(
+//					ManufacturerBean.class));
+//			resultBean.setManufacturerAddressList(manufacturerBean);
+//					    resultBean.setSuccess(true);
+//					  //  System.out.print(result);
+//					}catch(Exception e) {
+//						e.printStackTrace();
+//						resultBean.setSuccess(false);
+//					}
+//					
+//					return resultBean;
+//				}
+				
+		
+				@Override
+				public List<ManufacturerBean> getManufacturerAddress(String manufacturercode) {
+					List<ManufacturerBean> manufacturerBean = new ArrayList<ManufacturerBean>();
+					try {
+						 manufacturerBean= jdbcTemplate.query(ControlledSubstanceQueryUtil.getManufacturerAddress(manufacturercode), new BeanPropertyRowMapper<ManufacturerBean>(
+								ManufacturerBean.class));	
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+					return manufacturerBean;
+				}
+				
+				
+				
 }

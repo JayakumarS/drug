@@ -58,5 +58,12 @@ public class ControlledSubstanceQueryUtil {
 	
 	
 	
+	//ManufacturerAddress
+	
+		public static final String getManufacturerAddress(String manufacturercode) {
+			String query = "select * from vw_get_manufacturer_address('"+manufacturercode+"')";
 
+			return query;
+		}
+		
 }

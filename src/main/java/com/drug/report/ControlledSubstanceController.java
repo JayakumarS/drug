@@ -1,10 +1,16 @@
 package com.drug.report;
 
+import java.util.List;
+
+import javax.xml.crypto.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.drug.core.util.DropDownList;
 import com.drug.druginfoMaster.DruginfoMasterBean;
 import com.drug.druginfoMaster.DruginfoMasterResultBean;
 
@@ -124,9 +130,24 @@ public class ControlledSubstanceController {
 	}
 	
 	
-
+	//ManufacturerAddress
+	
+//	@RequestMapping(value="/getManufacturerAddress")
+//	public ManufacturerResultBean getManufacturerAddress(@RequestBody ManufacturerBean bean) {
+//		ManufacturerResultBean objbean = new ManufacturerResultBean();
+//		try {
+//			objbean = controlledSubstanceService.getManufacturerAddress(bean);
+//		}catch(Exception e){
+//			e.printStackTrace();	
+//		}
+//		return objbean;
+//		
+//	}
 	
 
-	
+	@RequestMapping(value= "/getManufacturerAddress")
+	public List<ManufacturerBean> getManufacturerAddress(@RequestParam("manufacturercode") String manufacturercode){
+			return controlledSubstanceService.getManufacturerAddress(manufacturercode);	
+	}
 
 }
