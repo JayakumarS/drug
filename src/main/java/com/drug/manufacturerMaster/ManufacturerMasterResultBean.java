@@ -11,6 +11,7 @@ private static final long serialVersionUID = 1L;
 	
 public boolean success;
 private ManufacturerMasterBean manufacturerMasterBean;
+private ManufactureReturnPolicyBean manufactureReturnPolicyBean;
 private List<ManufacturerMasterBean> listmanufacturerMasterBean;
 public String message;
 
@@ -40,6 +41,12 @@ public void setListmanufacturerMasterBean(List<ManufacturerMasterBean> listmanuf
 }
 public static long getSerialversionuid() {
 	return serialVersionUID;
+}
+public ManufactureReturnPolicyBean getManufactureReturnPolicyBean() {
+	return manufactureReturnPolicyBean;
+}
+public void setManufactureReturnPolicyBean(ManufactureReturnPolicyBean manufactureReturnPolicyBean) {
+	this.manufactureReturnPolicyBean = manufactureReturnPolicyBean;
 }
 	
 	

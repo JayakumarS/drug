@@ -17,7 +17,19 @@ public class ManufacturerMasterServiceImpl implements ManufacturerMasterService 
 	public ManufacturerMasterResultBean save(ManufacturerMasterBean bean) throws Exception {
 		return manufacturerMasterDao.save(bean);
 	}
+	
+	@Override
+	public ManufacturerMasterResultBean saveManufactureReturnPolicy(ManufactureReturnPolicyBean bean) throws Exception {
+		return manufacturerMasterDao.saveManufactureReturnPolicy(bean);
 
+	}
+	
+	@Override
+	public ManufacturerMasterResultBean editManufactureReturnPolicy(String bean) throws Exception {
+		return manufacturerMasterDao.editManufactureReturnPolicy(bean);
+	}
+	
+	
 	@Override
 	public List<ManufacturerMasterBean> getList() throws Exception {
 		return manufacturerMasterDao.getList();
@@ -37,5 +49,9 @@ public class ManufacturerMasterServiceImpl implements ManufacturerMasterService 
 	public ManufacturerMasterResultBean update(ManufacturerMasterBean bean) throws Exception {
 		return manufacturerMasterDao.update(bean);
 	}
+
+
+
+	
 
 }

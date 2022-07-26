@@ -16,6 +16,10 @@ public interface DruginfoMasterDao {
 	
 	DruginfoMasterResultBean update(DruginfoMasterBean bean) throws Exception;
 
-	DruginfoMasterResultBean getManufacturerList();;
+	DruginfoMasterResultBean getManufacturerList();
+
+	DruginfoMasterResultBean saveDruginfoReturnPolicy(DruginfoReturnPolicyBean bean) throws Exception;
+
+	DruginfoMasterResultBean editDruginfoReturnPolicy(String bean);;
 
 }

@@ -9,4 +9,9 @@ public class DruginfoMasterQueryUtil {
 	public static final String UPDATE_DRUGINFO_MASTER = "SELECT sp_update_drugs(?, ?, ?, ?, ?, ?::integer, ?, ?::integer, ?::boolean, ?, ?, ?::boolean, ?::numeric, ?::numeric, ?::numeric, ?)";
 	public static final String GET_MANUFACTURER_LIST = "select manufacturer_code as id, manufacturer_name as text from manufacturer";
 
+	public static final String INSERT_DRUG_RETURNPOLICY= "SELECT sp_add_drugs_returnpolicy(?, ?, ?, ?, ?, ?,?)";
+	public static final String UPDATE_DRUG_RETURNPOLICY= "SELECT sp_update_drugs_returnpolicy(?, ?, ?, ?, ?, ?,?)";
+	public static final String CHECKISEXIST_DRUG_RETURNPOLICY="SELECT count(*) FROM public.drugs_return_policy where ndcupc_code=?";
+
+	public static final String GETDRUG_RETURNPOLICY= "SELECT ndcupc_code as ndcupcCode, months_before_expiration as noMonthsBeforeExpiration, months_after_expiration as noMonthsAfterExpiration, accept_returns as acceptReturns, accept_partial as acceptPartialReturns, accept_percentage as acceptpercentage, check_package_originality as checkPackageOriginality FROM public.drugs_return_policy where ndcupc_code=?";
 }

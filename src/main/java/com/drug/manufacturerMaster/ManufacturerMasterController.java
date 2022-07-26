@@ -32,6 +32,31 @@ public class ManufacturerMasterController {
 		
 	}
 	
+	@RequestMapping(value="/saveManufactureReturnPolicy")
+	public ManufacturerMasterResultBean saveManufactureReturnPolicy(@RequestBody ManufactureReturnPolicyBean bean) {
+		ManufacturerMasterResultBean resultBean = new ManufacturerMasterResultBean();
+		try {
+			resultBean = manufacturerMasterService.saveManufactureReturnPolicy(bean);
+			resultBean.setSuccess(true);
+		}catch(Exception e){
+			resultBean.setSuccess(false);
+			e.printStackTrace();	
+		}
+		return resultBean;
+		
+	}
+	
+	@RequestMapping(value = "/editManufactureReturnPolicy")
+	public ManufacturerMasterResultBean editManufactureReturnPolicy(@RequestParam("manufacturerId") String manufacturerId) throws Exception {
+		ManufacturerMasterResultBean objResultBean = new ManufacturerMasterResultBean();
+		try {
+			objResultBean = manufacturerMasterService.editManufactureReturnPolicy(manufacturerId);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return objResultBean;
+	}
 	
 	@RequestMapping(value = "/getList")
    	public ManufacturerMasterResultBean getList() throws Exception {

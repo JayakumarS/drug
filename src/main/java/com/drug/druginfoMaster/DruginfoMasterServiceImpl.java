@@ -43,4 +43,14 @@ public class DruginfoMasterServiceImpl implements DruginfoMasterService {
 		return drugInfoMasterDao.getManufacturerList();
 	}
 
+	@Override
+	public DruginfoMasterResultBean saveDruginfoReturnPolicy(DruginfoReturnPolicyBean bean) throws Exception {
+		return drugInfoMasterDao.saveDruginfoReturnPolicy(bean);
+	}
+
+	@Override
+	public DruginfoMasterResultBean editDruginfoReturnPolicy(String bean) {
+		return drugInfoMasterDao.editDruginfoReturnPolicy(bean);
+	}
+
 }

@@ -9,6 +9,10 @@ public interface ManufacturerMasterService {
 	
 	ManufacturerMasterResultBean save(ManufacturerMasterBean bean) throws Exception;
 
+	ManufacturerMasterResultBean saveManufactureReturnPolicy(ManufactureReturnPolicyBean bean) throws Exception;
+
+	ManufacturerMasterResultBean editManufactureReturnPolicy(String manufacturerId) throws Exception;
+
 	public List<ManufacturerMasterBean> getList() throws Exception;
 
 	ManufacturerMasterResultBean edit(String code) throws Exception;
@@ -16,5 +20,7 @@ public interface ManufacturerMasterService {
 	ManufacturerMasterResultBean delete(String code) throws Exception;
 
 	ManufacturerMasterResultBean update(ManufacturerMasterBean bean) throws Exception;
+
+
 
 }

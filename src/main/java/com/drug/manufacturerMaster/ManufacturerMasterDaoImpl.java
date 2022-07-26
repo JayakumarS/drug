@@ -63,6 +63,65 @@ public class ManufacturerMasterDaoImpl implements ManufacturerMasterDao {
 		return resultBean;
 	}
 
+	
+	@Override
+	public ManufacturerMasterResultBean saveManufactureReturnPolicy(ManufactureReturnPolicyBean bean) throws Exception {
+		ManufacturerMasterResultBean resultBean = new ManufacturerMasterResultBean();
+		String result="";
+ 		try {
+ 			int isexit=jdbcTemplate.queryForObject(ManufacturerMasterQueryUtil.CHECKISEXIST_MANUFACTURE_RETURNPOLICY, new Object[]{ bean.getManufacturerCode() }, int.class);
+			if(isexit>0) {
+ 			result= jdbcTemplate.queryForObject(ManufacturerMasterQueryUtil.UPDATE_MANUFACTURE_RETURNPOLICY, new Object[]{
+ 					bean.getManufacturerCode(),
+ 					bean.getNoMonthsBeforeExpiration(),
+ 					bean.getNoMonthsAfterExpiration(),
+ 					bean.getAcceptReturns(),
+ 					bean.getAcceptPartialReturns(),
+ 					bean.getAcceptpercentage(),
+ 					bean.getCheckPackageOriginality()
+ 					}, String.class);
+			}else {
+				 result= jdbcTemplate.queryForObject(ManufacturerMasterQueryUtil.INSERT_MANUFACTURE_RETURNPOLICY, new Object[]{
+		 					bean.getManufacturerCode(),
+		 					bean.getNoMonthsBeforeExpiration(),
+		 					bean.getNoMonthsAfterExpiration(),
+		 					bean.getAcceptReturns(),
+		 					bean.getAcceptPartialReturns(),
+		 					bean.getAcceptpercentage(),
+		 					bean.getCheckPackageOriginality()
+		 					}, String.class);
+			}
+		    resultBean.setSuccess(true);
+		    System.out.print(result);
+		}
+ 		catch (Exception e) {
+			LOGGER.error("Error in addManufacturer", e);
+			resultBean.setSuccess(false);
+			resultBean.setMessage(ErrorMessage.ERROR_ADD);
+		}
+		return resultBean;
+	}
+	
+	
+
+	@Override
+	public ManufacturerMasterResultBean editManufactureReturnPolicy(String bean) {
+		ManufacturerMasterResultBean resultBean = new ManufacturerMasterResultBean();
+		resultBean.setSuccess(false);
+		try {
+			int isexit=jdbcTemplate.queryForObject(ManufacturerMasterQueryUtil.CHECKISEXIST_MANUFACTURE_RETURNPOLICY, new Object[]{ bean }, int.class);
+			if(isexit>0) {
+			resultBean.setManufactureReturnPolicyBean(jdbcTemplate.queryForObject(ManufacturerMasterQueryUtil.GETMANUFACTURE_RETURNPOLICY,new Object[] { bean }, new BeanPropertyRowMapper<ManufactureReturnPolicyBean>(ManufactureReturnPolicyBean.class)));
+			}
+			resultBean.setSuccess(true);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			resultBean.setSuccess(false);
+		}
+		return resultBean;
+	}
+	
 	@Override
 	public List<ManufacturerMasterBean> getList() throws Exception {
 		List<ManufacturerMasterBean> objmanufacturerMasterBean = new ArrayList<ManufacturerMasterBean>();
@@ -137,6 +196,8 @@ public class ManufacturerMasterDaoImpl implements ManufacturerMasterDao {
 		}
 		return resultBean;
 	}
+
+
 
 	
 

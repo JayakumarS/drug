@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.drug.core.util.DropDownList;
 import com.drug.filesupload.FileUploadQueryUtil;
 import com.drug.filesupload.FileUploadResultBean;
+import com.drug.manufacturerMaster.ManufacturerMasterQueryUtil;
 import com.drug.setup.users.UsersMasterBean;
 
 @Service
@@ -148,6 +149,62 @@ public class DruginfoMasterDaoImpl implements DruginfoMasterDao {
 			druginfoMasterResultBean.setSuccess(false);
 		}
 		return druginfoMasterResultBean;
+	}
+
+	@Override
+	public DruginfoMasterResultBean saveDruginfoReturnPolicy(DruginfoReturnPolicyBean bean)throws Exception {
+		DruginfoMasterResultBean resultBean = new DruginfoMasterResultBean();
+		String result="";
+ 		try {
+ 			int isexit=jdbcTemplate.queryForObject(DruginfoMasterQueryUtil.CHECKISEXIST_DRUG_RETURNPOLICY, new Object[]{ bean.getNdcupcCode() }, int.class);
+			if(isexit>0) {
+ 			result= jdbcTemplate.queryForObject(DruginfoMasterQueryUtil.UPDATE_DRUG_RETURNPOLICY, new Object[]{
+ 					bean.getNdcupcCode(),
+ 					bean.getNoMonthsBeforeExpiration(),
+ 					bean.getNoMonthsAfterExpiration(),
+ 					bean.getAcceptReturns(),
+ 					bean.getAcceptPartialReturns(),
+ 					bean.getAcceptpercentage(),
+ 					bean.getCheckPackageOriginality()
+ 					}, String.class);
+			}else {
+				 result= jdbcTemplate.queryForObject(DruginfoMasterQueryUtil.INSERT_DRUG_RETURNPOLICY, new Object[]{
+		 					bean.getNdcupcCode(),
+		 					bean.getNoMonthsBeforeExpiration(),
+		 					bean.getNoMonthsAfterExpiration(),
+		 					bean.getAcceptReturns(),
+		 					bean.getAcceptPartialReturns(),
+		 					bean.getAcceptpercentage(),
+		 					bean.getCheckPackageOriginality()
+		 					}, String.class);
+			}
+			
+		    resultBean.setSuccess(true);
+		    System.out.print(result);
+		}catch(Exception e) {
+			e.printStackTrace();
+			resultBean.setSuccess(false);
+		}
+		
+		return resultBean;
+	}
+
+	@Override
+	public DruginfoMasterResultBean editDruginfoReturnPolicy(String bean) {
+		DruginfoMasterResultBean resultBean = new DruginfoMasterResultBean();
+		resultBean.setSuccess(false);
+		try {
+			int isexit=jdbcTemplate.queryForObject(DruginfoMasterQueryUtil.CHECKISEXIST_DRUG_RETURNPOLICY, new Object[]{ bean }, int.class);
+			if(isexit>0) {
+			 resultBean.setDruginfoReturnPolicyBean(jdbcTemplate.queryForObject(DruginfoMasterQueryUtil.GETDRUG_RETURNPOLICY,new Object[] { bean }, new BeanPropertyRowMapper<DruginfoReturnPolicyBean>(DruginfoReturnPolicyBean.class)));
+			}
+			resultBean.setSuccess(true);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			resultBean.setSuccess(false);
+		}
+		return resultBean;
 	}
 
 

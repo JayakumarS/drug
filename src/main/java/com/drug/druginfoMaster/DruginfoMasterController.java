@@ -30,7 +30,6 @@ public class DruginfoMasterController {
 		
 	}
 	
-	
 	@RequestMapping(value = "/getList")
    	public DruginfoMasterResultBean getList() throws Exception {
 		DruginfoMasterResultBean objResultBean = new DruginfoMasterResultBean();
@@ -81,4 +80,27 @@ public class DruginfoMasterController {
    		return drugInfoMasterService.getManufacturerList();
    	}
 	
+	@RequestMapping(value="/saveDruginfoReturnPolicy")
+	public DruginfoMasterResultBean saveDruginfoReturnPolicy(@RequestBody DruginfoReturnPolicyBean bean) {
+		DruginfoMasterResultBean objbean = new DruginfoMasterResultBean();
+		try {
+			objbean = drugInfoMasterService.saveDruginfoReturnPolicy(bean);
+		}catch(Exception e){
+			e.printStackTrace();	
+		}
+		return objbean;
+		
+	}
+	
+	@RequestMapping(value = "/editDruginfoReturnPolicy")
+	public DruginfoMasterResultBean editDruginfoReturnPolicy(@RequestParam("drugInfoId") String drugInfoId) throws Exception {
+		DruginfoMasterResultBean objResultBean = new DruginfoMasterResultBean();
+		try {
+			objResultBean = drugInfoMasterService.editDruginfoReturnPolicy(drugInfoId);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return objResultBean;
+	}
 }

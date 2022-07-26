@@ -11,6 +11,7 @@ private static final long serialVersionUID = 1L;
 	
 public boolean success;
 private DruginfoMasterBean DrugInfoMasterBean;
+private DruginfoReturnPolicyBean druginfoReturnPolicyBean;
 private List<DruginfoMasterBean> listDrugInfoMasterBean;
 private List<DropDownList> manufacturerList;
 
@@ -40,6 +41,12 @@ public List<DropDownList> getManufacturerList() {
 }
 public void setManufacturerList(List<DropDownList> manufacturerList) {
 	this.manufacturerList = manufacturerList;
+}
+public DruginfoReturnPolicyBean getDruginfoReturnPolicyBean() {
+	return druginfoReturnPolicyBean;
+}
+public void setDruginfoReturnPolicyBean(DruginfoReturnPolicyBean druginfoReturnPolicyBean) {
+	this.druginfoReturnPolicyBean = druginfoReturnPolicyBean;
 }
 
 

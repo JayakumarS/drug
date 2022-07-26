@@ -19,4 +19,8 @@ public interface DruginfoMasterService {
 
 	DruginfoMasterResultBean getManufacturerList();
 
+	DruginfoMasterResultBean saveDruginfoReturnPolicy(DruginfoReturnPolicyBean bean) throws Exception;
+
+	DruginfoMasterResultBean editDruginfoReturnPolicy(String drugInfoId);
+
 }
