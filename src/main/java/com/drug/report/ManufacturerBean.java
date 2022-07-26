@@ -14,7 +14,7 @@ private static final long serialVersionUID = 1L;
 	private String department;
 	private String street; 
 	private String city;
-	private String state;
+	private String state;	
 	private String zipcode;
 	
 	
