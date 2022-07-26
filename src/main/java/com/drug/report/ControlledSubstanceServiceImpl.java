@@ -65,14 +65,14 @@ public class ControlledSubstanceServiceImpl implements ControlledSubstanceServic
 		return controlledSubsatanceDao.getPackingSlip(bean);
 	}
 	
-//
-//	@Override
-//	public ManufacturerResultBean getManufacturerAddress(ManufacturerBean bean) throws Exception {
-//		return controlledSubsatanceDao.getManufacturerAddress(bean);
-//	}
 	
 	@Override
 	public List<ManufacturerBean> getManufacturerAddress(String manufacturercode) {
 		return controlledSubsatanceDao.getManufacturerAddress(manufacturercode);
+	}
+	
+	@Override
+	public List<CompanyBean> getCompanyAddress(String companyId) {
+		return controlledSubsatanceDao.getCompanyAddress(companyId);
 	}
 }

@@ -132,22 +132,19 @@ public class ControlledSubstanceController {
 	
 	//ManufacturerAddress
 	
-//	@RequestMapping(value="/getManufacturerAddress")
-//	public ManufacturerResultBean getManufacturerAddress(@RequestBody ManufacturerBean bean) {
-//		ManufacturerResultBean objbean = new ManufacturerResultBean();
-//		try {
-//			objbean = controlledSubstanceService.getManufacturerAddress(bean);
-//		}catch(Exception e){
-//			e.printStackTrace();	
-//		}
-//		return objbean;
-//		
-//	}
-	
-
 	@RequestMapping(value= "/getManufacturerAddress")
 	public List<ManufacturerBean> getManufacturerAddress(@RequestParam("manufacturercode") String manufacturercode){
 			return controlledSubstanceService.getManufacturerAddress(manufacturercode);	
 	}
+	
+	
+	//
+	
+	
+	@RequestMapping(value= "/getCompanyAddress")
+	public List<CompanyBean> getCompanyAddress(@RequestParam("companyId") String companyId){
+			return controlledSubstanceService.getCompanyAddress(companyId);	
+	}
+	
 
 }

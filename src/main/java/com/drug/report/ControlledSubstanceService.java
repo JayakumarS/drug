@@ -26,9 +26,9 @@ public interface ControlledSubstanceService {
 	
 	ReportSearchResultBean getPackingSlip(ReportSearchBean bean) throws Exception;
 	
-//	ManufacturerResultBean getManufacturerAddress(ManufacturerBean bean) throws Exception;
-
 	List<ManufacturerBean> getManufacturerAddress(String manufacturercode);
+
+	List<CompanyBean> getCompanyAddress(String companyId);
 
 
 
