@@ -114,7 +114,9 @@ public class AuthController {
 		}
 		
 		return ResponseEntity.ok(
-				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles,isSuccess,message,defaultRoleId,defaultRole,usersMasterBean.getCompanyCode(),usersMasterBean.getImgUrl()));
+				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(),
+						roles,isSuccess,message,defaultRoleId,defaultRole,usersMasterBean.getCompanyCode(),
+						usersMasterBean.getImgUrl(),usersMasterBean.getFirstNameLastName()));
 	}
 
 	@ApiOperation(value = "Get user info by token")

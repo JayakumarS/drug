@@ -20,6 +20,8 @@ public class UsersMasterBean {
 	private String userName;
 
 	private String imgUrl;
+	
+	private String firstNameLastName;
 	// Change Password pop up beans
 
 	
@@ -172,6 +174,12 @@ public class UsersMasterBean {
 	}
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
+	}
+	public String getFirstNameLastName() {
+		return firstNameLastName;
+	}
+	public void setFirstNameLastName(String firstNameLastName) {
+		this.firstNameLastName = firstNameLastName;
 	}
 	
 	

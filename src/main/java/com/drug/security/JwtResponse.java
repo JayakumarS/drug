@@ -19,6 +19,8 @@ public class JwtResponse {
 	private String companyCode;
 	private String imgUrl;
 	
+	private String firstNameLastName;
+	
 	
 	public boolean isSuccess() {
 		return success;
@@ -36,7 +38,7 @@ public class JwtResponse {
 		this.message = message;
 	}
 
-	public JwtResponse(String accessToken, Long id, String username, String email, List<RolesMasterBean> roles,boolean success,String message,Integer defaultRoleId,String defaultRole,String companyCode,String imgUrl) {
+	public JwtResponse(String accessToken, Long id, String username, String email, List<RolesMasterBean> roles,boolean success,String message,Integer defaultRoleId,String defaultRole,String companyCode,String imgUrl,String firstNameLastName) {
 		this.token = accessToken;
 		this.id = id;
 		this.username = username;
@@ -48,6 +50,7 @@ public class JwtResponse {
 		this.defaultRole = defaultRole;
 		this.companyCode = companyCode;
 		this.imgUrl = imgUrl;
+		this.firstNameLastName = firstNameLastName;
 	}
 
 	public String getAccessToken() {
@@ -124,5 +127,13 @@ public class JwtResponse {
 
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
+	}
+
+	public String getFirstNameLastName() {
+		return firstNameLastName;
+	}
+
+	public void setFirstNameLastName(String firstNameLastName) {
+		this.firstNameLastName = firstNameLastName;
 	}
 }
