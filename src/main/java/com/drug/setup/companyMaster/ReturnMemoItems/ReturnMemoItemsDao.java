@@ -23,4 +23,6 @@ public interface ReturnMemoItemsDao {
 
 	ResultResponse fetchreturnMemoNamebyId(String bean);
 
+	ResultResponse checkDrugIsReturnable(ReturnMemoItemsBean bean);
+
 }

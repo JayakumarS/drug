@@ -16,6 +16,7 @@ public class ReturnMemoItemsBean {
 	private String price;
 	private String createdBy;
 	private String pakageOrUnit;
+	private String repackagedProduct;
 	
 	
 	public String getNdcupcCode() {
@@ -89,6 +90,12 @@ public class ReturnMemoItemsBean {
 	}
 	public void setReturnMemoItemsCode(String returnMemoItemsCode) {
 		this.returnMemoItemsCode = returnMemoItemsCode;
+	}
+	public String getRepackagedProduct() {
+		return repackagedProduct;
+	}
+	public void setRepackagedProduct(String repackagedProduct) {
+		this.repackagedProduct = repackagedProduct;
 	}
 	
 	

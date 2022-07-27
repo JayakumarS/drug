@@ -165,4 +165,24 @@ public class ReturnMemoItemsDaoImpl implements ReturnMemoItemsDao {
 		}
 		return resultBean;
 	}
+
+	@Override
+	public ResultResponse checkDrugIsReturnable(ReturnMemoItemsBean bean) {
+		ResultResponse resultBean = new ResultResponse();
+		String result="";
+		try {
+			
+			String expirationdtstr = jdbcTemplate.queryForObject(ReturnMemoItemsQueryUtil.CHANGE_DATEFORMAT, new Object[]{
+					bean.getExpDate()}, String.class);	
+			
+			result = jdbcTemplate.queryForObject(ReturnMemoItemsQueryUtil.ISRETURNABLE, new Object[]{
+					bean.getNdcupcCode(),
+					Boolean.parseBoolean(bean.getRepackagedProduct()),
+					expirationdtstr}, String.class);	
+			resultBean.setText(result);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return resultBean;
+	}
 }

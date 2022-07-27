@@ -23,7 +23,9 @@ public interface ReturnMemoItemsService {
 
 	List<DropDownList> getDebitMemoDropdownList();
 
-	ResultResponse fetchreturnMemoNamebyId(String returnMemoNo) throws Exception;;
+	ResultResponse fetchreturnMemoNamebyId(String returnMemoNo) throws Exception;
+
+	ResultResponse checkDrugIsReturnable(ReturnMemoItemsBean bean);;
 
 
 }

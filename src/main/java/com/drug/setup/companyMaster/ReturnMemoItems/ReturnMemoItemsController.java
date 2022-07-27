@@ -95,5 +95,8 @@ public class ReturnMemoItemsController {
 			return returnMemoItemsService.fetchreturnMemoNamebyId(returnMemoNo);	
 	}
 	
-	
+	@RequestMapping(value="/checkDrugIsReturnable")
+	public ResultResponse checkDrugIsReturnable(@RequestBody ReturnMemoItemsBean bean) throws Exception{
+			return returnMemoItemsService.checkDrugIsReturnable(bean);	
+	}
 }

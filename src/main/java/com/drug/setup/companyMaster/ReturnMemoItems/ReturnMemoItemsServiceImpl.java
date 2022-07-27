@@ -54,8 +54,12 @@ public class ReturnMemoItemsServiceImpl implements ReturnMemoItemsService {
 
 	@Override
 	public ResultResponse fetchreturnMemoNamebyId(String bean) throws Exception{
-		// TODO Auto-generated method stub
 		return returnMemoItemsDao.fetchreturnMemoNamebyId(bean);
+	}
+
+	@Override
+	public ResultResponse checkDrugIsReturnable(ReturnMemoItemsBean bean) {
+		return returnMemoItemsDao.checkDrugIsReturnable(bean);
 	}
 
 	
