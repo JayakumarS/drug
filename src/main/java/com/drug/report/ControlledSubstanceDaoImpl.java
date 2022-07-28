@@ -1,5 +1,8 @@
 package com.drug.report;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +22,16 @@ import com.drug.druginfoMaster.DruginfoMasterQueryUtil;
 import com.drug.druginfoMaster.DruginfoMasterResultBean;
 import com.drug.setup.users.UsersMasterQueryUtil;
 import com.drug.setup.users.UsersMasterResultBean;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 @Repository
 public class ControlledSubstanceDaoImpl implements ControlledSubsatanceDao{
@@ -26,6 +39,8 @@ public class ControlledSubstanceDaoImpl implements ControlledSubsatanceDao{
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
+	@Autowired
+	ControlledSubstanceService controlledSubstanceService;
 	
      //Search
 	
@@ -253,6 +268,56 @@ resultBean.setReportSearchList(reportSearchBean);
 		}
 		
 		
+//		@PostMapping(value = "/getAntiRaggingPDF")
+//		public ResponseEntity<?>  studentsListExportPDfClar(@RequestBody AntiRaggingSearchCriteria antiRaggingCriteria, HttpServletResponse response) {
+//			//BasicResultBean basicResultBean=new BasicResultBean();
+//			//List<HashMap<String, Object>> list;
+//			//String fileName = "AntiRaggingList";
+//			try {		
+//				List<AntiRagging> list =antiRaggingService.GetAntiRaggingListExportPdf(antiRaggingCriteria);
+//				String heading="Anti Ragging Report";
+//					
+//				if (antiRaggingCriteria.getPeriod() != null && antiRaggingCriteria.getPeriod().trim() != ""
+//						&& !antiRaggingCriteria.getPeriod().equalsIgnoreCase("undefined")
+//						&& !antiRaggingCriteria.getPeriod().equalsIgnoreCase("")) {
+//					if(antiRaggingCriteria.getPeriod().equals("By 30th Apr"))
+//						heading+="-April ";				
+//					else
+//						heading+=" -October ";
+//				}	
+//				if (antiRaggingCriteria.getYear()>0) {
+//					heading+=antiRaggingCriteria.getYear(); 
+//				}
+//				else
+//				{
+//					Calendar cal = Calendar.getInstance();
+//					heading+=cal.get(Calendar.YEAR);
+//				}
+//				 ByteArrayInputStream bis = antiRaggingReport(list,heading);
+//
+//				 HttpHeaders headers = new HttpHeaders();
+//			        headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");
+//
+//			        return ResponseEntity
+//			                .ok()
+//			                .headers(headers)
+//			                //.contentType(MediaType.APPLICATION_BINARY)
+//			                .body(new InputStreamResource(bis));
+//				//String generatedFileName = documentGenerator.reportDocumentGenerator(list, fileName, docPath);
+//			//	generatedFileName = documentGenerator.convertExcelltoPdf(generatedFileName, docPath);
+////				documentGenerator.downloadReports(response, generatedFileName, fileName + Constants.pdf, docPath);
+//				//basicResultBean.setMessage(generatedFileName);
+////				Resource file = antiRaggingService.load(docPath+generatedFileName);
+////			    return ResponseEntity.ok()
+////			        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+//			} catch (Exception e) {
+//				log.error(e.getMessage());
+//				e.printStackTrace();
+//				return new ResponseEntity<String>(Responses.FAILED + e.getMessage(), HttpStatus.EXPECTATION_FAILED);
+//				
+//			}
+//		}
+		
 		
 		//PackingSlip
 		
@@ -322,4 +387,5 @@ resultBean.setReportSearchList(reportSearchBean);
 
 				
 				
+			
 }

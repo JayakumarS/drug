@@ -46,5 +46,15 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/PARAGON/.m2/repository/com/itextpdf/html2pdf/2.1.3/html2pdf-2.1.3.jar" sourcepath="C:/Users/PARAGON/.m2/repository/com/itextpdf/html2pdf/2.1.3/html2pdf-2.1.3-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.archivename" value="html2pdf-2.1.3.jar"/>
+			<attribute name="maven.groupId" value="com.itextpdf"/>
+			<attribute name="maven.artifactId" value="html2pdf"/>
+			<attribute name="maven.version" value="2.1.3"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

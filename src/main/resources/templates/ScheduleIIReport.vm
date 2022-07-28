@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="ISO-8859-1">
+   	<meta http-equiv="Content-Language" content="hi">
+<head>
+<style>
+body
+{
+font-family: Arial;
+font-size: 15px;
+} 
+
+@page { 
+ 	@top-center {content: element(header)} ;   
+     @bottom-right {content: counter(page)} ;
+	
+     
+}
+.printReceiptData
+{
+width:98%;
+border-collapse:collapse;
+border-color:#000000; 
+    border-style:solid; 
+    border-width:1px;
+}
+.printReceiptData thead th
+{   
+    background-color: #CAE9FB !important; 
+    border-color:#cccccc; 
+	border-style:solid; 
+	border-width:1px;
+} 
+.printReceiptData tbody td
+{
+ 	border-color:#cccccc; 
+border-style:solid; 
+border-width:1px; 
+}
+ 
+</style>
+</head>
+	<body>
+		<table class="table">	
+			<tr>
+	 			<td  align="center" style="text-align:center" > 
+					<table class="printReceiptData" style="font-weight:bold;">					
+						<tr id="header"  class="header">
+							<td colspan="3">
+							College Name:
+							</td>
+						</tr>
+						
+					</table>
+				</td>
+			</tr>
+			
+					
+				<td class="footer"></td>
+			</tr>
+		</table>
+	</body>
+</html>
+

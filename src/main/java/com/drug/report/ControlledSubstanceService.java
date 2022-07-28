@@ -9,8 +9,6 @@ import com.drug.druginfoMaster.DruginfoMasterBean;
 import com.drug.druginfoMaster.DruginfoMasterResultBean;
 
 public interface ControlledSubstanceService {
-	
-
 
 	SearchResultBean getSearchList(SearchBean bean) throws Exception;
 	
@@ -29,10 +27,9 @@ public interface ControlledSubstanceService {
 	List<ManufacturerBean> getManufacturerAddress(String manufacturercode);
 
 	List<CompanyBean> getCompanyAddress(String companyId);
-
-
-
 	
-
+	//ExportPDF 
+	
+//	String getExportPDF(SearchBean bean) throws Exception;
 
 }

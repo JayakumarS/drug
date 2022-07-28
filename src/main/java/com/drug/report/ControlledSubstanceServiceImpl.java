@@ -1,7 +1,15 @@
 package com.drug.report;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.text.Document;
 import javax.xml.crypto.Data;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +18,13 @@ import org.springframework.stereotype.Service;
 import com.drug.core.util.DropDownList;
 import com.drug.druginfoMaster.DruginfoMasterBean;
 import com.drug.druginfoMaster.DruginfoMasterResultBean;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.sun.el.parser.ParseException;
 
 
 @Service
@@ -75,4 +90,13 @@ public class ControlledSubstanceServiceImpl implements ControlledSubstanceServic
 	public List<CompanyBean> getCompanyAddress(String companyId) {
 		return controlledSubsatanceDao.getCompanyAddress(companyId);
 	}
+	
+
+	//ExportPDF
+	
+//	@Override
+//	public String getExportPDF(SearchBean bean) throws Exception {
+//		return controlledSubsatanceDao.getExportPDF(bean);
+//	}
+	
 }

@@ -1,19 +1,49 @@
 package com.drug.report;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
-import javax.xml.crypto.Data;
-
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.drug.core.util.DropDownList;
-import com.drug.druginfoMaster.DruginfoMasterBean;
-import com.drug.druginfoMaster.DruginfoMasterResultBean;
-
+import com.itextpdf.html2pdf.ConverterProperties;
+import com.itextpdf.html2pdf.HtmlConverter;
+import com.itextpdf.html2pdf.attach.ITagWorker;
+import com.itextpdf.html2pdf.attach.ProcessorContext;
+import com.itextpdf.html2pdf.css.apply.ICssApplier;
+import com.itextpdf.html2pdf.css.apply.ICssApplierFactory;
+import com.itextpdf.html2pdf.css.apply.impl.BlockCssApplier;
+import com.itextpdf.html2pdf.css.apply.impl.DefaultCssApplierFactory;
+import com.itextpdf.html2pdf.html.TagConstants;
+import com.itextpdf.html2pdf.resolver.font.DefaultFontProvider;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.property.UnitValue;
+import com.itextpdf.styledxmlparser.node.IElementNode;
+import com.itextpdf.styledxmlparser.node.IStylesContainer;
 
 @RestController
 @RequestMapping("/api/auth/app/report")
@@ -52,6 +82,7 @@ public class ControlledSubstanceController {
 		
 	}
 	
+ 
 	
 	
 	//NonReturnable 
@@ -138,7 +169,7 @@ public class ControlledSubstanceController {
 	}
 	
 	
-	//
+	//companyAddress
 	
 	
 	@RequestMapping(value= "/getCompanyAddress")
@@ -146,5 +177,106 @@ public class ControlledSubstanceController {
 			return controlledSubstanceService.getCompanyAddress(companyId);	
 	}
 	
+	
+	//ExportPDF
+	
+	@RequestMapping(value = "/getExportPDF")
+	public ResponseEntity<?>  getExportPDF(@RequestBody SearchBean bean) {
+		try { 
+			SearchResultBean objbean = controlledSubstanceService.getSearchList(bean);
+			InputStream bis = velocityTempToPdf(objbean.getListSearchBean());
+			 
+			 HttpHeaders headers = new HttpHeaders();
+		        headers.add("Content-Disposition", "attachment; filename=StudentList.pdf");
+
+		        return ResponseEntity
+		                .ok()
+		                .headers(headers) 
+		                .body(new InputStreamResource(bis));
+		        
+		}catch(Exception e){
+			e.printStackTrace();
+			return new ResponseEntity<String>( e.getMessage(), HttpStatus.EXPECTATION_FAILED);
+		} 
+	}
+	
+	
+	
+	private InputStream velocityTempToPdf(List<SearchBean> list) throws Exception{
+		VelocityEngine ve = new VelocityEngine();
+		Properties p = new Properties();
+		p.setProperty("resource.loader", "class");
+		p.setProperty("class.resource.loader.class",
+				"org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+		p.setProperty("velocity.engine.resource.manager.cache.enabled", "true");
+		ve.init(p);
+		
+		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		VelocityContext context = new VelocityContext();
+		context.put("listSearchBean", list);
+	
+		org.apache.velocity.Template t = ve.getTemplate("templates/ScheduleIIReport.vm", "UTF-8");
+		StringWriter writer = new StringWriter();
+		t.merge(context, writer); 
+//		ConverterProperties cp = new ConverterProperties(); 
+//
+//		cp.setCharset("utf-8");
+//		
+//		  ByteArrayOutputStream out = new ByteArrayOutputStream(); 
+//			PdfWriter pdfwriter = new PdfWriter(out);
+//			PdfDocument pdf = new PdfDocument(pdfwriter);
+//
+//			pdf.setDefaultPageSize(PageSize.A3);
+//			HtmlConverter.convertToPdf(writer.toString(), pdf, cp);
+			String s = htmlToPdf(writer.toString(), "report.pdf");
+			return new FileInputStream(new File(s));
+	}
+
+	private String htmlToPdf(String content, String fileName) {
+		DateFormat df = new SimpleDateFormat("yyyyMMddhhmmss");
+		ConverterProperties cp = new ConverterProperties();
+		String file = "C:\\Document\\" + fileName + df.format(new Date()) + ".Pdf";
+				
+		try {
+			final ICssApplier customImageCssApplier = new BlockCssApplier() {
+				@Override
+				public void apply(ProcessorContext context, IStylesContainer stylesContainer, ITagWorker tagWorker) {
+					super.apply(context, stylesContainer, tagWorker);
+					if (tagWorker.getElementResult() instanceof Image) {
+						Image img = (Image) tagWorker.getElementResult();
+						if (img.getImageWidth() > 500) {
+							img.setWidth(UnitValue.createPercentValue(100));
+						}
+					}
+				}
+			};
+			ICssApplierFactory cssApplierFactory = new DefaultCssApplierFactory() {
+				@Override
+				public ICssApplier getCustomCssApplier(IElementNode tag) {
+					if (TagConstants.IMG.equals(tag.name())) {
+						return customImageCssApplier;
+					}
+					return super.getCustomCssApplier(tag);
+				}
+			};
+			DefaultFontProvider dfp = new DefaultFontProvider();
+			cp.setFontProvider(dfp);
+			cp.setCssApplierFactory(cssApplierFactory);
+			cp.setCharset("utf-8");
+//			PdfWriter writer = new PdfWriter(file);
+//			PdfDocument pdf = new PdfDocument(writer);
+//			pdf.setDefaultPageSize(PageSize.A4);
+//			HtmlConverter.convertToPdf(content, pdf, cp);
+			HtmlConverter.convertToPdf(content, new FileOutputStream(file),cp);
+			return file;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return file;
+	}
+
 
 }
+
