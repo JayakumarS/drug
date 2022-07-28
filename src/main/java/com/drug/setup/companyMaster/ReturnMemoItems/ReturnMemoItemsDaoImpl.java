@@ -38,7 +38,12 @@ public class ReturnMemoItemsDaoImpl implements ReturnMemoItemsDao {
  					bean.getExpDate(),
  					bean.getReason(),
  					bean.getLotNo(),
- 					bean.getCreatedBy()}, String.class);
+ 					bean.getCreatedBy(),
+ 					bean.getReturnTo(),
+ 					bean.getReturnable(), 
+ 					bean.getFullParticalProduct(), 
+ 					bean.getRepackagedProduct(),
+ 					bean.getOverrideRepackagedProduct()}, String.class);
 		    resultBean.setSuccess(true);
 		    System.out.print(result);
 		}catch(Exception e) {
@@ -119,7 +124,12 @@ public class ReturnMemoItemsDaoImpl implements ReturnMemoItemsDao {
  					bean.getExpDate(),
  					bean.getReason(),
  					bean.getLotNo(),
- 					bean.getCreatedBy()}, String.class);
+ 					bean.getCreatedBy(),
+ 					bean.getReturnTo(),
+ 					bean.getReturnable(), 
+ 					bean.getFullParticalProduct(), 
+ 					bean.getRepackagedProduct(),
+ 					bean.getOverrideRepackagedProduct()}, String.class);
  			
 		    resultBean.setSuccess(true);
 		    System.out.print(result);

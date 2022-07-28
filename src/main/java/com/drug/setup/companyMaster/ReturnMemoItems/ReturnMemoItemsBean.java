@@ -16,9 +16,14 @@ public class ReturnMemoItemsBean {
 	private String price;
 	private String createdBy;
 	private String pakageOrUnit;
+
+	
+	private String returnTo;
+	private String returnable;
+	private String fullParticalProduct;
 	private String repackagedProduct;
-	
-	
+	private String overrideRepackagedProduct;
+    
 	public String getNdcupcCode() {
 		return ndcupcCode;
 	}
@@ -91,12 +96,37 @@ public class ReturnMemoItemsBean {
 	public void setReturnMemoItemsCode(String returnMemoItemsCode) {
 		this.returnMemoItemsCode = returnMemoItemsCode;
 	}
+	public String getReturnTo() {
+		return returnTo;
+	}
+	public void setReturnTo(String returnTo) {
+		this.returnTo = returnTo;
+	}
+	public String getReturnable() {
+		return returnable;
+	}
+	public void setReturnable(String returnable) {
+		this.returnable = returnable;
+	}
+	public String getFullParticalProduct() {
+		return fullParticalProduct;
+	}
+	public void setFullParticalProduct(String fullParticalProduct) {
+		this.fullParticalProduct = fullParticalProduct;
+	}
 	public String getRepackagedProduct() {
 		return repackagedProduct;
 	}
 	public void setRepackagedProduct(String repackagedProduct) {
 		this.repackagedProduct = repackagedProduct;
 	}
+	public String getOverrideRepackagedProduct() {
+		return overrideRepackagedProduct;
+	}
+	public void setOverrideRepackagedProduct(String overrideRepackagedProduct) {
+		this.overrideRepackagedProduct = overrideRepackagedProduct;
+	}
+
 	
 	
 }
