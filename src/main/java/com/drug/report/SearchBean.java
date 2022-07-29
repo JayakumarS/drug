@@ -41,6 +41,7 @@ private static final long serialVersionUID = 1L;
 	private String startDate;
 	private String endDate;
 
+	private String controlClass;
 
 	public boolean isSuccess() {
 		return Success;
@@ -164,6 +165,12 @@ private static final long serialVersionUID = 1L;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public String getControlClass() {
+		return controlClass;
+	}
+	public void setControlClass(String controlClass) {
+		this.controlClass = controlClass;
 	}
 
 

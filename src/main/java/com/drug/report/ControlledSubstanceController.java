@@ -15,6 +15,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +47,8 @@ import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.property.UnitValue;
 import com.itextpdf.styledxmlparser.node.IElementNode;
 import com.itextpdf.styledxmlparser.node.IStylesContainer;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 
 @RestController
 @RequestMapping("/api/auth/app/report")
@@ -179,26 +184,55 @@ public class ControlledSubstanceController {
 	
 	
 	//ExportPDF
-	
-	@RequestMapping(value = "/getExportPDF")
-	public ResponseEntity<?>  getExportPDF(@RequestBody SearchBean bean) {
-		try { 
-			SearchResultBean objbean = controlledSubstanceService.getSearchList(bean);
-			InputStream bis = velocityTempToPdf(objbean.getListSearchBean());
-			 
-			 HttpHeaders headers = new HttpHeaders();
-		        headers.add("Content-Disposition", "attachment; filename=StudentList.pdf");
-
-		        return ResponseEntity
-		                .ok()
-		                .headers(headers) 
-		                .body(new InputStreamResource(bis));
-		        
-		}catch(Exception e){
+	@GetMapping(value = "/getExportPDF")
+	public void finalPreviewMOMPDF(@RequestParam String companyId, HttpServletResponse response) {
+		try {
+			SearchBean beanss=new SearchBean();
+			beanss.setCompany("C036");
+			beanss.setReturnMemoNo("ADRE01");
+					
+			SearchResultBean objbean = controlledSubstanceService.getSearchList(beanss);
+			InputStream inputStream = velocityTempToPdf(objbean.getListSearchBean());
+			
+			
+			response.setHeader("Content-Disposition",
+					"attachment; filename=\"" + URLEncoder.encode("Minutes-" + new Date().getTime()+".pdf", "UTF-8") + '"');
+			response.setHeader("Content-Transfer-Encoding", "binary");
+			response.setContentType("application/pdf");
+			OutputStream outStream = response.getOutputStream();
+			byte[] buffer = new byte[4096];
+			int bytesRead = -1;
+			while ((bytesRead = inputStream.read(buffer)) != -1) {
+				outStream.write(buffer, 0, bytesRead);
+			}
+			outStream.flush();
+			outStream.close();
+			inputStream.close();
+		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<String>( e.getMessage(), HttpStatus.EXPECTATION_FAILED);
-		} 
+		}
+
 	}
+	
+//	@RequestMapping(value = "/getExportPDF")
+//	public ResponseEntity<?>  getExportPDF(@RequestBody SearchBean bean) {
+//		try { 
+//			SearchResultBean objbean = controlledSubstanceService.getSearchList(bean);
+//			InputStream bis = velocityTempToPdf(objbean.getListSearchBean());
+//			 
+//			 HttpHeaders headers = new HttpHeaders();
+//		        headers.add("Content-Disposition", "attachment; filename=StudentList.pdf");
+//
+//		        return ResponseEntity
+//		                .ok()
+//		                .headers(headers) 
+//		                .body(new InputStreamResource(bis));
+//		        
+//		}catch(Exception e){
+//			e.printStackTrace();
+//			return new ResponseEntity<String>( e.getMessage(), HttpStatus.EXPECTATION_FAILED);
+//		} 
+//	}
 	
 	
 	
@@ -235,7 +269,7 @@ public class ControlledSubstanceController {
 	private String htmlToPdf(String content, String fileName) {
 		DateFormat df = new SimpleDateFormat("yyyyMMddhhmmss");
 		ConverterProperties cp = new ConverterProperties();
-		String file = "C:\\Document\\" + fileName + df.format(new Date()) + ".Pdf";
+		String file = "D:\\Softwares\\" + fileName + df.format(new Date()) + ".Pdf";
 				
 		try {
 			final ICssApplier customImageCssApplier = new BlockCssApplier() {
