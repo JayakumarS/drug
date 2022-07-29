@@ -18,9 +18,9 @@ public class CompanyMasterServiceImpl implements CompanyMasterService {
 	}
 
 	@Override
-	public List<CompanyMasterBean> getCompanyList() throws Exception {
+	public List<CompanyMasterBean> getCompanyList(String company, Boolean isRoleAdmin) throws Exception {
 		// TODO Auto-generated method stub
-		return companyMasterDao.getCompanyList();
+		return companyMasterDao.getCompanyList(company,isRoleAdmin);
 	}
 
 	@Override

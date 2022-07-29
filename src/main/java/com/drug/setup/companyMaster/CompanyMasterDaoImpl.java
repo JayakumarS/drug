@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.drug.core.util.DropDownList;
+import com.drug.setup.companyMaster.ReturnMemoItems.ReturnMemoItemsBean;
 import com.drug.wholesaler.WholesalerMasterQueryUtil;
 
 @Repository
@@ -119,11 +120,22 @@ public class CompanyMasterDaoImpl implements CompanyMasterDao {
 	}
 
 	@Override
-	public List<CompanyMasterBean> getCompanyList() throws Exception {
+	public List<CompanyMasterBean> getCompanyList(String company, Boolean isRoleAdmin) throws Exception {
 		List<CompanyMasterBean> objCompanyMasterBean = new ArrayList<CompanyMasterBean>();
 		try {
-			objCompanyMasterBean = jdbcTemplate.query(CompanyMasterQueryUtil.GETCOMPANY_LIST, new BeanPropertyRowMapper<CompanyMasterBean>(CompanyMasterBean.class));
+			String Query = "SELECT company_code as companyCode,company_name as companyName,dba_name as companyDba,zip_code as companyPincode,phone_no as companyPhone,state as companyState,city as companyCity,dea_exp_date as defExpirationDate FROM company";
 			
+			   if (isRoleAdmin != null && isRoleAdmin==false) {
+				   if (company != null && company.trim() != "" && !company.trim().isEmpty()) {
+					   Query += " where LOWER(company_code) like '%" + company.toLowerCase() + "%'";				
+					}			
+				}
+			   
+			   Query += " order by company_code desc";
+			   
+			   objCompanyMasterBean =  jdbcTemplate.query(Query,BeanPropertyRowMapper.newInstance(CompanyMasterBean.class));
+			   
+			   return objCompanyMasterBean;
 		}catch(Exception e){
 			e.printStackTrace();
 		}

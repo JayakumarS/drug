@@ -8,7 +8,7 @@ public interface CompanyMasterDao {
 
 	CompanyMasterResultBean save(CompanyMasterBean bean) throws Exception;
 
-	List<CompanyMasterBean> getCompanyList() throws Exception;
+	List<CompanyMasterBean> getCompanyList(String company, Boolean isRoleAdmin) throws Exception;
 
 	CompanyMasterResultBean edit(String bean) throws Exception;
 
