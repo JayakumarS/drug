@@ -8,7 +8,7 @@ public interface CompanyMasterService {
 
 	CompanyMasterResultBean save(CompanyMasterBean bean) throws Exception;
 
-	public List<CompanyMasterBean> getCompanyList() throws Exception;
+	public List<CompanyMasterBean> getCompanyList(String company, Boolean isRoleAdmin) throws Exception;
 
 	CompanyMasterResultBean edit(String code) throws Exception;
 

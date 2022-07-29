@@ -31,9 +31,9 @@ public class CompanyMasterController {
 	
 	
 	@RequestMapping(value = "/getList")
-   	public CompanyMasterResultBean getCompanyList() throws Exception {
+   	public CompanyMasterResultBean getCompanyList(@RequestParam(required= true) String company,@RequestParam(required= true) Boolean isRoleAdmin) throws Exception {
 		CompanyMasterResultBean objResultBean = new CompanyMasterResultBean();
-		objResultBean.setListCompanyMaster(companyMasterService.getCompanyList());
+		objResultBean.setListCompanyMaster(companyMasterService.getCompanyList(company,isRoleAdmin));
 		objResultBean.setSuccess(true);
    		return objResultBean;
    	}
