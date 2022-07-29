@@ -114,6 +114,8 @@ bottom-right {
 	border-width: 1px;
 }
 
+
+
 .row {
 	width: 100%;
 }
@@ -137,35 +139,51 @@ bottom-right {
 	float: left;
 	width: 100%;
 }
+
 </style>
 </head>
 <body>
-
-
 	<!-- Content Part  -->
 	<table class="report-container">
 		<th align="center" style="text-align: center"><div
 				class="headingValue">
 				<u>Schedule II Report</u>
 			</div></th>
-
 		<tbody class="report-content">
 			<tr>
 				<td class="report-content-cell">
-					<div class="main">
-
-						
+					<div class="main">					
 						<br>
-
 						<table style="width: 100%; margin: 5px;">
 							<tr>
 								<td style="width: 100%;">
 									<div style="font-size: 12px;">
 									
-										<table class="printagenda">
-											<thead>
-												<!-- <th style="text-align:center">S.No.</th> -->
-												<th>NDC/UPC</th>
+				<td  align="center" style="text-align:center" > 
+					<table class="printReceiptData" style="font-weight:bold;">		
+					<tr id="header"  class="header">
+							<td colspan="3">
+							College Name:$collegeName  $cityName  $stateName
+							</td>
+						</tr>			
+						
+						<tr id="header" class="header">
+							<td>
+							Created:
+							</td>
+							<td>
+							Debit Memo:
+							</td>
+							<td>
+							Total Records:
+							</td>
+						</tr>
+					</table>
+				</td>
+										
+										 <table class="printagenda">							  
+                                          <thead>
+          								        <th>NDC/UPC</th>
 												<th>Description</th>
 												<th>Cont #</th>
 												<th>Strength</th>
@@ -173,20 +191,18 @@ bottom-right {
 												<th>Exp Date</th>
 												<th>Pkg Size</th>
 												<th>Full Qty</th>
-												<th>Partial Qty</th>												
-																																														
-												
+												<th>Partial Qty</th>																		
 											</thead>
-											#foreach($item in $listSearchBean)
+																						
 											<tbody>
+											 #foreach($item in $listSearchBean) 
 											 <tr>
                                                <td colspan="9" ><b>${item.description}</b></td>
                                              </tr>
-												<tr>
-												  <!--   <td style="text-align:center">$foreach.count</td> -->
+												<tr>												 
 													<td style="text-align:center">${item.ndcupcCode}</td>
 													<td style="text-align:center">${item.description}</td>
-													<td style="text-align:center"></td>
+													<td style="text-align:center">${item.controlClass}</td>
 													<td style="text-align:center">${item.strength}</td>
 													<td style="text-align:center">${item.lotNo}</td>
 													<td style="text-align:center">${item.expDate}</td>
@@ -200,7 +216,6 @@ bottom-right {
 									</div>
 								</td>
 							</tr>
-
 						</table>
 					</div>
 				</td>
