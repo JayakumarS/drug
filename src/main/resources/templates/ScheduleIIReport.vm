@@ -1,64 +1,212 @@
 <!DOCTYPE html>
 <html>
-	<meta charset="ISO-8859-1">
-   	<meta http-equiv="Content-Language" content="hi">
+<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Language" content="hi">
 <head>
 <style>
-body
-{
-font-family: Arial;
-font-size: 15px;
-} 
+body {
+	font-family: Roboto, Helvetica, Arial, sans-serif
+}
 
-@page { 
- 	@top-center {content: element(header)} ;   
-     @bottom-right {content: counter(page)} ;
-	
-     
+p {
+	font-size: 13px;
 }
-.printReceiptData
-{
-width:98%;
-border-collapse:collapse;
-border-color:#000000; 
-    border-style:solid; 
-    border-width:1px;
+
+span {
+	font-size: 13px;
 }
-.printReceiptData thead th
-{   
-    background-color: #CAE9FB !important; 
-    border-color:#cccccc; 
-	border-style:solid; 
-	border-width:1px;
-} 
-.printReceiptData tbody td
-{
- 	border-color:#cccccc; 
-border-style:solid; 
-border-width:1px; 
+
+.headingValue1 {
+	color: #3D78BE;
+	font-size: 15px;
+	padding-bottom: 10px;
+	display: inline-block;
 }
- 
+
+.headingValue {
+	color: #3D78BE;
+	font-size: 15px;
+	padding-top: 10px;
+	display: inline-block;
+}
+
+h1 {
+	font-size: 25px;
+	text-align: right;
+}
+
+h3 {
+	font-size: 13px;
+	text-align: left;
+	margin: 0px;
+}
+
+ol li {
+	font-size: 13px;
+}
+
+table.report-container {
+	page-break-after: always;
+}
+
+thead.report-header {
+	display: table-header-group;
+}
+
+div.footer {
+	display: block;
+	text-align: center;
+	position: running(footer);
+}
+
+@page {
+	margin-bottom: 81px;
+	@
+	bottom-center
+	{
+	content
+	:
+	element(
+	footer
+	)
+}
+
+@
+bottom-right {
+	font-family: sans-serif;
+	font-size: 13px;
+	content: counter(page);
+}
+
+}
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	color: black;
+	text-align: center;
+}
+
+.printagenda {
+	width: 100%;
+	margin-top: 15px;
+	display: table;
+	/* border-collapse: separate;
+    box-sizing: border-box;*/
+	border-collapse: collapse;
+	border-color: #000000;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.printagenda thead th {
+	padding: 6px 10px 5px;
+	background-color: #CAE9FB !important;
+	border-color: #cccccc; /*grey*/
+	border-style: solid;
+	border-width: 1px;
+}
+
+.printagenda tbody td {
+	border-color: #cccccc; /*grey*/
+	border-style: solid;
+	border-width: 1px;
+}
+
+.row {
+	width: 100%;
+}
+
+.columnText {
+	float: left;
+	width: 33.33% !important;
+	padding-top: 25px !important;
+	font-size: 13px;
+}
+/* Stops the float property from affecting content after the columns */
+.columns:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.col-md-12 {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	float: left;
+	width: 100%;
+}
 </style>
 </head>
-	<body>
-		<table class="table">	
+<body>
+
+
+	<!-- Content Part  -->
+	<table class="report-container">
+		<th align="center" style="text-align: center"><div
+				class="headingValue">
+				<u>Schedule II Report</u>
+			</div></th>
+
+		<tbody class="report-content">
 			<tr>
-	 			<td  align="center" style="text-align:center" > 
-					<table class="printReceiptData" style="font-weight:bold;">					
-						<tr id="header"  class="header">
-							<td colspan="3">
-							College Name:
-							</td>
-						</tr>
+				<td class="report-content-cell">
+					<div class="main">
+
 						
-					</table>
+						<br>
+
+						<table style="width: 100%; margin: 5px;">
+							<tr>
+								<td style="width: 100%;">
+									<div style="font-size: 12px;">
+									
+										<table class="printagenda">
+											<thead>
+												<!-- <th style="text-align:center">S.No.</th> -->
+												<th>NDC/UPC</th>
+												<th>Description</th>
+												<th>Cont #</th>
+												<th>Strength</th>
+												<th>Lot #</th>
+												<th>Exp Date</th>
+												<th>Pkg Size</th>
+												<th>Full Qty</th>
+												<th>Partial Qty</th>												
+																																														
+												
+											</thead>
+											#foreach($item in $listSearchBean)
+											<tbody>
+											 <tr>
+                                               <td colspan="9" ><b>${item.description}</b></td>
+                                             </tr>
+												<tr>
+												  <!--   <td style="text-align:center">$foreach.count</td> -->
+													<td style="text-align:center">${item.ndcupcCode}</td>
+													<td style="text-align:center">${item.description}</td>
+													<td style="text-align:center"></td>
+													<td style="text-align:center">${item.strength}</td>
+													<td style="text-align:center">${item.lotNo}</td>
+													<td style="text-align:center">${item.expDate}</td>
+													<td style="text-align:center">${item.pakageSize}</td>
+													<td style="text-align:center">${item.fullQuantity}</td>
+													<td style="text-align:center">${item.partialQuantity}</td>
+												</tr>
+											</tbody>
+											#end
+										</table>
+									</div>
+								</td>
+							</tr>
+
+						</table>
+					</div>
 				</td>
 			</tr>
-			
-					
-				<td class="footer"></td>
-			</tr>
-		</table>
-	</body>
-</html>
+		</tbody>
+	</table>
 
+</body>
+</html>
