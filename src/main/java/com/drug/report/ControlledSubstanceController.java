@@ -280,8 +280,7 @@ public class ControlledSubstanceController {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		VelocityContext context = new VelocityContext();
 		context.put("listSearchBean", list);
-		context.put("searchBean", list);
-
+	
 		org.apache.velocity.Template t = ve.getTemplate("templates/ScheduleIIReport.vm", "UTF-8");
 		StringWriter writer = new StringWriter();
 		t.merge(context, writer); 

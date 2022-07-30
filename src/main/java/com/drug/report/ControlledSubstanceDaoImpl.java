@@ -5,33 +5,17 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
-import javax.xml.crypto.Data;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.drug.common.services.CommonServicesQueryUtil;
-import com.drug.core.util.DropDownList;
-import com.drug.druginfoMaster.DruginfoMasterBean;
-import com.drug.druginfoMaster.DruginfoMasterQueryUtil;
-import com.drug.druginfoMaster.DruginfoMasterResultBean;
-import com.drug.setup.users.UsersMasterQueryUtil;
-import com.drug.setup.users.UsersMasterResultBean;
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+
 
 @Repository
 public class ControlledSubstanceDaoImpl implements ControlledSubsatanceDao{
