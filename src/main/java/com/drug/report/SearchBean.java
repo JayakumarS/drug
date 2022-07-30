@@ -37,6 +37,16 @@ private static final long serialVersionUID = 1L;
 	private String price;
 	private String estValue;
 	
+	private String exportPDF;
+	
+	public String getExportPDF() {
+		return exportPDF;
+	}
+	public void setExportPDF(String exportPDF) {
+		this.exportPDF = exportPDF;
+	}
+
+
 	//for search
 	private String startDate;
 	private String endDate;
