@@ -1,0 +1,109 @@
+
+<html>
+	<meta charset="ISO-8859-1">
+   	<meta http-equiv="Content-Language" content="hi">
+<head>
+<style>
+body
+{
+font-family: Arial;
+font-size: 15px;
+} 
+
+@page { 
+ 	@top-center {content: element(header)} ;   
+     @bottom-right {content: counter(page)} ;
+	
+     
+}
+.printReceiptData
+{
+width:98%;
+border-collapse:collapse;
+border-color:#000000; 
+    border-style:solid; 
+    border-width:1px;
+}
+.printReceiptData thead th
+{   
+    background-color: #CAE9FB !important; 
+    border-color:#cccccc; 
+	border-style:solid; 
+	border-width:1px;
+} 
+.printReceiptData tbody td
+{
+ 	border-color:#cccccc; 
+border-style:solid; 
+border-width:1px; 
+}
+ 
+</style>
+</head>
+	
+	<table class="report-container"> 		
+	<th align="center" style="text-align: center"><div
+				class="headingValue">
+				<u>Inventory Report</u>
+			</div></th>
+				<body>
+			<tr>
+				<td>
+				<table class="printReceiptData">
+					
+				         <thead class="theadRow thead-light" >
+                          <tr>
+                            <th style="text-align: center;"> Created: ${item.returnMemoDate}</th>
+                            <th style="text-align: center;">${item.companyName} <br><br> <b>Inventory Report</b></th>
+                            <th style="text-align: center;">Debit Memo: ${item.returnMemoNo}</th>
+                          </tr>
+                      </thead>
+					<table class="printReceiptData">
+					
+				         <thead >
+							<th>NDC/UPC</th>
+							<th>Description</th>
+							<th>Strength</th>
+							<th>Dsg</th>
+							<th>Returnable</th>
+							<th>Pkg Size</th>
+							<th>Full Qty</th>
+							<th>Partial Qty</th>
+							<th>Price</th>
+							<th>Total</th>
+						</thead> 
+						<tbody>
+				       	#foreach($item in $listSearchBean)
+					       
+					         <tr>
+                          <td colspan="10" ><b>${item.description}</b></td>
+                            </tr>
+                             <tr>
+								<td align="center">${item.ndcupcCode}&nbsp;&nbsp;</td> 
+								<td style="width:150px">${item.description}</td>
+								<td style="width:135px">${item.strength}</td>	
+								<td style="width:135px"></td>	
+								<td style="width:135px">${item.isReturnable}</td>	
+								<td style="width:135px">${item.pakageSize}</td>	
+								<td style="width:135px">${item.fullQuantity}</td>	
+								<td style="width:135px">${item.partialQuantity}</td>	
+								<td style="width:135px">${item.price}</td>
+								<td style="width:135px"></td>	
+							</tr>
+						#end
+						</tbody>
+					</table>
+									</table>
+					
+				</td>
+			</tr>
+		<!-- 	<tr>
+				<td class="footer"></td>
+			</tr> -->
+<!-- 		</table>
+ -->	
+  </body>
+ </table>
+
+</html>
+

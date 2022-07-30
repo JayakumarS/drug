@@ -234,7 +234,7 @@ public class ControlledSubstanceController {
 				context.put("listSearchBean", list);
 				context.put("searchBean", list);
 
-				org.apache.velocity.Template t = ve.getTemplate("templates/ScheduleIIReport.vm", "UTF-8");
+				org.apache.velocity.Template t = ve.getTemplate("templates/InventoryReport.vm", "UTF-8");
 				StringWriter writer = new StringWriter();
 				t.merge(context, writer); 
 				bean.setExportPDF(writer.toString());
