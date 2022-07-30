@@ -25,6 +25,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -213,6 +214,37 @@ public class ControlledSubstanceController {
 		}
 
 	}
+	
+	//ExportPDF
+		@RequestMapping(value = "/getExportString")
+		public SearchBean finalPreviewMOMPDF(@RequestBody SearchBean searchBean) {
+			try {
+				SearchBean bean = new SearchBean();
+				SearchResultBean objbean = controlledSubstanceService.getSearchList(searchBean);
+				List<SearchBean> list = objbean.getListSearchBean();
+				VelocityEngine ve = new VelocityEngine();
+				Properties p = new Properties();
+				p.setProperty("resource.loader", "class");
+				p.setProperty("class.resource.loader.class",
+						"org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+				p.setProperty("velocity.engine.resource.manager.cache.enabled", "true");
+				ve.init(p);
+				
+				VelocityContext context = new VelocityContext();
+				context.put("listSearchBean", list);
+				context.put("searchBean", list);
+
+				org.apache.velocity.Template t = ve.getTemplate("templates/ScheduleIIReport.vm", "UTF-8");
+				StringWriter writer = new StringWriter();
+				t.merge(context, writer); 
+				bean.setExportPDF(writer.toString());
+				return bean;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+
+		}
 	
 //	@RequestMapping(value = "/getExportPDF")
 //	public ResponseEntity<?>  getExportPDF(@RequestBody SearchBean bean) {
