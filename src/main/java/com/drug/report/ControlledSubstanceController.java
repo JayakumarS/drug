@@ -205,7 +205,7 @@ public class ControlledSubstanceController {
 				
 				VelocityContext context = new VelocityContext();
 				context.put("listSearchBean", list);
-				
+				context.put("returnMemoName",list.get(0).getReturnMemoName());
 				context.put("companyName",list.get(0).getCompanyName());
 				context.put("returnMemoNo", list.get(0).getReturnMemoNo());
 				context.put("createdDate", list.get(0).getReturnMemoDate());

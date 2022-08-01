@@ -37,10 +37,21 @@ private static final long serialVersionUID = 1L;
 	private String price;
 	private String estValue;
 	private String manufacturername;
+	private String returnMemoName;
 	
-	private String exportPDF;
+	
 
+	private String exportPDF;
 	
+	
+	
+	public String getReturnMemoName() {
+		return returnMemoName;
+	}
+	public void setReturnMemoName(String returnMemoName) {
+		this.returnMemoName = returnMemoName;
+	}
+
 	public String getManufacturername() {
 		return manufacturername;
 	}
