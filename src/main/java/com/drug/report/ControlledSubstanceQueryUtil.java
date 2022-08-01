@@ -75,6 +75,9 @@ public class ControlledSubstanceQueryUtil {
 		}
 		
 		
+
+
+					
 //		public static final String COMPANY_MASTER = "select company_code as id, company_name as text,dba_name as department,street as street, city as city, \r\n"
 //				+ "state as state, zip_code as zipCode, contact_persosn as contactPerson, mail_id as mailId, \r\n"
 //				+ "phone_no as phoneNo, fax_no as faxNo, dea_no as deaNo,dea_exp_date as deaExpDate,\r\n"
@@ -87,3 +90,6 @@ public class ControlledSubstanceQueryUtil {
 //				+ "cpp_no_of_checks as cppNoOFChecks,is_active as isActive,wholesaler as wholesaler,created_by as createdBy,\r\n"
 //				+ "modified_by as modifiedBy, modified_on as modifiedOn from company where company_name=?";
 }
+
+
+

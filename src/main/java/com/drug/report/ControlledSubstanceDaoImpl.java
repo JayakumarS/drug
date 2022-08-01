@@ -15,6 +15,9 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.drug.common.services.CommonServicesQueryUtil;
+import com.drug.core.util.DropDownList;
+
 
 
 @Repository
@@ -238,7 +241,7 @@ resultBean.setReportSearchList(reportSearchBean);
 				bean.setEndDate((enddate1).toString());
 	 			}
 
-	List<ReportSearchBean> reportSearchBean = jdbcTemplate.query(ControlledSubstanceQueryUtil.getInventory(bean.getCompany(),bean.getReturnMemoNo(),bean.getStartDate(),bean.getEndDate()), new BeanPropertyRowMapper<ReportSearchBean>(
+	List<ReportSearchBean> reportSearchBean = jdbcTemplate.query(ControlledSubstanceQueryUtil.getReturnSearchList(bean.getCompany(),bean.getReturnMemoNo(),bean.getStartDate(),bean.getEndDate()), new BeanPropertyRowMapper<ReportSearchBean>(
 			ReportSearchBean.class));
 	resultBean.setReportSearchList(reportSearchBean);
 			    resultBean.setSuccess(true);
@@ -369,7 +372,5 @@ resultBean.setReportSearchList(reportSearchBean);
 					return companyBean;
 				}
 
-				
-				
-			
+
 }

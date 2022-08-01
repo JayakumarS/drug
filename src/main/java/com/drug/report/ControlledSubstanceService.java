@@ -28,8 +28,5 @@ public interface ControlledSubstanceService {
 
 	List<CompanyBean> getCompanyAddress(String companyId);
 	
-	//ExportPDF 
-	
-//	String getExportPDF(SearchBean bean) throws Exception;
 
 }

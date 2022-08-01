@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.drug.core.util.DropDownList;
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.itextpdf.html2pdf.attach.ITagWorker;
@@ -184,42 +185,14 @@ public class ControlledSubstanceController {
 	}
 	
 	
-	//ExportPDF
-	@GetMapping(value = "/getExportPDF")
-	public void finalPreviewMOMPDF(@RequestParam String companyId, HttpServletResponse response) {
-		try {
-			SearchBean beanss=new SearchBean();
-			beanss.setCompany("C036");
-			beanss.setReturnMemoNo("ADRE01");
-					
-			SearchResultBean objbean = controlledSubstanceService.getSearchList(beanss);
-			InputStream inputStream = velocityTempToPdf(objbean.getListSearchBean());
-			
-			
-			response.setHeader("Content-Disposition",
-					"attachment; filename=\"" + URLEncoder.encode("Minutes-" + new Date().getTime()+".pdf", "UTF-8") + '"');
-			response.setHeader("Content-Transfer-Encoding", "binary");
-			response.setContentType("application/pdf");
-			OutputStream outStream = response.getOutputStream();
-			byte[] buffer = new byte[4096];
-			int bytesRead = -1;
-			while ((bytesRead = inputStream.read(buffer)) != -1) {
-				outStream.write(buffer, 0, bytesRead);
-			}
-			outStream.flush();
-			outStream.close();
-			inputStream.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 	
 	//ExportPDF
 		@RequestMapping(value = "/getExportString")
-		public SearchBean finalPreviewMOMPDF(@RequestBody SearchBean searchBean) {
+		public SearchBean finalPreviewMOMPDF(@RequestBody SearchBean searchBean, CompanyBean companyBean) {
 			try {
 				SearchBean bean = new SearchBean();
+				CompanyBean beanN = new CompanyBean();
+//				CompanyBean objbeanN =controlledSubstanceService.getCompanyAddress();
 				SearchResultBean objbean = controlledSubstanceService.getSearchList(searchBean);
 				List<SearchBean> list = objbean.getListSearchBean();
 				VelocityEngine ve = new VelocityEngine();
@@ -232,8 +205,12 @@ public class ControlledSubstanceController {
 				
 				VelocityContext context = new VelocityContext();
 				context.put("listSearchBean", list);
-				context.put("searchBean", list);
+				
+				context.put("companyName",list.get(0).getCompanyName());
+				context.put("returnMemoNo", list.get(0).getReturnMemoNo());
+				context.put("createdDate", list.get(0).getReturnMemoDate());
 
+				
 				org.apache.velocity.Template t = ve.getTemplate("templates/InventoryReport.vm", "UTF-8");
 				StringWriter writer = new StringWriter();
 				t.merge(context, writer); 
@@ -246,103 +223,45 @@ public class ControlledSubstanceController {
 
 		}
 	
-//	@RequestMapping(value = "/getExportPDF")
-//	public ResponseEntity<?>  getExportPDF(@RequestBody SearchBean bean) {
-//		try { 
-//			SearchResultBean objbean = controlledSubstanceService.getSearchList(bean);
-//			InputStream bis = velocityTempToPdf(objbean.getListSearchBean());
-//			 
-//			 HttpHeaders headers = new HttpHeaders();
-//		        headers.add("Content-Disposition", "attachment; filename=StudentList.pdf");
-//
-//		        return ResponseEntity
-//		                .ok()
-//		                .headers(headers) 
-//		                .body(new InputStreamResource(bis));
-//		        
-//		}catch(Exception e){
-//			e.printStackTrace();
-//			return new ResponseEntity<String>( e.getMessage(), HttpStatus.EXPECTATION_FAILED);
-//		} 
-//	}
-	
-	
-	
-	private InputStream velocityTempToPdf(List<SearchBean> list) throws Exception{
-		VelocityEngine ve = new VelocityEngine();
-		Properties p = new Properties();
-		p.setProperty("resource.loader", "class");
-		p.setProperty("class.resource.loader.class",
-				"org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
-		p.setProperty("velocity.engine.resource.manager.cache.enabled", "true");
-		ve.init(p);
+
+
+
 		
-		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-		VelocityContext context = new VelocityContext();
-		context.put("listSearchBean", list);
-	
-		org.apache.velocity.Template t = ve.getTemplate("templates/ScheduleIIReport.vm", "UTF-8");
-		StringWriter writer = new StringWriter();
-		t.merge(context, writer); 
-//		ConverterProperties cp = new ConverterProperties(); 
+		
+
+//				@RequestMapping(value = "/getExportString")
+//				public ReturableSearchBean finalPreviewMOMPDF(@RequestBody ReturableSearchBean returableSearchBean) {
+//					try {
+//						ReturableSearchBean bean = new ReturableSearchBean();
+////						CompanyBean objbeanN =controlledSubstanceService.getCompanyAddress();
+//						ReturnableResultBean objbean = controlledSubstanceService.getReturnSearchList(returableSearchBean);
+//						List<ReturableSearchBean> list = objbean.getReturnableSearchBean();
+//						VelocityEngine ve = new VelocityEngine();
+//						Properties p = new Properties();
+//						p.setProperty("resource.loader", "class");
+//						p.setProperty("class.resource.loader.class",
+//								"org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+//						p.setProperty("velocity.engine.resource.manager.cache.enabled", "true");
+//						ve.init(p);
+//						
+//						VelocityContext context = new VelocityContext();
+//						context.put("listSearchBean", list);
+//						
+//						context.put("companyName",list.get(0).getCompanyName());
+//						context.put("returnMemoNo", list.get(0).getReturnMemoNo());
+//						context.put("createdDate", list.get(0).getReturnMemoDate());
 //
-//		cp.setCharset("utf-8");
-//		
-//		  ByteArrayOutputStream out = new ByteArrayOutputStream(); 
-//			PdfWriter pdfwriter = new PdfWriter(out);
-//			PdfDocument pdf = new PdfDocument(pdfwriter);
+//						
+//						org.apache.velocity.Template t = ve.getTemplate("templates/InventoryReport.vm", "UTF-8");
+//						StringWriter writer = new StringWriter();
+//						t.merge(context, writer); 
+//						bean.setExportPDF(writer.toString());
+//						return bean;
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//					return null;
 //
-//			pdf.setDefaultPageSize(PageSize.A3);
-//			HtmlConverter.convertToPdf(writer.toString(), pdf, cp);
-			String s = htmlToPdf(writer.toString(), "report.pdf");
-			return new FileInputStream(new File(s));
-	}
-
-	private String htmlToPdf(String content, String fileName) {
-		DateFormat df = new SimpleDateFormat("yyyyMMddhhmmss");
-		ConverterProperties cp = new ConverterProperties();
-		String file = "D:\\Softwares\\" + fileName + df.format(new Date()) + ".Pdf";
-				
-		try {
-			final ICssApplier customImageCssApplier = new BlockCssApplier() {
-				@Override
-				public void apply(ProcessorContext context, IStylesContainer stylesContainer, ITagWorker tagWorker) {
-					super.apply(context, stylesContainer, tagWorker);
-					if (tagWorker.getElementResult() instanceof Image) {
-						Image img = (Image) tagWorker.getElementResult();
-						if (img.getImageWidth() > 500) {
-							img.setWidth(UnitValue.createPercentValue(100));
-						}
-					}
-				}
-			};
-			ICssApplierFactory cssApplierFactory = new DefaultCssApplierFactory() {
-				@Override
-				public ICssApplier getCustomCssApplier(IElementNode tag) {
-					if (TagConstants.IMG.equals(tag.name())) {
-						return customImageCssApplier;
-					}
-					return super.getCustomCssApplier(tag);
-				}
-			};
-			DefaultFontProvider dfp = new DefaultFontProvider();
-			cp.setFontProvider(dfp);
-			cp.setCssApplierFactory(cssApplierFactory);
-			cp.setCharset("utf-8");
-//			PdfWriter writer = new PdfWriter(file);
-//			PdfDocument pdf = new PdfDocument(writer);
-//			pdf.setDefaultPageSize(PageSize.A4);
-//			HtmlConverter.convertToPdf(content, pdf, cp);
-			HtmlConverter.convertToPdf(content, new FileOutputStream(file),cp);
-			return file;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return file;
-	}
-
-
+//				}
 }
 

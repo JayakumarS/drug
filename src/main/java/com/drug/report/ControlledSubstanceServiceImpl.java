@@ -91,12 +91,5 @@ public class ControlledSubstanceServiceImpl implements ControlledSubstanceServic
 		return controlledSubsatanceDao.getCompanyAddress(companyId);
 	}
 	
-
-	//ExportPDF
-	
-//	@Override
-//	public String getExportPDF(SearchBean bean) throws Exception {
-//		return controlledSubsatanceDao.getExportPDF(bean);
-//	}
 	
 }

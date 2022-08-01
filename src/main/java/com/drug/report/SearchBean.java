@@ -26,7 +26,7 @@ private static final long serialVersionUID = 1L;
 	private String returnMemoDate;
 	private String ndcupcCode;
 	private String description;
-	private String isReturnable;
+	private String isreturnable;
 	private String strength;
 	private String dosage;
 	private String lotNo;
@@ -36,8 +36,19 @@ private static final long serialVersionUID = 1L;
 	private String partialQuantity;
 	private String price;
 	private String estValue;
+	private String manufacturername;
 	
 	private String exportPDF;
+
+	
+	public String getManufacturername() {
+		return manufacturername;
+	}
+	public void setManufacturername(String manufacturername) {
+		this.manufacturername = manufacturername;
+	}
+
+
 	
 	public String getExportPDF() {
 		return exportPDF;
@@ -101,11 +112,12 @@ private static final long serialVersionUID = 1L;
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getIsReturnable() {
-		return isReturnable;
+	
+	public String getIsreturnable() {
+		return isreturnable;
 	}
-	public void setIsReturnable(String isReturnable) {
-		this.isReturnable = isReturnable;
+	public void setIsreturnable(String isreturnable) {
+		this.isreturnable = isreturnable;
 	}
 	public String getStrength() {
 		return strength;

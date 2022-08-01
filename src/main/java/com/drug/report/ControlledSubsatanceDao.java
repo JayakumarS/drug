@@ -32,11 +32,6 @@ public interface ControlledSubsatanceDao {
 
 	List<CompanyBean> getCompanyAddress(String companyId);
 	
-	
-	//ExportPDF
-	
-//	String getExportPDF(SearchBean bean) throws Exception;
-
 
 
 

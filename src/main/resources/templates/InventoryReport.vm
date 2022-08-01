@@ -1,109 +1,50 @@
 
 <html>
-	<meta charset="ISO-8859-1">
-   	<meta http-equiv="Content-Language" content="hi">
-<head>
-<style>
-body
-{
-font-family: Arial;
-font-size: 15px;
-} 
 
-@page { 
- 	@top-center {content: element(header)} ;   
-     @bottom-right {content: counter(page)} ;
+	<div class="row">
+           <div class="col-md-12">              
+              <div style="text-align: left;"> Return Name :                                         ${companyName}</div>
+              <div style="text-align: left;"> Created :${createdDate}                               Inventory Report</div>
+          </div>
+     </div>
 	
-     
-}
-.printReceiptData
-{
-width:98%;
-border-collapse:collapse;
-border-color:#000000; 
-    border-style:solid; 
-    border-width:1px;
-}
-.printReceiptData thead th
-{   
-    background-color: #CAE9FB !important; 
-    border-color:#cccccc; 
-	border-style:solid; 
-	border-width:1px;
-} 
-.printReceiptData tbody td
-{
- 	border-color:#cccccc; 
-border-style:solid; 
-border-width:1px; 
-}
- 
-</style>
-</head>
-	
-	<table class="report-container"> 		
-	<th align="center" style="text-align: center"><div
-				class="headingValue">
-				<u>Inventory Report</u>
-			</div></th>
-				<body>
-			<tr>
-				<td>
-				<table class="printReceiptData">
+<table style="overflow-x:auto;">
 					
-				         <thead class="theadRow thead-light" >
-                          <tr>
-                            <th style="text-align: center;"> Created: ${item.returnMemoDate}</th>
-                            <th style="text-align: center;">${item.companyName} <br><br> <b>Inventory Report</b></th>
-                            <th style="text-align: center;">Debit Memo: ${item.returnMemoNo}</th>
-                          </tr>
-                      </thead>
-					<table class="printReceiptData">
 					
-				         <thead >
-							<th>NDC/UPC</th>
-							<th>Description</th>
-							<th>Strength</th>
-							<th>Dsg</th>
-							<th>Returnable</th>
-							<th>Pkg Size</th>
-							<th>Full Qty</th>
-							<th>Partial Qty</th>
-							<th>Price</th>
-							<th>Total</th>
+				         <thead>
+							<th style="border:1px solid #FFFFFF ">NDC/UPC</th>
+							<th style="border:1px solid #FFFFFF ">Description</th>
+							<th style="border:1px solid #FFFFFF ">Strength</th>
+							<th style="border:1px solid #FFFFFF ">Dsg</th>
+							<th style="border:1px solid #FFFFFF ">Returnable</th>
+							<th style="border:1px solid #FFFFFF ">Pkg Size</th>
+							<th style="border:1px solid #FFFFFF ">Full Qty</th>
+							<th style="border:1px solid #FFFFFF ">Partial Qty</th>
+							<th style="border:1px solid #FFFFFF ">Price</th>
+							<th style="border:1px solid #FFFFFF ">Total</th>
 						</thead> 
 						<tbody>
 				       	#foreach($item in $listSearchBean)
 					       
 					         <tr>
-                          <td colspan="10" ><b>${item.description}</b></td>
+                          <td colspan="10"  style="border:1px solid #FFFFFF "><b>${item.manufacturername}</b></td>
                             </tr>
                              <tr>
-								<td align="center">${item.ndcupcCode}&nbsp;&nbsp;</td> 
-								<td style="width:150px">${item.description}</td>
-								<td style="width:135px">${item.strength}</td>	
-								<td style="width:135px"></td>	
-								<td style="width:135px">${item.isReturnable}</td>	
-								<td style="width:135px">${item.pakageSize}</td>	
-								<td style="width:135px">${item.fullQuantity}</td>	
-								<td style="width:135px">${item.partialQuantity}</td>	
-								<td style="width:135px">${item.price}</td>
-								<td style="width:135px"></td>	
+								<td style="border:1px solid #FFFFFF ">${item.ndcupcCode}</td> 
+								<td style="border:1px solid #FFFFFF ">${item.description}</td>
+								<td style="border:1px solid #FFFFFF ">${item.strength}</td>	
+								<td style="border:1px solid #FFFFFF ">${item.dosage}</td>	
+								<td style="border:1px solid #FFFFFF "></td>	
+								<td style="border:1px solid #FFFFFF ">${item.pakageSize}</td>	
+								<td style="border:1px solid #FFFFFF ">${item.fullQuantity}</td>	
+								<td style="border:1px solid #FFFFFF ">${item.partialQuantity}</td>	
+								<td style="border:1px solid #FFFFFF ">${item.price}</td>
+								<td style="border:1px solid #FFFFFF "></td>	
 							</tr>
 						#end
 						</tbody>
-					</table>
-									</table>
-					
-				</td>
-			</tr>
-		<!-- 	<tr>
-				<td class="footer"></td>
-			</tr> -->
-<!-- 		</table>
- -->	
-  </body>
- </table>
+					</table>			
+				
 
 </html>
 
