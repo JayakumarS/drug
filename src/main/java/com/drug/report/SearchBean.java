@@ -38,29 +38,25 @@ private static final long serialVersionUID = 1L;
 	private String estValue;
 	private String manufacturername;
 	private String returnMemoName;
+	private String reportType;
+
+	
+	
 	
 	
 
-	private String exportPDF;
-	
-	
-	
 	public String getReturnMemoName() {
 		return returnMemoName;
 	}
 	public void setReturnMemoName(String returnMemoName) {
 		this.returnMemoName = returnMemoName;
 	}
-
 	public String getManufacturername() {
 		return manufacturername;
 	}
 	public void setManufacturername(String manufacturername) {
 		this.manufacturername = manufacturername;
 	}
-
-
-	
 	public String getExportPDF() {
 		return exportPDF;
 	}
@@ -72,8 +68,8 @@ private static final long serialVersionUID = 1L;
 	//for search
 	private String startDate;
 	private String endDate;
-
 	private String controlClass;
+	private String exportPDF;
 
 	public boolean isSuccess() {
 		return Success;
@@ -204,6 +200,12 @@ private static final long serialVersionUID = 1L;
 	}
 	public void setControlClass(String controlClass) {
 		this.controlClass = controlClass;
+	}
+	public String getReportType() {
+		return reportType;
+	}
+	public void setReportType(String reportType) {
+		this.reportType = reportType;
 	}
 
 

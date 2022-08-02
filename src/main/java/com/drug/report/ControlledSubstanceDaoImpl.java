@@ -53,7 +53,7 @@ public class ControlledSubstanceDaoImpl implements ControlledSubsatanceDao{
 			bean.setEndDate((enddate1).toString());
  			}
 
-List<SearchBean> searchBean = jdbcTemplate.query(ControlledSubstanceQueryUtil.getReturnSearchList(bean.getCompany(),bean.getReturnMemoNo(),bean.getStartDate(),bean.getEndDate()), new BeanPropertyRowMapper<SearchBean>(SearchBean.class));
+ 			List<SearchBean> searchBean = jdbcTemplate.query(ControlledSubstanceQueryUtil.getSearchList(bean.getReportType(),bean.getCompany(),bean.getReturnMemoNo(),bean.getStartDate(),bean.getEndDate()), new BeanPropertyRowMapper<SearchBean>(SearchBean.class));
 resultBean.setListSearchBean(searchBean);
 
 		    resultBean.setSuccess(true);

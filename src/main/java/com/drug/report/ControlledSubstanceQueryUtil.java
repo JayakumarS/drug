@@ -33,13 +33,11 @@ public class ControlledSubstanceQueryUtil {
 		}
 	
 	
-	//search
-	
-	public static final String getSearchList(String company,String returnno,String fromdt,String todt) {
-		String query = "select * from vw_get_returnable_products('"+company+"','"+returnno+"','"+fromdt+"','"+todt+"')";
-		return query;
-	}
-	
+		public static final String getSearchList(String reporttype,String company,String returnno,String fromdt,String todt) {
+			String query = "select * from vw_get_reportsbytype('"+reporttype+"','"+company+"','"+returnno+"','"+fromdt+"','"+todt+"')";
+			return query;
+		}
+		
 	
 	//Returnable
 	
