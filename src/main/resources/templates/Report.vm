@@ -4,7 +4,7 @@
 	<div class="row">
            <div class="col-md-12">              
               <div style="text-align: left;"> Return Name : ${returnMemoName}  <br><br> Created : ${createdDate}</div>
-               <div style="text-align: center;"> ${companyName} <br><br> Inventory Report </div>                                     
+               <div style="text-align: center;"> ${companyName} <br><br>Report </div>                                     
           </div>
      </div>
 	
