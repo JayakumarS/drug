@@ -55,7 +55,7 @@ public class ControlledSubstanceDaoImpl implements ControlledSubsatanceDao{
 
  			List<SearchBean> searchBean = jdbcTemplate.query(ControlledSubstanceQueryUtil.getSearchList(bean.getReportType(),bean.getCompany(),bean.getReturnMemoNo(),bean.getStartDate(),bean.getEndDate()), new BeanPropertyRowMapper<SearchBean>(SearchBean.class));
 resultBean.setListSearchBean(searchBean);
-
+	
 		    resultBean.setSuccess(true);
 		  //  System.out.print(result);
 		}catch(Exception e) {

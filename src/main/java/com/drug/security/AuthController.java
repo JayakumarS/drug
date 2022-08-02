@@ -82,17 +82,17 @@ public class AuthController {
 		String defaultRole = roles.get(0).getRoleName();
 		boolean captchaVerified = commonServicesService.verify(loginRequest.getRecaptchaResponse());
 		String otp = RandomStringUtils.random(6, "0123456789");
-		System.out.println("OTP is "+otp);
+//		System.out.println("OTP is "+otp);
 		Integer count = commonServicesService.getCountValue(userDetails.getUsername());
 		boolean isSuccess = false;
 		String message = "";
 		if(captchaVerified==true) {
-		if(count <= 5) {
+//		if(count <= 5) {
 			
 		try {
 			//save OTP
 			commonServicesService.insertOtp(userDetails.getUsername(), usersMasterBean.getEmailId(), otp);
-			EmailService.sendOtpMail(usersMasterBean.getEmailId(),userDetails.getUsername(),otp);
+//			EmailService.sendOtpMail(usersMasterBean.getEmailId(),userDetails.getUsername(),otp);
 			isSuccess = true;
 		}
 		catch(Exception e) {
@@ -101,12 +101,12 @@ public class AuthController {
 			message = "Failed to get OTP. Try again!";
 		}
 		
-		}
+//		}
 		
-		else {
-			isSuccess = false;
-			message = "You have Reached your maximum OTP Request. Please try again after 1 hour";
-		}
+//		else {
+//			isSuccess = false;
+//			message = "You have Reached your maximum OTP Request. Please try again after 1 hour";
+//		}
 		}
 		else {
 			isSuccess = false;

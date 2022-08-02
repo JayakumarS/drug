@@ -2,12 +2,11 @@ package com.drug.setup.users;
 
 public class UsersMasterQueryUtil {
 	
-	public static final String getList = "select ud.emp_id as empId, ud.emp_user_id as newUserName,ud.first_name as firstName,ud.last_name as lastName, "
-			+ "ud.phone_no as mobileNo,ud.email_id as emailId,string_agg(r.name,',') as roleText  "
-			+ "from user_details ud  "
-			+ "left join auth.user_roles ur on ur.user_id = ud.emp_user_id "
-			+ "left join auth.role r on r.role_id = ur.role_id "
-			+ "group by ud.emp_id,ud.emp_user_id,ud.first_name,ud.last_name,ud.phone_no,ud.email_id  "
+	public static final String getList = "select ud.emp_id as empId, ud.emp_user_id as newUserName,ud.first_name as firstName,\n"
+			+ "ud.last_name as lastName,ud.phone_no as mobileNo,ud.email_id as emailId,ud.photo_url as uploadImg,\n"
+			+ "string_agg(r.name,',') as roleText from user_details ud left join auth.user_roles ur \n"
+			+ "on ur.user_id = ud.emp_user_id left join auth.role r on r.role_id = ur.role_id \n"
+			+ "group by ud.emp_id,ud.emp_user_id,ud.first_name,ud.last_name,ud.phone_no,ud.email_id  \n"
 			+ "order by emp_user_id asc";
 
 	public static final String DELETE = "delete from auth.role where role_id = ?";
@@ -43,7 +42,7 @@ public class UsersMasterQueryUtil {
 
 //	public static final String SELECT_ROLE_DTL = "select ur.user_id as newUserName ,ur.role_id as roles ,role.name as roleName from auth.user_roles ur left join auth.role role on role.role_id = ur.role_id where user_id =?";
 
-	public static final String SELECT_DTL = "select emp_id as empId,email_id as emailId,first_name as firstName,last_name as lastName,phone_no as mobileNo,emp_name as empName,emp_user_id as newUserName  from user_details where emp_id =?";
+	public static final String SELECT_DTL = "select emp_id as empId,email_id as emailId,first_name as firstName,last_name as lastName,phone_no as mobileNo,emp_name as empName,emp_user_id as newUserName,photo_url as uploadImg  from user_details where emp_id =?";
 
 	public static final String SELECT_User_Name = "select emp_user_id as newUserName from user_details where emp_id = ?";
 	public static final String SELECT_ROLE_DTL = "select distinct ur.role_id as id ,role.name as text from auth.user_roles ur left join auth.role role on role.role_id = ur.role_id where user_id =?";
